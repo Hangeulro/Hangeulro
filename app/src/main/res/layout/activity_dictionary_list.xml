@@ -15,10 +15,18 @@
         android:background="@color/colorPrimary">
 
         <ImageView
+            android:id="@+id/dictionarylist_mainlogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/logo_main" />
+            android:src="@drawable/logo_dic_main" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/dictionarylist_mainlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/text_dictionary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +34,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="12dp"
             android:layout_marginLeft="25dp"
-            android:text="Contents"
+            android:text="Dictionary"
             android:textColor="#FFF"
             android:textSize="20sp" />
     </RelativeLayout>
@@ -39,7 +47,7 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/main_listview"
+            android:id="@+id/dictionarylist_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#D2D2D2" />
