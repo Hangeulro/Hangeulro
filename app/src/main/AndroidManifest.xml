@@ -10,10 +10,12 @@
         android:theme="@style/AppTheme.NoActionbar">
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>
