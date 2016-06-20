@@ -7,4 +7,4 @@
         android:src="@drawable/bg_btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-</RelativeLayo
+</RelativeLayout>
