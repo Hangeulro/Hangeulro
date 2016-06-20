@@ -1,7 +1,10 @@
 package kr.edcan.hangeulro.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,5 +34,15 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new CommonData("설정", R.drawable.ic_setting));
         CommonListViewAdapter adapter = new CommonListViewAdapter(getApplicationContext(), arrayList);
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        startActivity(new Intent(getApplicationContext(), DictionaryListActivity.class));
+                        break;
+                }
+            }
+        });
     }
 }

@@ -30,9 +30,8 @@ public class DictionaryListViewAdapter extends ArrayAdapter<CommonData>{
         View view = LayoutInflater.from(c).inflate(R.layout.dictionary_listview_content, null);
 
         CommonData data = getItem(position);
-        ImageView icon = (ImageView) view.findViewById(R.id.common_listview_image);
-        TextView title = (TextView) view.findViewById(R.id.common_listview_title);
-        ImageView arrow = (ImageView) view.findViewById(R.id.common_listview_arrow);
+        ImageView icon = (ImageView) view.findViewById(R.id.dictionarylist_listview_logo);
+        TextView title = (TextView) view.findViewById(R.id.dictionarylist_listview_title);
         icon.setImageResource(data.getLogo());
         title.setText(data.getTitle());
         return view;

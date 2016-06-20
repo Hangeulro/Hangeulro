@@ -7,6 +7,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import kr.edcan.hangeulro.R;
+import kr.edcan.hangeulro.adapter.DictionaryListViewAdapter;
 import kr.edcan.hangeulro.model.CommonData;
 
 public class DictionaryListActivity extends AppCompatActivity {
@@ -28,5 +29,7 @@ public class DictionaryListActivity extends AppCompatActivity {
         arrayList.add(new CommonData("화남", R.drawable.btn_angry));
         arrayList.add(new CommonData("긍정", R.drawable.btn_postive));
         arrayList.add(new CommonData("부러움", R.drawable.btn_burub));
+        DictionaryListViewAdapter adapter = new DictionaryListViewAdapter(getApplicationContext(), arrayList);
+        listView.setAdapter(adapter);
     }
 }
