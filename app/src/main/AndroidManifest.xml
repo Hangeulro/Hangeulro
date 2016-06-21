@@ -17,7 +17,9 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.DictionaryListActivity" />
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.MyDictionaryActivity" />
+        <activity android:name=".activity.NewWordDictionary"></activity>
     </application>
 
 </manifest>

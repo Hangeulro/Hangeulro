@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/common_cardview_headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BCBDBE"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="16dp"
+            android:text="알쏭달쏭한 신조어의 뜻과 대체할 단어를\n보여드리는 신조어 사전입니다.\n평소에 내가 모르던 신조어를 알아보고\n간단하게 상황별 신조어를 알아보세요" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_hangeul" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/common_cardview_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="3dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <RelativeLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5">
+
+                    <TextView
+                        android:id="@+id/common_cardview_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="뺴박캔트"
+                        android:textSize="28sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/textColor" />
+
+                <TextView
+                    android:id="@+id/common_cardview_content"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4.5"
+                    android:gravity="center"
+                    android:text="빼도박도 + 못한다 (can't)'라는\n 말로 줄임 + 합성어입니다"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#B3B3B4"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5"
+                    android:gravity="right|center_vertical"
+                    android:text="뜻"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/textColor" />
+
+                <RelativeLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4.5">
+
+                    <TextView
+                        android:id="@+id/common_cardview_subContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="빼도박도 못하다"
+                        android:textColor="#FFF" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/ic_favorite" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

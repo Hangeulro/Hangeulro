@@ -1,7 +1,10 @@
 package kr.edcan.hangeulro.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,5 +34,11 @@ public class DictionaryListActivity extends AppCompatActivity {
         arrayList.add(new CommonData("부러움", R.drawable.btn_burub));
         DictionaryListViewAdapter adapter = new DictionaryListViewAdapter(getApplicationContext(), arrayList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getApplicationContext(), NewWordDictionary.class));
+            }
+        });
     }
 }

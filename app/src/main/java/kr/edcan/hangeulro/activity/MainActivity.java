@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
@@ -23,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setDefault();
-        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
     }
 
     private void setDefault() {
@@ -38,15 +39,15 @@ public class MainActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DictionaryListActivity.class));
                         break;
                     case 1:
-//                        startActivity(new Intent());
+                        startActivity(new Intent(getApplicationContext(), MyDictionaryActivity.class));
                         break;
                     case 2:
-//                        startActivity();
+                        Toast.makeText(MainActivity.this, "신조어 게시판은 정식 버전에서 지원할 예정입니다.", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         startActivity(new Intent(getApplicationContext(), SettingActivity.class));
