@@ -1,2 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/pre-dexed/debug/me.zhanghai.android.materialprogressbar-library-1.1.4_d540d0bb2eb4cf1fd659a5fc42b8ccab7e61690e.jar" />
+    </item>
+    <item
+        jar="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8174013f25a7d1f9bb4e50e2e3dc11254dee1442">
+        <dex dex="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/pre-dexed/debug/com.github.afollestad.material-dialogs-core-0.8.5.3_189daaff70fc322645d40a448293d1e0a906cfd3.jar" />
+    </item>
+    <item
+        jar="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/commons/0.8.5.3/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="15ee5b06fdfdbe3ad565bc56eff1e70231334d59">
+        <dex dex="/Volumes/Sources/Android/Project/Hangeulro/app/build/intermediates/pre-dexed/debug/com.github.afollestad.material-dialogs-commons-0.8.5.3_9aa31bdd3c6d8ca649556a96dbedd2b57373a3e3.jar" />
+    </item>
+
+</items>

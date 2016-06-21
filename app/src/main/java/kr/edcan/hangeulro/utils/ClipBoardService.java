@@ -19,6 +19,7 @@ import android.view.WindowManager;
 
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 
 import java.util.Date;
 
@@ -94,7 +95,7 @@ public class ClipBoardService extends Service {
                                     Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                                     vb.vibrate(500);
                                 materialDialog = new MaterialDialog.Builder(getBaseContext())
-                                        .customView(getView(clipData), false)
+                                        .customView(getView(), false)
                                         .theme(Theme.LIGHT)
                                         .build();
                                 materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
