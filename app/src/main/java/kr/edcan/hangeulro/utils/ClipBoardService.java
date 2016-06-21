@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.WindowManager;
 
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.Date;
 
 import kr.edcan.hangeulro.R;
