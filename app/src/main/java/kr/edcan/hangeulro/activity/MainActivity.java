@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DictionaryListActivity.class));
                         break;
+                    case 1:
+//                        startActivity(new Intent());
+                        break;
+                    case 2:
+//                        startActivity();
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                        break;
                 }
             }
         });
