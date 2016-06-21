@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.DictionaryListActivity"></activity>
+        <activity android:name=".activity.DictionaryListActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>
