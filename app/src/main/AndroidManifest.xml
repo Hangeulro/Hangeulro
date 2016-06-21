@@ -25,6 +25,17 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.MyDictionaryActivity" />
         <activity android:name=".activity.NewWordDictionary"></activity>
+
+        <receiver
+            android:name=".utils.BootReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:label="service.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

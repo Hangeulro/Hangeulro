@@ -11,7 +11,6 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-            if (context.getSharedPreferences("Exchat", 0).getBoolean("onBoot", true))
                 context.startService(new Intent(context, ClipBoardService.class));
         }
     }
