@@ -1,6 +1,10 @@
 package kr.edcan.hangeulro.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,16 +24,39 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<CommonData> arrayList;
     ListView listview;
+    public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public void setPackage() {
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, OVERLAY_PERMISSION_REQ_CODE);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(MainActivity.this, "한글을 한글로!를 실행하기 위해 권한을 허용해주세요!", Toast.LENGTH_SHORT).show();
+                setPackage();
+            }
+        }
+    }
     private void setDefault() {
+
         listview = (ListView) findViewById(R.id.main_listview);
         arrayList = new ArrayList<>();
         arrayList.add(new CommonData("사전", R.drawable.ic_dic));
