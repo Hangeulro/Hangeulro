@@ -14,6 +14,7 @@ import java.util.Random;
 import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
 import kr.edcan.hangeulro.model.CommonData;
+import kr.edcan.hangeulro.utils.ClipBoardService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setDefault();
+        startService(new Intent(MainActivity.this, ClipBoardService.class));
     }
 
     private void setDefault() {

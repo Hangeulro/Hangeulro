@@ -32,7 +32,7 @@ import kr.edcan.hangeulro.activity.MainActivity;
  */
 public class ClipBoardService extends Service {
 
-    final static int INTENT_KEY = 1208;
+    final static int INTENT_KEY = 1209;
     Intent startMain;
     MaterialDialog materialDialog;
     public static Service service;
@@ -45,6 +45,8 @@ public class ClipBoardService extends Service {
     public void onCreate() {
         super.onCreate();
         service = this;
+        sharedPreferences = getSharedPreferences("asdf", 0);
+        editor = sharedPreferences.edit();
     }
 
 
@@ -60,15 +62,18 @@ public class ClipBoardService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e("asdf", "sex");
         manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         TaskStackBuilder killbuild = TaskStackBuilder.create(this);
         killbuild.addNextIntent(new Intent(getApplicationContext(), KillProcess.class));
-        PendingIntent killProcess = killbuild.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent killProcess = killbuild.getPendingIntent(1123, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("한글을 한글로!")
                 .setContentText("퀵서치 기능이 작동중입니다.")
                 .addAction(R.drawable.btn_status_deleteapp, "종료", killProcess);
+
         startMain = new Intent(this, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(MainActivity.class);
@@ -79,32 +84,26 @@ public class ClipBoardService extends Service {
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         builder.setContentIntent(resultPendingIntent);
-        if (sharedPreferences.getBoolean("fastSearchAlert", true)) {
-            Log.e("asdf", "fastSearch");
-            startForeground(INTENT_KEY, builder.build());
-        }
+        startForeground(1222, builder.build());
         manager.addPrimaryClipChangedListener(new ClipboardManager.OnPrimaryClipChangedListener() {
             @Override
             public void onPrimaryClipChanged() {
-                final boolean fastSearch = sharedPreferences.getBoolean("fastSearch", true);
-                if (fastSearch) {
-                    if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
-                        if (manager.getPrimaryClipDescription().toString().contains("text")) {
-                            String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
-                            if (capturedString.contains("빼박캔트")) {
-                                    Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                                    vb.vibrate(500);
-                                materialDialog = new MaterialDialog.Builder(getBaseContext())
-                                        .customView(getView(), false)
-                                        .theme(Theme.LIGHT)
-                                        .build();
-                                materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                                WindowManager.LayoutParams wmlp = materialDialog.getWindow().getAttributes();
-                                wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-                                materialDialog.show();
-                                editor.putLong("lastFastSearchTime", System.currentTimeMillis());
-                                editor.commit();
-                            }
+                if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
+                    if (manager.getPrimaryClipDescription().toString().contains("text")) {
+                        String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
+                        if (capturedString.contains("빼박캔트")) {
+                            Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vb.vibrate(500);
+                            materialDialog = new MaterialDialog.Builder(getBaseContext())
+                                    .customView(getView(), false)
+                                    .theme(Theme.LIGHT)
+                                    .build();
+                            materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                            WindowManager.LayoutParams wmlp = materialDialog.getWindow().getAttributes();
+                            wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+                            materialDialog.show();
+                            editor.putLong("lastFastSearchTime", System.currentTimeMillis());
+                            editor.commit();
                         }
                     }
                 }
