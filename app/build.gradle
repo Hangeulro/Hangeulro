@@ -18,10 +18,13 @@ android {
         }
     }
 
-    repositories{
+    repositories {
         maven {
             url "https://jitpack.io"
         }
+    }
+    dataBinding {
+        enabled true
     }
 }
 
