@@ -2,26 +2,31 @@ package kr.edcan.hangeulro.activity;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+import kr.edcan.hangeulro.DicMenuActivity;
 import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
+import kr.edcan.hangeulro.databinding.ActivityMainBinding;
+import kr.edcan.hangeulro.databinding.MainListviewFooterBinding;
 import kr.edcan.hangeulro.model.CommonData;
 import kr.edcan.hangeulro.utils.ClipBoardService;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
     public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
@@ -29,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             setPackage();
         setDefault();
@@ -55,31 +60,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    private void setDefault() {
 
-        listview = (ListView) findViewById(R.id.main_listview);
+    private void setDefault() {
+        listview = binding.mainListView;
         arrayList = new ArrayList<>();
-        arrayList.add(new CommonData("사전", R.drawable.ic_dic));
-        arrayList.add(new CommonData("내사전", R.drawable.ic_my));
-        arrayList.add(new CommonData("신조어 게시판", R.drawable.ic_board));
-        arrayList.add(new CommonData("설정", R.drawable.ic_setting));
+        arrayList.add(new CommonData("신조어 사전", "Neologism Dictionary", R.drawable.ic_main_dic));
+        arrayList.add(new CommonData("내 사전", "My Dictionary", R.drawable.ic_main_mydic));
+        arrayList.add(new CommonData("누리꾼 게시판", "Netizen Bulletin Board", R.drawable.ic_main_board));
+        arrayList.add(new CommonData("신조어 퀴즈", "Neologism Quiz", R.drawable.ic_main_battle));
         CommonListViewAdapter adapter = new CommonListViewAdapter(getApplicationContext(), arrayList);
         listview.setAdapter(adapter);
+        MainListviewFooterBinding footerBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.main_listview_footer, null, false);
+        listview.addFooterView(footerBinding.getRoot());
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+                switch (position){
                     case 0:
-                        startActivity(new Intent(getApplicationContext(), DictionaryListActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), MyDictionaryActivity.class));
-                        break;
-                    case 2:
-                        Toast.makeText(MainActivity.this, "신조어 게시판은 정식 버전에서 지원할 예정입니다.", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                        startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
                 }
             }

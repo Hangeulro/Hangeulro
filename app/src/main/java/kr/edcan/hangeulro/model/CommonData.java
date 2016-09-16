@@ -5,11 +5,17 @@ package kr.edcan.hangeulro.model;
  */
 public class CommonData {
     private String title;
+    private String subtitle;
     private int logo;
 
-    public CommonData(String title, int logo) {
+    public CommonData(String title, String subtitle, int logo) {
         this.title = title;
+        this.subtitle = subtitle;
         this.logo = logo;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
     }
 
     public String getTitle() {
