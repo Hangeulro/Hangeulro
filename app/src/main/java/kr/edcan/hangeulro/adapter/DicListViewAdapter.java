@@ -26,6 +26,7 @@ public class DicListViewAdapter extends ArrayAdapter<CommonData> {
         this.c = context;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(c).inflate(R.layout.dictionary_listview_content, null);

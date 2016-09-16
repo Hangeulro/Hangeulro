@@ -1,8 +1,11 @@
 package kr.edcan.hangeulro;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,13 +17,24 @@ import kr.edcan.hangeulro.model.CommonData;
 
 public class DicMenuActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
+
     ActivityDicMenuBinding binding;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dic_menu);
+        setAppbarLayout();
         setDefault();
+    }
+
+    private void setAppbarLayout() {
+        toolbar = binding.toolbar;
+        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setDefault() {
@@ -34,5 +48,15 @@ public class DicMenuActivity extends AppCompatActivity {
         arrayList.add(new CommonData("일상생활 코드", "Lifestyle Code",  R.drawable.ic_dic_lifestyle));
         DicListViewAdapter adapter = new DicListViewAdapter(getApplicationContext(), arrayList);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
