@@ -1,15 +1,19 @@
 package kr.edcan.hangeulro;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import kr.edcan.hangeulro.activity.DicViewActivity;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
 import kr.edcan.hangeulro.adapter.DicListViewAdapter;
 import kr.edcan.hangeulro.databinding.ActivityDicMenuBinding;
@@ -21,6 +25,7 @@ public class DicMenuActivity extends AppCompatActivity {
 
     ActivityDicMenuBinding binding;
     ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,20 +44,27 @@ public class DicMenuActivity extends AppCompatActivity {
 
     private void setDefault() {
         listView = binding.dicMenuListView;
-        ArrayList<CommonData> arrayList  = new ArrayList<>();
-        arrayList.add(new CommonData("사랑 코드", "Love Code",  R.drawable.ic_dic_love));
-        arrayList.add(new CommonData("우스운 코드", "Funny Code",  R.drawable.ic_dic_funny));
-        arrayList.add(new CommonData("서글픈 코드", "Sad Code",  R.drawable.ic_dic_sad));
-        arrayList.add(new CommonData("화가 난 코드", "Angry Code",  R.drawable.ic_dic_angry));
-        arrayList.add(new CommonData("공감 코드", "Sympathy Code",  R.drawable.ic_dic_sympathy));
-        arrayList.add(new CommonData("일상생활 코드", "Lifestyle Code",  R.drawable.ic_dic_lifestyle));
+        ArrayList<CommonData> arrayList = new ArrayList<>();
+        arrayList.add(new CommonData("사랑 코드", "Love Code", R.drawable.ic_dic_love));
+        arrayList.add(new CommonData("우스운 코드", "Funny Code", R.drawable.ic_dic_funny));
+        arrayList.add(new CommonData("서글픈 코드", "Sad Code", R.drawable.ic_dic_sad));
+        arrayList.add(new CommonData("화가 난 코드", "Angry Code", R.drawable.ic_dic_angry));
+        arrayList.add(new CommonData("공감 코드", "Sympathy Code", R.drawable.ic_dic_sympathy));
+        arrayList.add(new CommonData("일상생활 코드", "Lifestyle Code", R.drawable.ic_dic_lifestyle));
         DicListViewAdapter adapter = new DicListViewAdapter(getApplicationContext(), arrayList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class)
+                        .putExtra("codeType", position));
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
