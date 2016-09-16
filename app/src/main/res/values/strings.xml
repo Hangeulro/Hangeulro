@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">한글을 한글로!</string>
     <string name="open_app">앱에서 보기</string>
+    <string name="contents">Contents</string>
+    <string name="main_selectbest">으뜸 정하기</string>
+    <string name="main_today">오늘의 신조어</string>
 </resources>

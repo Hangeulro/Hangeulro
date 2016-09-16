@@ -3,5 +3,26 @@
     <color name="colorPrimary">#E10323</color>
     <color name="colorPrimaryDark">#7A0B13</color>
     <color name="colorAccent">#E10323</color>
-    <color name="textColor">#4D4D4D</color>
+    <color name="textColor">#777777</color>
+    <color name="textColorDark">#4c4c4c</color>
+    <color name="textColorSubDark">#757575</color>
+    <color name="loveStatusColor">#c4211a</color>
+    <color name="loveActionbarColor">#e50505</color>
+    <color name="loveThemeColor">#ea4e1b</color>
+    <color name="sadStatusColor">#125f73</color>
+    <color name="sadActionbarColor">#107392</color>
+    <color name="sadThemeColor">#2ea9e2</color>
+    <color name="funStatusColor">#629017</color>
+    <color name="funActionbarColor">#73a91d</color>
+    <color name="funThemeColor">#94c120</color>
+    <color name="angryStatusColor">#38135c</color>
+    <color name="angryActionbarColor">#4f1d7e</color>
+    <color name="angryThemeColor">#6b1b96</color>
+    <color name="symStatusColor">#441b19</color>
+    <color name="symActionbarColor">#712122</color>
+    <color name="symThemeColor">#994f46</color>
+    <color name="lifeStatusColor">#0c2d3c</color>
+    <color name="lifeActionbarColor">#105069</color>
+    <color name="lifeThemeColor">#1a7894</color>
+
 </resources>
