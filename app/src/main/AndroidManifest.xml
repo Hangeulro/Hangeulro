@@ -34,7 +34,8 @@
 
         <service android:name=".utils.ClipBoardService" />
 
-        <activity android:name=".DicMenuActivity"></activity>
+        <activity android:name=".DicMenuActivity" />
+        <activity android:name=".activity.DicViewActivity"></activity>
     </application>
 
 </manifest>
