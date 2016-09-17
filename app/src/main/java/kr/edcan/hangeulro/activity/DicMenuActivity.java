@@ -1,4 +1,4 @@
-package kr.edcan.hangeulro;
+package kr.edcan.hangeulro.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.activity.DicViewActivity;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
 import kr.edcan.hangeulro.adapter.DicListViewAdapter;
