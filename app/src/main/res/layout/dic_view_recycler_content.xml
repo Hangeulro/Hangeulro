@@ -2,13 +2,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_dic_card">
+            android:layout_height="50dp"
+            android:background="@drawable/bg_diclife_card">
 
             <TextView
                 android:id="@+id/dicRecyclerTitle"
@@ -17,6 +20,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:text="썸남썸녀"
+                android:textColor="@color/textColorDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -24,6 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_dic_cardbottom"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -47,7 +52,8 @@
                     android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㅇㄹㄴㅁㅇㄹ" />
+                    android:text="ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㅇㄹㄴㅁㅇㄹ"
+                    android:textColor="@color/textColorDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -71,7 +77,8 @@
                     android:layout_marginLeft="10dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㅇㄹㄴㅁㅇㄹ" />
+                    android:text="ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㄴㅁㄹㄴㅁㅇㄹㅁㄴㅇㄹㄴㅁㅇㄹ"
+                    android:textColor="@color/textColorDark" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,7 +90,6 @@
 
                 <TextView
                     android:id="@+id/dicRecyclerSave"
-                    android:background="?attr/selectableItemBackground"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_dic_savemydic"

@@ -12,9 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import kr.edcan.hangeulro.R;
+import kr.edcan.hangeulro.adapter.DicRecyclerAdapter;
 import kr.edcan.hangeulro.databinding.ActivityDicMenuBinding;
 import kr.edcan.hangeulro.databinding.ActivityDicViewBinding;
+import kr.edcan.hangeulro.model.DicData;
 
 public class DicViewActivity extends AppCompatActivity {
     int codeType;
@@ -72,7 +76,13 @@ public class DicViewActivity extends AppCompatActivity {
     private void setData() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(false);
-
+        ArrayList<DicData> arrayList = new ArrayList<>();
+        arrayList.add(new DicData("썸남썸녀", "썸은 엉나ㅓ로만오러ㅏㄴㅁ", "ㅁㄴㅇㄹㅁㄴㅇㄹ", 1555));
+        arrayList.add(new DicData("썸남썸녀", "썸은 엉나ㅓ로만오러ㅏㄴㅁ", "ㅁㄴㅇㄹㅁㄴㅇㄹ", 1555));
+        arrayList.add(new DicData("썸남썸녀", "썸은 엉나ㅓ로만오러ㅏㄴㅁ", "ㅁㄴㅇㄹㅁㄴㅇㄹ", 1555));
+        arrayList.add(new DicData("썸남썸녀", "썸은 엉나ㅓ로만오러ㅏㄴㅁ", "ㅁㄴㅇㄹㅁㄴㅇㄹ", 1555));
+        DicRecyclerAdapter adapter = new DicRecyclerAdapter(getApplicationContext(), arrayList);
+        recyclerView.setAdapter(adapter);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
