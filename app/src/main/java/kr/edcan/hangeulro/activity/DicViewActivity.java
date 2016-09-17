@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -46,7 +47,9 @@ public class DicViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dic_view);
         setDefault();
+        setData();
     }
+
 
     private void setDefault() {
         intent = getIntent();
@@ -66,6 +69,11 @@ public class DicViewActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(getResources().getColor(statusbarColor[codeType]));
     }
 
+    private void setData() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setHasFixedSize(false);
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

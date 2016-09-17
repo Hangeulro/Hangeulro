@@ -11,6 +11,7 @@
             android:background="@drawable/bg_dic_card">
 
             <TextView
+                android:id="@+id/dicRecyclerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
