@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,10 +26,13 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
     Context context;
     ArrayList<DicData> arrayList;
     DicData data;
+    int cardFooter[] = {R.drawable.bg_diclove_card, R.drawable.bg_dicfun_card, R.drawable.bg_dicsad_card, R.drawable.bg_dicangry_card, R.drawable.bg_dicsym_card, R.drawable.bg_diclife_card};
+    int codeType;
 
-    public DicRecyclerAdapter(Context context, ArrayList<DicData> items) {
+    public DicRecyclerAdapter(Context context, ArrayList<DicData> items, int codeType) {
         this.context = context;
         this.arrayList = items;
+        this.codeType = codeType;
     }
 
     @Override
@@ -45,6 +49,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
         holder.meaning.setText(data.getMeaning());
         holder.viewCount.setText("조회수 " + data.getSearchCount());
         holder.example.setText(data.getExample());
+//        holder.dicRecyclerHeader.setBackgroundResource(cardFooter[codeType]);
     }
 
     @Override
@@ -54,6 +59,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, meaning, example, viewCount;
+        RelativeLayout dicRecyclerHeader;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +67,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
             meaning = binding.dicRecyclerMeaning;
             example = binding.dicRecyclerExample;
             viewCount = binding.dicRecyclerViewCount;
+            dicRecyclerHeader = binding.dicRecyclerHeader;
         }
     }
 }
