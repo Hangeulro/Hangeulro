@@ -49,7 +49,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
         holder.meaning.setText(data.getMeaning());
         holder.viewCount.setText("조회수 " + data.getSearchCount());
         holder.example.setText(data.getExample());
-//        holder.dicRecyclerHeader.setBackgroundResource(cardFooter[codeType]);
+        holder.dicRecyclerHeader.setBackgroundResource(cardFooter[codeType]);
     }
 
     @Override
