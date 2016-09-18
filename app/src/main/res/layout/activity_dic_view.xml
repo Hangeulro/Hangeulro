@@ -1,62 +1,85 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#e7e7e7"
-        tools:context="kr.edcan.hangeulro.activity.DicViewActivity">
+    <RelativeLayout
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#e7e7e7"
+            android:orientation="vertical"
+            tools:context="kr.edcan.hangeulro.activity.DicViewActivity">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/dicViewHeadeBG"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/angryThemeColor">
+
+                    <TextView
+                        android:id="@+id/dicViewType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="16dp"
+                        android:text="Angry Code"
+                        android:textColor="#FFF"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/dicViewAcc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/acc_dicangry_imoji" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/dicViewAcc"
+                        android:text="Finder Hangeul Neologism Guide Book"
+                        android:textColor="#FFF"
+                        android:textSize="8dp" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/dicViewRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/dicViewHeadeBG"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@color/angryThemeColor">
-
-                <TextView
-                    android:id="@+id/dicViewType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="16dp"
-                    android:text="Angry Code"
-                    android:textColor="#FFF"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/dicViewAcc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/acc_dicangry_imoji" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/dicViewAcc"
-                    android:layout_centerVertical="true"
-                    android:textSize="8dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Finder Hangeul Neologism Guide Book"
-                    android:textColor="#FFF" />
-            </RelativeLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/dicViewRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
+                android:id="@+id/dicViewProgrees"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cpv_thickness="4dp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
