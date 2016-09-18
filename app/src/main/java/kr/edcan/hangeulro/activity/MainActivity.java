@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import kr.edcan.hangeulro.DicMenuActivity;
 import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.adapter.CommonListViewAdapter;
 import kr.edcan.hangeulro.databinding.ActivityMainBinding;
