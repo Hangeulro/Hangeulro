@@ -98,15 +98,15 @@ public class ClipBoardService extends Service {
                     if (manager.getPrimaryClipDescription().toString().contains("text")) {
                         String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
                         if (!capturedString.equals("!")) {
-                            RealmResults realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
+                            RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
                             if (realmResults.size() == 1) {
                                 vibrate();
                                 showDialog(realmResults.get(0));
                                 editor.putLong("lastFastSearchTime", System.currentTimeMillis());
                                 editor.commit();
                             }
-                            manager.setText("!");
                         }
+                        manager.setText("!");
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class ClipBoardService extends Service {
 
     private void showDialog(DicDBData data) {
         materialDialog = new MaterialDialog.Builder(getBaseContext())
-                .customView(getView(data.getWord(), data.getMean()), false)
+                .customView(getView(data.getWord(), data.getMean(), data.getExample()), false)
                 .theme(Theme.LIGHT)
                 .build();
         materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
@@ -137,7 +137,7 @@ public class ClipBoardService extends Service {
         ActivityClipboardPopupViewBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_clipboard_popup_view, null, false);
         binding.quickSearchWord.setText(word);
         binding.quickSearchContent.setText(mean);
-        binding.quickSearchSubContent.setText((example.equals("null") ? "" : example));
+        binding.quickSearchSubContent.setText((example == null) ? "예제가 존재하지 않습니다." : example);
         return binding.getRoot();
     }
 

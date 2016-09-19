@@ -20,7 +20,7 @@ public class DicDBData extends RealmObject{
         this.example = example;
     }
 
-    public void setContents(String id, String name, String mean){
+    public void setContents(String id, String name, String mean, String example){
         this.id = id;
         this.word = name;
         this.mean = mean;
