@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
-        new DBSync(getApplicationContext());
+        DBSync.syncDB(getApplicationContext());
     }
 
     @TargetApi(Build.VERSION_CODES.M)

@@ -19,6 +19,11 @@ public class DicDBData extends RealmObject{
         this.mean = mean;
     }
 
+    public void setContents(String id, String name, String mean){
+        this.id = id;
+        this.word = name;
+        this.mean = mean;
+    }
     public void setId(String id) {
         this.id = id;
     }
