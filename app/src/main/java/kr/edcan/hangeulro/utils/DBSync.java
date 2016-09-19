@@ -22,11 +22,12 @@ import retrofit2.Response;
 /**
  * Created by JunseokOh on 2016. 9. 19..
  */
-public class DBSync{
+public class DBSync {
     static Realm realm;
     static NetworkInterface service;
     static Call<ResponseBody> getWordList;
-    static void convertDBfromJson(JSONArray array){
+
+    static void convertDBfromJson(JSONArray array) {
         realm.beginTransaction();
         realm.where(DicDBData.class).findAll().deleteAllFromRealm();
         for (int i = 0; i < array.length(); i++) {
@@ -35,22 +36,24 @@ public class DBSync{
                 DicDBData data = realm.createObject(DicDBData.class);
                 data.setContents(content.getString("id"), content.getString("word"), content.getString("mean"));
             } catch (JSONException e) {
+                Log.e("asdf", e.getMessage());
                 e.printStackTrace();
             }
         }
         realm.commitTransaction();
     }
+
     public DBSync() {
     }
 
-    public static void syncDB(Context c){
+    public static void syncDB(Context c) {
         realm = Realm.getDefaultInstance();
         service = NetworkHelper.getNetworkInstance();
         getWordList = service.getWordList();
         getWordList.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                switch (response.code()){
+                switch (response.code()) {
                     case 200:
                         try {
                             convertDBfromJson(new JSONArray(response.body().string()));
@@ -67,7 +70,7 @@ public class DBSync{
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.e("asdf", t.getMessage());
             }
         });
     }
