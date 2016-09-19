@@ -45,7 +45,7 @@ public class ClipBoardService extends Service {
     public void onCreate() {
         super.onCreate();
         service = this;
-        sharedPreferences = getSharedPreferences("asdf", 0);
+        sharedPreferences = getSharedPreferences("", 0);
         editor = sharedPreferences.edit();
     }
 
@@ -62,7 +62,6 @@ public class ClipBoardService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("asdf", "sex");
         manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         TaskStackBuilder killbuild = TaskStackBuilder.create(this);
         killbuild.addNextIntent(new Intent(getApplicationContext(), KillProcess.class));
@@ -88,7 +87,6 @@ public class ClipBoardService extends Service {
         manager.addPrimaryClipChangedListener(new ClipboardManager.OnPrimaryClipChangedListener() {
             @Override
             public void onPrimaryClipChanged() {
-                Log.e("asdf", "hocul");
                 if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
                     if (manager.getPrimaryClipDescription().toString().contains("text")) {
                         String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
@@ -106,6 +104,7 @@ public class ClipBoardService extends Service {
                             editor.putLong("lastFastSearchTime", System.currentTimeMillis());
                             editor.commit();
                         }
+                        manager.setText("!");
                     }
                 }
             }
