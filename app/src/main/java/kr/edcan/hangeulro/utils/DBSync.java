@@ -7,13 +7,13 @@ import io.realm.Realm;
 /**
  * Created by JunseokOh on 2016. 9. 19..
  */
-public class DBSync {
+public class DBSync{
     private Context context;
     private Realm realm;
 
     public DBSync(Context context) {
         this.context = context;
-
+        realm = Realm.getDefaultInstance();
     }
 
 }

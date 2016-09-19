@@ -1,5 +1,6 @@
 package kr.edcan.hangeulro.model;
 
+
 import io.realm.RealmObject;
 
 /**
@@ -8,6 +9,9 @@ import io.realm.RealmObject;
 public class DicDBData extends RealmObject{
 
     private String id, word, mean;
+
+    public DicDBData() {
+    }
 
     public DicDBData(String id, String word, String mean) {
         this.id = id;
