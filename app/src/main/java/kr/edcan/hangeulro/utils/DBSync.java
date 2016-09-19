@@ -46,7 +46,7 @@ public class DBSync {
     public DBSync() {
     }
 
-    public static void syncDB(Context c) {
+    public static void syncDB() {
         realm = Realm.getDefaultInstance();
         service = NetworkHelper.getNetworkInstance();
         getWordList = service.getWordList();
