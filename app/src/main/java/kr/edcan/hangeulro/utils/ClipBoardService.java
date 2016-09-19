@@ -7,6 +7,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
@@ -23,8 +24,13 @@ import com.afollestad.materialdialogs.Theme;
 
 import java.util.Date;
 
+import io.realm.Realm;
+import io.realm.RealmModel;
+import io.realm.RealmResults;
 import kr.edcan.hangeulro.R;
 import kr.edcan.hangeulro.activity.MainActivity;
+import kr.edcan.hangeulro.databinding.ActivityClipboardPopupViewBinding;
+import kr.edcan.hangeulro.model.DicDBData;
 
 
 /**
@@ -32,21 +38,22 @@ import kr.edcan.hangeulro.activity.MainActivity;
  */
 public class ClipBoardService extends Service {
 
+    public static Service service;
     final static int INTENT_KEY = 1209;
     Intent startMain;
     MaterialDialog materialDialog;
-    public static Service service;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
+    Realm realm;
     ClipboardManager manager;
 
     @Override
     public void onCreate() {
         super.onCreate();
         service = this;
-        sharedPreferences = getSharedPreferences("", 0);
+        sharedPreferences = getSharedPreferences("Hangeulro", 0);
         editor = sharedPreferences.edit();
+        realm = Realm.getDefaultInstance();
     }
 
 
@@ -90,19 +97,14 @@ public class ClipBoardService extends Service {
                 if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
                     if (manager.getPrimaryClipDescription().toString().contains("text")) {
                         String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
-                        if (capturedString.contains("빼박캔트")) {
-                            Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vb.vibrate(500);
-                            materialDialog = new MaterialDialog.Builder(getBaseContext())
-                                    .customView(getView(), false)
-                                    .theme(Theme.LIGHT)
-                                    .build();
-                            materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-                            WindowManager.LayoutParams wmlp = materialDialog.getWindow().getAttributes();
-                            wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-                            materialDialog.show();
-                            editor.putLong("lastFastSearchTime", System.currentTimeMillis());
-                            editor.commit();
+                        if (!capturedString.equals("!")) {
+                            RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
+                            if (realmResults.size() == 1) {
+                                vibrate();
+                                showDialog(realmResults.get(0));
+                                editor.putLong("lastFastSearchTime", System.currentTimeMillis());
+                                editor.commit();
+                            }
                         }
                         manager.setText("!");
                     }
@@ -112,10 +114,31 @@ public class ClipBoardService extends Service {
         return START_NOT_STICKY;
     }
 
-    private View getView() {
+    private void showDialog(DicDBData data) {
+        materialDialog = new MaterialDialog.Builder(getBaseContext())
+                .customView(getView(data.getWord(), data.getMean(), data.getExample()), false)
+                .theme(Theme.LIGHT)
+                .build();
+        materialDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        WindowManager.LayoutParams wmlp = materialDialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        materialDialog.show();
+
+    }
+
+    private void vibrate() {
+        Vibrator vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vb.vibrate(500);
+
+    }
+
+    private View getView(String word, String mean, String example) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity_clipboard_popup_view, null);
-        return view;
+        ActivityClipboardPopupViewBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_clipboard_popup_view, null, false);
+        binding.quickSearchWord.setText(word);
+        binding.quickSearchContent.setText(mean);
+        binding.quickSearchSubContent.setText((example == null) ? "예제가 존재하지 않습니다." : example);
+        return binding.getRoot();
     }
 
     @Nullable
