@@ -8,15 +8,16 @@ import io.realm.RealmObject;
  */
 public class DicDBData extends RealmObject{
 
-    private String id, word, mean;
+    private String id, word, mean, example;
 
     public DicDBData() {
     }
 
-    public DicDBData(String id, String word, String mean) {
+    public DicDBData(String id, String word, String mean, String example) {
         this.id = id;
         this.word = word;
         this.mean = mean;
+        this.example = example;
     }
 
     public void setContents(String id, String name, String mean){
@@ -46,5 +47,13 @@ public class DicDBData extends RealmObject{
 
     public String getMean() {
         return mean;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
     }
 }
