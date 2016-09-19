@@ -21,6 +21,7 @@ import kr.edcan.hangeulro.databinding.ActivityMainBinding;
 import kr.edcan.hangeulro.databinding.MainListviewFooterBinding;
 import kr.edcan.hangeulro.model.CommonData;
 import kr.edcan.hangeulro.utils.ClipBoardService;
+import kr.edcan.hangeulro.utils.DBSync;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
+        DBSync.syncDB(getApplicationContext());
     }
 
     @TargetApi(Build.VERSION_CODES.M)

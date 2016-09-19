@@ -14,4 +14,8 @@ public interface NetworkInterface {
     @POST("/word/cata")
     @FormUrlEncoded
     Call<ResponseBody> getWordWithType(@Field("cata") String cata);
+
+    @POST("/word")
+    Call<ResponseBody> getWordList();
+
 }
