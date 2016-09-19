@@ -34,7 +34,7 @@ public class DBSync {
             try {
                 JSONObject content = array.getJSONObject(i);
                 DicDBData data = realm.createObject(DicDBData.class);
-                data.setContents(content.getString("id"), content.getString("word"), content.getString("mean"));
+                data.setContents(content.getString("id"), content.getString("word"), content.getString("mean"), content.getString("ex"));
             } catch (JSONException e) {
                 Log.e("asdf", e.getMessage());
                 e.printStackTrace();
