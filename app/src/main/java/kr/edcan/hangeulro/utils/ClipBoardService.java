@@ -99,7 +99,7 @@ public class ClipBoardService extends Service {
                         String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
                         if (!capturedString.equals("!")) {
                             RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
-                            if (realmResults.size() == 1) {
+                            if (realmResults.size() >= 1) {
                                 vibrate();
                                 showDialog(realmResults.get(0));
                                 editor.putLong("lastFastSearchTime", System.currentTimeMillis());
