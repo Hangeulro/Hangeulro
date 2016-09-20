@@ -36,7 +36,8 @@
         <service android:name=".utils.ClipBoardService" />
 
         <activity android:name=".activity.DicMenuActivity" />
-        <activity android:name=".activity.DicViewActivity"></activity>
+        <activity android:name=".activity.DicViewActivity"
+            android:theme="@style/AppTheme.NoActionbar"></activity>
     </application>
 
 </manifest>
