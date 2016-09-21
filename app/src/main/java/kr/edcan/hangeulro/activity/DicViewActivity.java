@@ -112,7 +112,7 @@ public class DicViewActivity extends AppCompatActivity {
                         Log.e("asdf", example);
                         arrayList.add(new DicData(result.getString("word"), result.getString("mean"), (example.equals("null")) ? "예문이 없습니다." : example, result.getInt("see")));
                     }
-                    DicRecyclerAdapter adapter = new DicRecyclerAdapter(getApplicationContext(), arrayList, codeType);
+                    DicRecyclerAdapter adapter = new DicRecyclerAdapter(DicViewActivity.this, arrayList, codeType);
                     recyclerView.setAdapter(adapter);
                     binding.dicViewProgrees.setVisibility(View.GONE);
                 } catch (IOException e) {
