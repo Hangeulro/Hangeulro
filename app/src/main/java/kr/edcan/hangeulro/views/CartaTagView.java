@@ -83,9 +83,10 @@ public class CartaTagView extends TextView {
 
         RectF bgRect = new RectF(0.0f, 0.0f, width - strokeWidth, height - strokeWidth);
         RectF innerRect = new RectF(left, top, right, bottom);
-        canvas.drawRoundRect(bgRect, height / 2, height / 2, bgPaint);
         if (fullMode)
             canvas.drawRoundRect(innerRect, innerH / 2, innerH / 2, innerPaint);
+        else canvas.drawRoundRect(bgRect, height / 2, height / 2, bgPaint);
+
         super.onDraw(canvas);
     }
 

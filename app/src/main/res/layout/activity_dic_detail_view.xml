@@ -15,82 +15,89 @@
             android:layout_height="?attr/actionBarSize" />
 
         <LinearLayout
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/dicDetailTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="뻬박캔트"
-                android:textColor="#FFF"
-                android:textSize="35sp" />
-
-            <View
-                android:layout_width="20dp"
-                android:layout_height="2dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/textColor" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/round_shape_3dp"
-                android:paddingBottom="3dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:text="뜻"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/dicDetailMeaning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="썸은 얼만ㄹㅇㄴ마ㅣㅓ림ㄴ어ㅏ럼아ㅣㄴ라ㅣㅁㅇ너ㅏㅣ런ㅁ아ㅣ르ㅏ니알ㄴㅇ마ㅏㄹㄷㅈ"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/round_shape_3dp"
-                android:paddingBottom="3dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="3dp"
-                android:text="예문"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/dicDetailExample"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="예스와 케이는 최근 썸타는 중이다.."
-                android:textColor="#FFF"
-                android:textSize="16sp" />
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dicDetailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="뻬박캔트"
+                    android:textColor="#FFF"
+                    android:textSize="35sp" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/textColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_shape_3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp"
+                    android:text="뜻"
+                    android:textColor="@color/textColorBright"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/dicDetailMeaning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="썸은 얼만ㄹㅇㄴ마ㅣㅓ림ㄴ어ㅏ럼아ㅣㄴ라ㅣㅁㅇ너ㅏㅣ런ㅁ아ㅣ르ㅏ니알ㄴㅇ마ㅏㄹㄷㅈ"
+                    android:textColor="@color/textColorBright"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_shape_3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp"
+                    android:text="예문"
+                    android:textColor="@color/textColorBright"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/dicDetailExample"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="예스와 케이는 최근 썸타는 중이다.."
+                    android:textColor="@color/textColorBright"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/textColorBright" />
+
+            </LinearLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 cardview:cardBackgroundColor="#404141"
                 cardview:cardCornerRadius="5dp"
                 cardview:cardElevation="10dp">
@@ -103,7 +110,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_main_dic" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -142,12 +151,12 @@
                         android:drawableLeft="@drawable/ic_dicsebu_share"
                         android:drawablePadding="10dp"
                         android:drawableStart="@drawable/ic_dicsebu_share"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="5dp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="10dp"
                         android:text="공유하기"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         cardview:fullMode="true"
                         cardview:textThemeColor="@color/dicDetailViewBG"
                         cardview:textThemeColorEnabled="true"
@@ -157,10 +166,11 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/textColorBright" />
 
 
         </LinearLayout>
