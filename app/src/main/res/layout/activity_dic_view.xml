@@ -19,7 +19,6 @@
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -30,6 +29,7 @@
                     android:layout_height="180dp"
                     android:background="@color/angryThemeColor"
                     app:layout_collapseMode="parallax"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:layout_collapseParallaxMultiplier="0.8">
 
                     <ImageView
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    android:contentInsetStart="0dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:contentInsetStart="0dp"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
