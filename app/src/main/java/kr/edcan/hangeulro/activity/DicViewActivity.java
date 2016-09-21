@@ -79,19 +79,18 @@ public class DicViewActivity extends AppCompatActivity {
         binding.dicViewProgrees.startAnimation();
         intent = getIntent();
         codeType = intent.getIntExtra("codeType", -1);
-        String titleText = titleTextArr[codeType];
         service = NetworkHelper.getNetworkInstance();
         toolbar = binding.toolbar;
-        toolbar.setTitle(titleText);
-        toolbar.setTitleTextColor(Color.WHITE);
+
         setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setTitle("신조어사전 | " + titleTextArr[codeType]);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        binding.collapsingToolbar.setTitle(titleTextArr[codeType]);
+        binding.collapsingToolbar.setContentScrimColor(getResources().getColor(actionbarColor[codeType]));
+        binding.collapsingToolbar.setExpandedTitleTextAppearance(R.style.expandedTitleStyle);
+        binding.collapsingToolbar.setCollapsedTitleTextAppearance(R.style.collapsedTitleStyle);
         recyclerView = binding.dicViewRecyclerView;
         binding.dicViewHeadeBG.setBackgroundColor(getResources().getColor(mainColor[codeType]));
         binding.dicViewAcc.setImageResource(emoji[codeType]);
-        binding.dicViewType.setText(titleTextEngArr[codeType] + " Code");
-        toolbar.setBackgroundColor(getResources().getColor(actionbarColor[codeType]));
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setStatusBarColor(getResources().getColor(statusbarColor[codeType]));
     }
@@ -104,17 +103,20 @@ public class DicViewActivity extends AppCompatActivity {
         getWordByType.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.e("asdf", response.code() + "");
                 try {
                     JSONArray a = new JSONArray(response.body().string());
                     for (int i = 0; i < a.length(); i++) {
                         JSONObject result = a.getJSONObject(i);
                         String example = result.getString("ex");
+                        Log.e("asdf", example);
                         arrayList.add(new DicData(result.getString("word"), result.getString("mean"), (example.equals("null")) ? "예문이 없습니다." : example, result.getInt("see")));
                     }
                     DicRecyclerAdapter adapter = new DicRecyclerAdapter(getApplicationContext(), arrayList, codeType);
                     recyclerView.setAdapter(adapter);
                     binding.dicViewProgrees.setVisibility(View.GONE);
                 } catch (IOException e) {
+                    Log.e("asdf", e.getMessage());
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
