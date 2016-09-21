@@ -47,9 +47,9 @@ public class DicMenuActivity extends AppCompatActivity {
         listView = binding.dicMenuListView;
         ArrayList<CommonData> arrayList = new ArrayList<>();
         arrayList.add(new CommonData("사랑 코드", "Love Code", R.drawable.ic_dic_love));
-        arrayList.add(new CommonData("우스운 코드", "Funny Code", R.drawable.ic_dic_funny));
-        arrayList.add(new CommonData("서글픈 코드", "Sad Code", R.drawable.ic_dic_sad));
-        arrayList.add(new CommonData("화가 난 코드", "Angry Code", R.drawable.ic_dic_angry));
+        arrayList.add(new CommonData("유머 코드", "Funny Code", R.drawable.ic_dic_funny));
+        arrayList.add(new CommonData("우울 코드", "Sad Code", R.drawable.ic_dic_sad));
+        arrayList.add(new CommonData("분노 코드", "Angry Code", R.drawable.ic_dic_angry));
         arrayList.add(new CommonData("공감 코드", "Sympathy Code", R.drawable.ic_dic_sympathy));
         arrayList.add(new CommonData("일상생활 코드", "Lifestyle Code", R.drawable.ic_dic_lifestyle));
         DicListViewAdapter adapter = new DicListViewAdapter(getApplicationContext(), arrayList);
