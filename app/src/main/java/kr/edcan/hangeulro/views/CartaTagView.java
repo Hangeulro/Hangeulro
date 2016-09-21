@@ -20,7 +20,9 @@ import kr.edcan.hangeulro.R;
  */
 public class CartaTagView extends TextView {
     boolean fullMode = false;
+    boolean textColorEnabled = false;
     int color = Color.BLACK;
+    int textColor = Color.WHITE;
     int height, width;
 
     private Paint innerPaint, bgPaint;
@@ -42,6 +44,8 @@ public class CartaTagView extends TextView {
     private void setTypedArray(TypedArray array) {
         fullMode = array.getBoolean(R.styleable.CartaTagView_fullMode, false);
         color = array.getColor(R.styleable.CartaTagView_themeColor, Color.BLACK);
+        textColor = array.getColor(R.styleable.CartaTagView_textThemeColor, Color.BLACK);
+        textColorEnabled = array.getBoolean(R.styleable.CartaTagView_textThemeColorEnabled, false);
         array.recycle();
     }
 
@@ -53,7 +57,8 @@ public class CartaTagView extends TextView {
     }
 
     public void setView() {
-        setTextColor((fullMode) ? Color.WHITE : color);
+        if (!textColorEnabled) setTextColor((fullMode) ? Color.WHITE : color);
+        else setTextColor(textColor);
         setGravity(Gravity.CENTER);
     }
 
