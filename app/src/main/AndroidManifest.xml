@@ -4,17 +4,17 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
 
     <application
+        android:name=".AppController"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".AppController"
         android:theme="@style/AppTheme.NoActionbar">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -37,8 +37,10 @@
         <service android:name=".utils.ClipBoardService" />
 
         <activity android:name=".activity.DicMenuActivity" />
-        <activity android:name=".activity.DicViewActivity"
-            android:theme="@style/AppTheme.NoActionbar"></activity>
+        <activity
+            android:name=".activity.DicViewActivity"
+            android:theme="@style/AppTheme.NoActionbar" />
+        <activity android:name=".activity.MyDicActivity"></activity>
     </application>
 
 </manifest>
