@@ -52,7 +52,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="3dp"
                     android:text="뜻"
-                    android:textColor="@color/textColorBright"
+                    android:textColor="#FFF"
                     android:textSize="16sp" />
 
                 <TextView
@@ -74,7 +74,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="3dp"
                     android:text="예문"
-                    android:textColor="@color/textColorBright"
+                    android:textColor="#FFF"
                     android:textSize="16sp" />
 
                 <TextView

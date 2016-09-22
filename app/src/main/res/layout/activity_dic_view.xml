@@ -60,6 +60,7 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:contentInsetEnd="0dp"
                     app:contentInsetStart="0dp"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 

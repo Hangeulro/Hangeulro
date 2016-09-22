@@ -74,15 +74,16 @@ public class DicViewActivity extends AppCompatActivity {
 
 
     private void setDefault() {
-        binding.dicViewProgrees.setIndeterminate(true);
-        binding.dicViewProgrees.setThickness(15);
-        binding.dicViewProgrees.startAnimation();
         intent = getIntent();
         codeType = intent.getIntExtra("codeType", -1);
+        binding.dicViewProgrees.setIndeterminate(true);
+        binding.dicViewProgrees.setThickness(15);
+        binding.dicViewProgrees.setColor(getResources().getColor(mainColor[codeType]));
+        binding.dicViewProgrees.startAnimation();
         service = NetworkHelper.getNetworkInstance();
         toolbar = binding.toolbar;
-
-        setSupportActionBar(binding.toolbar);
+        toolbar.setContentInsetsAbsolute(0,0);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.collapsingToolbar.setTitle(titleTextArr[codeType]);
         binding.collapsingToolbar.setContentScrimColor(getResources().getColor(actionbarColor[codeType]));

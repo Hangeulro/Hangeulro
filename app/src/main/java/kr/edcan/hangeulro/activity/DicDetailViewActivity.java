@@ -1,8 +1,10 @@
 package kr.edcan.hangeulro.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,6 +26,7 @@ public class DicDetailViewActivity extends AppCompatActivity {
         setDefault();
     }
 
+
     private void setDefault() {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -43,6 +46,9 @@ public class DicDetailViewActivity extends AppCompatActivity {
                 shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 https://goo.gl/3eB5Pd");
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.parseColor("#414142"));
+        }
 
     }
 
