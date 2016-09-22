@@ -21,6 +21,7 @@ import kr.edcan.hangeulro.databinding.ActivityMainBinding;
 import kr.edcan.hangeulro.databinding.MainListviewFooterBinding;
 import kr.edcan.hangeulro.model.CommonData;
 import kr.edcan.hangeulro.utils.ClipBoardService;
+import kr.edcan.hangeulro.utils.DBSync;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
+        DBSync.syncDB();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         arrayList.add(new CommonData("신조어 사전", "Neologism Dictionary", R.drawable.ic_main_dic));
         arrayList.add(new CommonData("내 사전", "My Dictionary", R.drawable.ic_main_mydic));
-        arrayList.add(new CommonData("누리꾼 게시판", "Netizen Bulletin Board", R.drawable.ic_main_board));
+        arrayList.add(new CommonData("신조어 게시판", "Neologism Bulletin Board", R.drawable.ic_main_board));
         arrayList.add(new CommonData("신조어 퀴즈", "Neologism Quiz", R.drawable.ic_main_battle));
         CommonListViewAdapter adapter = new CommonListViewAdapter(getApplicationContext(), arrayList);
         listview.setAdapter(adapter);

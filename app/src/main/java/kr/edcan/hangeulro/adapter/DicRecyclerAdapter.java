@@ -1,6 +1,7 @@
 package kr.edcan.hangeulro.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kr.edcan.hangeulro.R;
+import kr.edcan.hangeulro.activity.DicDetailViewActivity;
 import kr.edcan.hangeulro.databinding.DicViewRecyclerContentBinding;
 import kr.edcan.hangeulro.model.CommonRecycleData;
 import kr.edcan.hangeulro.model.DicData;
@@ -50,6 +52,15 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
         holder.viewCount.setText("조회수 " + data.getSearchCount());
         holder.example.setText(data.getExample());
         holder.dicRecyclerHeader.setBackgroundResource(cardFooter[codeType]);
+        holder.dicBG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.c.startActivity(new Intent(holder.c, DicDetailViewActivity.class)
+                        .putExtra("title", holder.title.getText())
+                        .putExtra("meaning", holder.meaning.getText())
+                        .putExtra("example", holder.example.getText()));
+            }
+        });
     }
 
     @Override
@@ -58,16 +69,20 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        Context c;
         TextView title, meaning, example, viewCount;
+        LinearLayout dicBG;
         RelativeLayout dicRecyclerHeader;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            c = itemView.getContext();
             title = binding.dicRecyclerTitle;
             meaning = binding.dicRecyclerMeaning;
             example = binding.dicRecyclerExample;
             viewCount = binding.dicRecyclerViewCount;
             dicRecyclerHeader = binding.dicRecyclerHeader;
+            dicBG = binding.dicRecyclerBG;
         }
     }
 }
