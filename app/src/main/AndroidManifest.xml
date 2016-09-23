@@ -40,8 +40,9 @@
         <activity
             android:name=".activity.DicViewActivity"
             android:theme="@style/AppTheme.NoActionbar" />
+        <activity android:name=".activity.MyDicActivity"/>
         <activity android:name=".activity.DicDetailViewActivity"
-            android:theme="@style/AppTheme.NoActionbar"></activity>
+            android:theme="@style/AppTheme.NoActionbar"/>
     </application>
 
 </manifest>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#C3C3C3"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_dic_card"
+        android:paddingBottom="4dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="25dp"
+        android:paddingTop="4dp">
+
+        <ImageView
+            android:id="@+id/common_listview_image"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_dic" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/common_listview_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/common_listview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신조어 사전"
+                android:textColor="@color/textColorSubDark"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/common_listview_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신조어 사전"
+                android:textColor="@color/textColor"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/common_listview_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/acc_arrow" />
+    </RelativeLayout>
+</RelativeLayout>

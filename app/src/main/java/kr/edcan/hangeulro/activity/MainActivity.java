@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
+                        break;
+
                 }
             }
         });
