@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#D0D1D3"
     android:orientation="vertical"
-    tools:context="kr.edcan.hangeulro.activity.SettingActivity">
+    tools:context="kr.edcan.neologism.activity.SettingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
