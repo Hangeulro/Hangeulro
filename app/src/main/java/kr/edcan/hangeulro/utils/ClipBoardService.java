@@ -95,19 +95,19 @@ public class ClipBoardService extends Service {
             @Override
             public void onPrimaryClipChanged() {
                 if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
-                    if (manager.getPrimaryClipDescription().toString().contains("text")) {
+                    if (manager.getPrimaryClipDescription().toString().contains("text/plain")) {
                         String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
                         if (!capturedString.equals("!")) {
                             RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
                             if (realmResults.size() >= 1) {
                                 vibrate();
                                 showDialog(realmResults.get(0));
-                                editor.putLong("lastFastSearchTime", System.currentTimeMillis());
-                                editor.commit();
                             }
                         }
                         manager.setText("!");
                     }
+                    editor.putLong("lastFastSearchTime", System.currentTimeMillis());
+                    editor.commit();
                 }
             }
         });

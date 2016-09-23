@@ -74,15 +74,16 @@ public class DicViewActivity extends AppCompatActivity {
 
 
     private void setDefault() {
-        binding.dicViewProgrees.setIndeterminate(true);
-        binding.dicViewProgrees.setThickness(15);
-        binding.dicViewProgrees.startAnimation();
         intent = getIntent();
         codeType = intent.getIntExtra("codeType", -1);
+        binding.dicViewProgrees.setIndeterminate(true);
+        binding.dicViewProgrees.setThickness(15);
+        binding.dicViewProgrees.setColor(getResources().getColor(mainColor[codeType]));
+        binding.dicViewProgrees.startAnimation();
         service = NetworkHelper.getNetworkInstance();
         toolbar = binding.toolbar;
-
-        setSupportActionBar(binding.toolbar);
+        toolbar.setContentInsetsAbsolute(0,0);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.collapsingToolbar.setTitle(titleTextArr[codeType]);
         binding.collapsingToolbar.setContentScrimColor(getResources().getColor(actionbarColor[codeType]));
@@ -112,7 +113,7 @@ public class DicViewActivity extends AppCompatActivity {
                         Log.e("asdf", example);
                         arrayList.add(new DicData(result.getString("word"), result.getString("mean"), (example.equals("null")) ? "예문이 없습니다." : example, result.getInt("see")));
                     }
-                    DicRecyclerAdapter adapter = new DicRecyclerAdapter(getApplicationContext(), arrayList, codeType);
+                    DicRecyclerAdapter adapter = new DicRecyclerAdapter(DicViewActivity.this, arrayList, codeType);
                     recyclerView.setAdapter(adapter);
                     binding.dicViewProgrees.setVisibility(View.GONE);
                 } catch (IOException e) {
