@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
         DBSync.syncDB();
     }
 
