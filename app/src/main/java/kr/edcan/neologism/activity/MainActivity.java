@@ -80,10 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
-                        break;
-
+                    default:
+                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
