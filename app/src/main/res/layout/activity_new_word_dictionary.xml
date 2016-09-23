@@ -20,7 +20,7 @@
         android:background="#D0D1D3"
         android:orientation="vertical"
         android:weightSum="10"
-        tools:context="kr.edcan.hangeulro.activity.MainActivity">
+        tools:context="kr.edcan.neologism.activity.MainActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
