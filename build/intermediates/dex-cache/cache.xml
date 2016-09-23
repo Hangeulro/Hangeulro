@@ -1,2 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_e42d71bb6e40c64c7672609461341c2b6705745c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.getkeepsafe.relinker/relinker/1.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="264f0bc4c0680cfe7a60fea1f12a43f1ab48e7c8">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.getkeepsafe.relinker-relinker-1.2.1_bf8cb38ca60bda98c4b4965a50abe9f08859509e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="96e33a7aaee00ab64270e2a9887b8f9ef32c8b73">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.2.0_7e47cd98b8eb718e99767501e6238d6e577286a1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_77c4780274599c769b61786707595e232d4fd285/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_be24f0e5289acf78f432ee635b1c2c74a5e24737/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_2757543150bfa18d4cd4c1217118791b174b5813/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="69e09da397c5d0414f8be8ead6489d221cab460a">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_3cebddfb423874ee037862370bddb21dc5f9dbfe/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_b8e7f96527afcc14c4639cb7437e915f4b2cf77f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_47707eb0305e738b3eec383a3e67d4fcf5205e2e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_31db70168622563b107beb54374c25491a087b24/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.databinding/library/1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="d985cdf99de8a63824b52d8a8efc309f9e5fbf01">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.databinding-library-1.1_f6b5024030d1c18bea194e8b4c94c9980fc0e1ba/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_206fcfdde77e74dd8590880696d9b9d43d38d163/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_b95e2e55c573ac64f2c698bd8ddf4e02e0ce34a7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/commons/0.8.5.3/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="15ee5b06fdfdbe3ad565bc56eff1e70231334d59">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.afollestad.material-dialogs-commons-0.8.5.3_7bb580def0592e7953ef40f7e67b208cd01148ee/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_fc3a183fa65eb357e8e2d2e757c4c945a2879412/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_d797fd8af0257ba9eb3bf0cd5779ccf6f8159f77/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/me.zhanghai.android.materialprogressbar/library/1.1.4/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="2a24cba08e1d865a79e61335f5a1bd64d520106d">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/me.zhanghai.android.materialprogressbar-library-1.1.4_baaa0394d1ecbe34468e016e6df779cbe00028f3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_64a532cc397f71b5543f6cb9438e5bcccb17fe4b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/SDK/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_b8d5428a11c6bf57fdd4f8f07122ad27eefec68f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.github.rahatarmanahmed/circularprogressview/2.5.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="83546b0a7a55c89fcaa55ff282812a4e052e81fe">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.rahatarmanahmed-circularprogressview-2.5.0_5064dadd9fa74f777ac591819bf96467160f3877/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_52d1f7ffd717d47c46caa13a9ff9b66b5c806e75/classes.dex" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/android/databinding/baseLibrary/2.1.2/baseLibrary-2.1.2.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="357d1307d303c4771283372a53fd7c45e0c19c89">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/baseLibrary-2.1.2_e874a79ced6bda04e46ee4b599aee642f2b026c5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.0_0f9f2e455b58c4826571de78792d554224cef6ca/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_94059dfd15e803c817d240d7cb2ee6ee2d16fdeb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_c01996c7a93e1dd8e12190de2427705b72341604/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/io.realm/realm-android-library/1.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="15a3e65c92d3cde64c725dba8d590a1123d2d213">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/io.realm-realm-android-library-1.2.0_f1629f40848a413cbd326b21e495ada8991d1ef0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.databinding/adapters/1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="3cae403175958af8baa00bed0bd6e04187d69415">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.databinding-adapters-1.1_2a54b9483b565b2a69e5ed34f6112aab76da4930/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_75aaeb02840aeaa629ae6c37a676a9e6637b67b2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_89417b2f7d7863254a7fdc6aa2ceac2555b94d92/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.github.afollestad.material-dialogs/core/0.8.5.3/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="8174013f25a7d1f9bb4e50e2e3dc11254dee1442">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.afollestad.material-dialogs-core-0.8.5.3_9d5bd90a33b297be1a08ba94dd4811fe38daa898/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="04cc26590e76b24cee8a4dad9b869d0b857d84ca">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_636d9d822b72cc9cf5648db50b7df352853aa597/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_d2a5a7382a468230d85493cb638e7791eee3de5b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/io.realm/realm-annotations/1.2.0/5e4042f9e0d39e0d01d4a8661d01e24995b2cbef/realm-annotations-1.2.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="5e4042f9e0d39e0d01d4a8661d01e24995b2cbef">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/realm-annotations-1.2.0_e7db911be1e74b9654b87937af2fcee10c46ac5e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_3ace2286ce9a337f078f6a0884f0676d21114564/classes.dex" />
+    </item>
+    <item
+        jar="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="/Users/JunseokOh/Desktop/Android/Project/Hangeulro/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_41ceeabed268eb09ea9ac089a4a75ab1dbbace20/classes.dex" />
+    </item>
+
+</items>

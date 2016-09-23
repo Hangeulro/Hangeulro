@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.edcan.hangeulro">
+    package="kr.edcan.neologism">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -10,13 +10,13 @@
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
 
     <application
-        android:name=".AppController"
+        android:name="kr.edcan.neologism.AppController"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="kr.edcan.neologism.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
         </activity>
 
         <receiver
-            android:name=".utils.BootReceiver"
+            android:name="kr.edcan.neologism.utils.BootReceiver"
             android:enabled="true"
             android:exported="false"
             android:label="service.BootReceiver">
@@ -34,14 +34,14 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".utils.ClipBoardService" />
+        <service android:name="kr.edcan.neologism.utils.ClipBoardService" />
 
-        <activity android:name=".activity.DicMenuActivity" />
+        <activity android:name="kr.edcan.neologism.activity.DicMenuActivity" />
         <activity
-            android:name=".activity.DicViewActivity"
+            android:name="kr.edcan.neologism.activity.DicViewActivity"
             android:theme="@style/AppTheme.NoActionbar" />
-        <activity android:name=".activity.MyDicActivity"/>
-        <activity android:name=".activity.DicDetailViewActivity"
+        <activity android:name="kr.edcan.neologism.activity.MyDicActivity"/>
+        <activity android:name="kr.edcan.neologism.activity.DicDetailViewActivity"
             android:theme="@style/AppTheme.NoActionbar"/>
     </application>
 

@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/dicDetailViewBG"
         android:orientation="vertical"
-        tools:context="kr.edcan.hangeulro.activity.DicDetailViewActivity">
+        tools:context="kr.edcan.neologism.activity.DicDetailViewActivity">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -143,7 +143,7 @@
                         android:textColor="#FFF"
                         android:textSize="18sp" />
 
-                    <kr.edcan.hangeulro.views.CartaTagView
+                    <kr.edcan.neologism.views.CartaTagView
                         android:id="@+id/dicDetailShareLaunch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
