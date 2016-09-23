@@ -275,5 +275,18 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:id="@+id/authTwitterLaunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/authFacebookLaunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </LinearLayout>
 </layout>
