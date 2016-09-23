@@ -19,10 +19,14 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.databinding.ActivityAuthBinding;
+import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
 import okhttp3.ResponseBody;
@@ -32,6 +36,7 @@ import retrofit2.Response;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
+    DataManager dataManager;
     ActivityAuthBinding binding;
     Call<ResponseBody> twitterLogin, facebookLogin;
     NetworkInterface service;
@@ -47,6 +52,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setDefault() {
+        dataManager = new DataManager(getApplicationContext());
         manager = CallbackManager.Factory.create();
         String permissions[] = new String[]{"email", "user_about_me", "user_friends"};
         binding.authFacebookLaunch.setReadPermissions(permissions);
@@ -125,7 +131,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     class LoadTwitterInfo extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... strings) {
-            String[] twitterCredientials = strings;
+            final String[] twitterCredientials = strings;
             twitterLogin = service.twitterLogin(twitterCredientials[0], twitterCredientials[1], twitterCredientials[2]);
             twitterLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
                 @Override
@@ -133,9 +139,14 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     switch (response.code()) {
                         case 200:
                             try {
-                                Log.e("asdf", response.body().string());
+                                dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
+                                dataManager.saveUserCredential(twitterCredientials);
+                                finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
+                            } catch (JSONException e) {
+                                Log.e("asdf", e.getMessage());
+                                e.printStackTrace();
                             }
                             break;
                         case 400:
@@ -160,7 +171,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     class LoadFacebookInfo extends AsyncTask<String, Void, Void> {
         @Override
-        protected Void doInBackground(String... strings) {
+        protected Void doInBackground(final String... strings) {
             facebookLogin = service.facebookLogin(strings[0]);
             facebookLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
                 @Override
@@ -168,9 +179,14 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     switch (response.code()) {
                         case 200:
                             try {
-                                Log.e("asdf", response.body().string());
+                                dataManager.saveFacebookUserInfo(new JSONObject(response.body().string()));
+                                dataManager.saveUserCredential(strings[0]);
+                                finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
+                            } catch (JSONException e) {
+                                Log.e("asdf", e.getMessage());
+                                e.printStackTrace();
                             }
                             break;
                         case 400:
