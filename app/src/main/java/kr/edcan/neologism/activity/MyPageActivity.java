@@ -4,26 +4,21 @@ package kr.edcan.neologism.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.android.volley.toolbox.ImageLoader;
 import com.facebook.login.LoginManager;
 import com.twitter.sdk.android.Twitter;
 
@@ -54,7 +49,7 @@ public class MyPageActivity extends AppCompatActivity {
     RoundImageView profileImageView;
     ListView listView;
     Toolbar toolbar;
-    TextView changeProfile, profileName;
+    TextView profileName;
     User user;
     NetworkInterface service;
     Call<String> destryoUser;
@@ -91,16 +86,15 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     private void setDefault() {
-        helper = new SupportHelper(getApplicationContext());
+        helper = new SupportHelper(MyPageActivity.this);
         headerView = getLayoutInflater().inflate(R.layout.mypage_listview_header, null);
         profileName = (TextView) headerView.findViewById(R.id.mypage_profile_name);
         listView = (ListView) findViewById(R.id.myPageListView);
         profileBackground = (ImageView) headerView.findViewById(R.id.mypage_profile_background);
         profileImageView = (RoundImageView) headerView.findViewById(R.id.mypage_profile_image);
-        changeProfile = (TextView) headerView.findViewById(R.id.mypage_change_profile);
         expProgress = (SeekArc) headerView.findViewById(R.id.mypage_show_exp);
         try {
-            profileImageView.setImageUrl((user.getUserType() == 0) ? SupportHelper.convertFacebookImgSize(user.getProfileImageUrl(), 2) : SupportHelper.convertTwitterImgSize(user.getProfileImageUrl(), 3), ImageSingleTon.getInstance(this).getImageLoader());
+            profileImageView.setImageUrl((user.getUserType() == 0) ? user.getProfileImageUrl() : SupportHelper.convertTwitterImgSize(user.getProfileImageUrl(), 2), ImageSingleTon.getInstance(this).getImageLoader());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -109,17 +103,12 @@ public class MyPageActivity extends AppCompatActivity {
             public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
                 if (profileImageView.getDrawable() != null) {
                     Bitmap bitmap = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
-                    profileBackground.setImageBitmap(SupportHelper.blur(bitmap, getApplicationContext()));
+                    if (bitmap != null)
+                        profileBackground.setImageBitmap(SupportHelper.blur(bitmap, getApplicationContext()));
                 }
             }
         });
         profileName.setText(user.getName());
-        changeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MyPageActivity.this, "", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void setEXP() {
@@ -193,7 +182,7 @@ public class MyPageActivity extends AppCompatActivity {
                     break;
                 case 4:
                     // 로그아웃
-                    helper.showAlertDialog("로그아웃", "Cumchuck에서 로그아웃하시겠습니까?\n현재 진행중인 레이드에서 모두 나가집니다.", new MaterialDialog.SingleButtonCallback() {
+                    helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?.", new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             LoginManager.getInstance().logOut();

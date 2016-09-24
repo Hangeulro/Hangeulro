@@ -94,15 +94,21 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     userLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            try {
-                                dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
-                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                finish();
-                            } catch (JSONException e) {
-                                Log.e("asdf", e.getMessage());
-                            } catch (IOException e) {
-                                Log.e("asdf", e.getMessage());
-                                e.printStackTrace();
+                            switch (response.code()) {
+                                case 200:
+                                    try {
+                                        dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
+                                        Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } catch (JSONException e) {
+                                        Log.e("asdf", e.getMessage());
+                                    } catch (IOException e) {
+                                        Log.e("asdf", e.getMessage());
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case 401:
+                                    Toast.makeText(AuthActivity.this, "아이디 혹은 비밀번호가 잘못되었습니다!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -196,7 +202,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(twitterCredientials);
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
@@ -238,7 +244,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 dataManager.saveFacebookUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(strings[0]);
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
@@ -278,6 +284,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                             } catch (JSONException e) {
                                 Log.e("asdf", e.getMessage());
                             } catch (IOException e) {
@@ -285,8 +293,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 e.printStackTrace();
                             }
                             break;
-
                     }
+                    Log.e("asdf", response.code() + "");
                 }
 
                 @Override

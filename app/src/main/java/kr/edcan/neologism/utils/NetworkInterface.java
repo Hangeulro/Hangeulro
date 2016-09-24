@@ -17,7 +17,7 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> userLogin(@Field("userid") String userid, @Field("pw") String password);
 
-    @POST("/auth/login/auto")
+    @POST("/auth/auto")
     @FormUrlEncoded
     Call<ResponseBody> userAutoLogin(@Field("token") String token);
 

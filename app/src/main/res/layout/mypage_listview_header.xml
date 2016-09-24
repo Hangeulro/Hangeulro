@@ -1,5 +1,5 @@
 <FrameLayout android:layout_width="match_parent"
-    android:layout_height="270dp"
+    android:layout_height="220dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:seekarc="http://schemas.android.com/apk/res-auto">
 
@@ -44,7 +44,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/round_oval" />
 
-                        <kr.edcan.cumchuck.utils.RoundImageView
+                        <kr.edcan.neologism.views.RoundImageView
                             android:id="@+id/mypage_profile_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -63,7 +63,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/round_oval" />
 
-                        <kr.edcan.cumchuck.utils.SeekArc
+                        <kr.edcan.neologism.views.SeekArc
                             android:id="@+id/mypage_show_exp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -120,28 +120,5 @@
             </LinearLayout>
 
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="#55fffFFF"></LinearLayout>
-
-            <TextView
-                android:id="@+id/mypage_change_profile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:gravity="center"
-                android:text="내 프로필 수정하기"
-                android:textColor="#FFF"
-                android:textSize="16sp" />
-        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

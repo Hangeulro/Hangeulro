@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
-        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
         DBSync.syncDB();
     }
 
@@ -92,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         listview.setAdapter(adapter);
         MainListviewFooterBinding footerBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.main_listview_footer, null, false);
         listview.addFooterView(footerBinding.getRoot());
+        footerBinding.mainListviewFooterMyPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+            }
+        });
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

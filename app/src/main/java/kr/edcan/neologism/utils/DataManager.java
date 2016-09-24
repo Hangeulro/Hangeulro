@@ -91,9 +91,11 @@ public class DataManager {
     public void saveNativeLoginUserInfo(JSONObject user){
         editor.putInt(LOGIN_TYPE, 4);
         try {
+            editor.putBoolean(HAS_ACTIVE_USER, true);
             editor.putString(USER_NAME, user.getString("name"));
             editor.putString(HANGEULRO_SERVER_TOKEN, user.getString("token"));
             editor.putString(USER_ID, user.getString("userid"));
+            editor.apply();
         } catch (JSONException e) {
             e.printStackTrace();
         }
