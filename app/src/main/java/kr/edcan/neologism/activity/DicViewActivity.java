@@ -103,9 +103,13 @@ public class DicViewActivity extends AppCompatActivity {
                 try {
                     JSONArray a = new JSONArray(response.body().string());
                     for (int i = 0; i < a.length(); i++) {
+                        String example = "null";
                         JSONObject result = a.getJSONObject(i);
-                        String example = result.getString("ex");
-                        Log.e("asdf", example);
+                        try {
+                            example = result.getString("ex");
+                        } catch (JSONException e){
+                            Log.e("asdf", e.getMessage());
+                        }
                         arrayList.add(new DicData(result.getString("word"), result.getString("mean"), (example.equals("null")) ? "예문이 없습니다." : example, result.getInt("see")));
                     }
                     DicRecyclerAdapter adapter = new DicRecyclerAdapter(DicViewActivity.this, arrayList, codeType);
@@ -116,6 +120,7 @@ public class DicViewActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
+
                     Log.e("asdf", e.getMessage());
                 }
             }

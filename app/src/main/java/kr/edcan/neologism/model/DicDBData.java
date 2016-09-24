@@ -24,6 +24,7 @@ public class DicDBData extends RealmObject{
         this.id = id;
         this.word = name;
         this.mean = mean;
+        this.example = example;
     }
     public void setId(String id) {
         this.id = id;

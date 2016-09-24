@@ -42,7 +42,7 @@ public class DicDetailViewActivity extends AppCompatActivity {
         binding.dicDetailShareLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 https://goo.gl/3eB5Pd");
+                shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 https://goo.gl/StvRXG");
             }
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

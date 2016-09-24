@@ -13,8 +13,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="seekArcStyle">@style/SeekArc</item>
     </style>
 
+    <style name="SeekArc">
+        <item name="arcColor">@color/progress_gray_dark</item>
+    </style>
     <style name="expandedTitleStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">20dp</item>
     </style>
