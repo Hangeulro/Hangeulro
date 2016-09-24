@@ -19,7 +19,7 @@ public interface NetworkInterface {
 
     @POST("/auth/login/auto")
     @FormUrlEncoded
-    Call<ResponseBody> userAutoLogin(@Field("id") String userid, @Field("token") String token);
+    Call<ResponseBody> userAutoLogin(@Field("token") String token);
 
     @POST("/auth/login/register")
     @FormUrlEncoded

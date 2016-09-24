@@ -20,6 +20,7 @@ public class DataManager {
     * 1: Twitter
     * 2 Kakao
     * 3 Naver
+    * 4 Native Login
     * */
 
     /* Data Keys */
@@ -72,7 +73,7 @@ public class DataManager {
             e.printStackTrace();
         }
     }
-    public void saveTwitterUserInfo(JSONObject user) {
+    public void saveTwitterUserInfo(JSONObject user){
         try {
             editor.putInt(LOGIN_TYPE, 1);
             editor.putBoolean(HAS_ACTIVE_USER, true);
@@ -87,6 +88,17 @@ public class DataManager {
         }
     }
 
+    public void saveNativeLoginUserInfo(JSONObject user){
+        editor.putInt(LOGIN_TYPE, 4);
+        try {
+            editor.putString(USER_NAME, user.getString("name"));
+            editor.putString(HANGEULRO_SERVER_TOKEN, user.getString("token"));
+            editor.putString(USER_ID, user.getString("userid"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
     public Pair<Boolean, User> getActiveUser() {
         if (preferences.getBoolean(HAS_ACTIVE_USER, false)) {
             int userType = preferences.getInt(LOGIN_TYPE, -1);

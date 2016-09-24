@@ -3,6 +3,7 @@ package kr.edcan.neologism.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import java.io.IOException;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.databinding.ActivityAuthBinding;
+import kr.edcan.neologism.model.User;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
@@ -38,7 +40,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     DataManager dataManager;
     ActivityAuthBinding binding;
-    Call<ResponseBody> twitterLogin, facebookLogin;
+    Call<ResponseBody> userLogin, autoLogin, twitterLogin, facebookLogin;
     NetworkInterface service;
     CallbackManager manager;
 
@@ -47,8 +49,33 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         setDefault();
-        setTwitterCallback();
-        setFacebookCallback();
+        validateUserToken();
+    }
+
+    private void validateUserToken() {
+        Pair<Boolean, User> userPair = dataManager.getActiveUser();
+        if (userPair.first == false) {
+            setTwitterCallback();
+            setFacebookCallback();
+        } else {
+            // validate
+            switch (userPair.second.getUserType()) {
+                case 0:
+                    new LoadFacebookInfo().execute(dataManager.getFacebookUserCredential());
+                    break;
+                case 1:
+                    new LoadTwitterInfo().execute(dataManager.getTwitterUserCredentials());
+                    break;
+                case 2:
+                    // Kakao
+                    break;
+                case 3:
+                    // Naver
+                    break;
+                case 4:
+                    new LoadNativeUserInfo().execute(dataManager.getActiveUser().second.getToken());
+            }
+        }
     }
 
     private void setDefault() {
@@ -63,7 +90,27 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 String loginStr = binding.authIdInput.getText().toString().trim();
                 String passwordStr = binding.authPasswordInput.getText().toString().trim();
                 if (!loginStr.equals("") && !passwordStr.equals("")) {
-                    // launch login
+                    userLogin = service.userLogin(loginStr, passwordStr);
+                    userLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
+                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } catch (JSONException e) {
+                                Log.e("asdf", e.getMessage());
+                            } catch (IOException e) {
+                                Log.e("asdf", e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("asdf", t.getMessage());
+                        }
+                    });
                 } else
                     Toast.makeText(AuthActivity.this, "빈칸 없이 입력해주세요!", Toast.LENGTH_SHORT).show();
             }
@@ -148,6 +195,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(twitterCredientials);
+                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+
                                 finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
@@ -188,6 +237,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveFacebookUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(strings[0]);
+                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+
                                 finish();
                             } catch (IOException e) {
                                 Log.e("asdf", e.getMessage());
@@ -212,6 +263,38 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+        }
+    }
+
+    class LoadNativeUserInfo extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(final String... strings) {
+            autoLogin = service.userAutoLogin(strings[0]);
+            autoLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    switch (response.code()) {
+                        case 200:
+                            try {
+                                dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
+                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                Log.e("asdf", e.getMessage());
+                            } catch (IOException e) {
+                                Log.e("asdf", e.getMessage());
+                                e.printStackTrace();
+                            }
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("asdf", t.getMessage());
+                }
+            });
+            return null;
         }
     }
 }
