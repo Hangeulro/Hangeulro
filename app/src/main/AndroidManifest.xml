@@ -44,13 +44,16 @@
         <activity
             android:name=".activity.DicDetailViewActivity"
             android:theme="@style/AppTheme.NoActionbar" />
-        <activity android:name=".activity.AuthActivity"></activity>
+        <activity android:name=".activity.AuthActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="6c81b4e91b018f9f82dce750f7f07b9723039bb2" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+        <activity android:name=".activity.MyPageActivity"></activity>
     </application>
 
 </manifest>
