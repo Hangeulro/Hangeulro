@@ -26,5 +26,7 @@
     <color name="lifeThemeColor">#1a7894</color>
     <color name="dicDetailViewBG">#585757</color>
     <color name="textColorBright">#A6A6A6</color>
-
+    <color name="progress_gray">#454545</color>
+    <color name="progress_gray_dark">#232323</color>
+    <color name="color_not_primary">#DFDFDF</color>
 </resources>
