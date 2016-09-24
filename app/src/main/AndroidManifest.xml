@@ -16,9 +16,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar">
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
+        <activity android:name=".activity.MainActivity" />
 
         <receiver
             android:name=".utils.BootReceiver"
@@ -55,9 +53,10 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activity.MyPageActivity">
-
-        </activity>
+        <activity android:name=".activity.MyPageActivity" />
+        <activity android:name=".activity.QuizActivity" />
+        <activity android:name=".activity.QuizViewActivity" />
+        <activity android:name=".activity.QuizResultActivity"></activity>
     </application>
 
 </manifest>
