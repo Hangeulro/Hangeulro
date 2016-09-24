@@ -1,13 +1,21 @@
 package kr.edcan.neologism.activity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.provider.Settings;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
+    ViewPager mainPager;
     public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
 
     @Override
@@ -65,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void setDefault() {
         listview = binding.mainListView;
+        mainPager = binding.mainHeader;
+        mainPager.setAdapter(new PagerAdapterClass(getApplicationContext()));
+        mainPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+        setViewPagerAutoScroll();
         arrayList = new ArrayList<>();
         arrayList.add(new CommonData("신조어 사전", "Neologism Dictionary", R.drawable.ic_main_dic));
         arrayList.add(new CommonData("내 사전", "My Dictionary", R.drawable.ic_main_mydic));
@@ -77,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
@@ -87,4 +105,77 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setViewPagerAutoScroll() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mainPager.setCurrentItem((mainPager.getCurrentItem() < 2) ? mainPager.getCurrentItem() + 1 : 0, true);
+                setViewPagerAutoScroll();
+            }
+        }, 1500);
+    }
+
+    /**
+     * PagerAdapter
+     */
+    private class PagerAdapterClass extends PagerAdapter {
+
+        private LayoutInflater mInflater;
+
+        public PagerAdapterClass(Context c) {
+            super();
+            mInflater = LayoutInflater.from(c);
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public Object instantiateItem(View pager, int position) {
+            View v = null;
+            if (position == 0) {
+                v = mInflater.inflate(R.layout.main_pager0, null);
+            } else if (position == 1) {
+                v = mInflater.inflate(R.layout.main_pager1, null);
+            } else {
+                v = mInflater.inflate(R.layout.main_pager2, null);
+            }
+
+            ((ViewPager) pager).addView(v, 0);
+
+            return v;
+        }
+
+        @Override
+        public void destroyItem(View pager, int position, Object view) {
+            ((ViewPager) pager).removeView((View) view);
+        }
+
+        @Override
+        public boolean isViewFromObject(View pager, Object obj) {
+            return pager == obj;
+        }
+
+        @Override
+        public void restoreState(Parcelable arg0, ClassLoader arg1) {
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void startUpdate(View arg0) {
+        }
+
+        @Override
+        public void finishUpdate(View arg0) {
+        }
+    }
+
+
 }

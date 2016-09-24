@@ -5,13 +5,14 @@
 
     <ImageView
         android:scaleType="centerCrop"
-        android:src="@drawable/img_main_slide3"
+        android:src="@drawable/img_main_slide2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <ImageView
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:src="@drawable/txt_main_slide3"
-        android:layout_marginLeft="20dp"
+        android:src="@drawable/txt_main_slide2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_height="wrap_content" />
 </RelativeLayout>
