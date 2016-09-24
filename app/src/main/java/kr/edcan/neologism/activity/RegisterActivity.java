@@ -42,6 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
                             case 200:
                                 Toast.makeText(RegisterActivity.this, "회원가입이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                                 finish();
+                            case 409:
+                                Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디입니다!", Toast.LENGTH_SHORT).show();
+                                break;
                         }
                     }
 
