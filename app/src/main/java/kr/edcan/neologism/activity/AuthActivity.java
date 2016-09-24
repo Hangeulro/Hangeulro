@@ -139,7 +139,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 binding.authTwitterLaunch.performClick();
                 break;
             case R.id.authFacebook:
-                binding.authFacebookLaunch.performClick();
+                Toast.makeText(AuthActivity.this, "페이스북 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+//                binding.authFacebookLaunch.performClick();
                 break;
             case R.id.authNaver:
                 Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();

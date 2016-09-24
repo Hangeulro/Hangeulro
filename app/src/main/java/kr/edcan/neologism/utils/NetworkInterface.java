@@ -26,7 +26,7 @@ public interface NetworkInterface {
 
     @POST("/auth/register")
     @FormUrlEncoded
-    Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("username") String username);
+    Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("name") String username);
 
     @GET("/auth/fb/token")
     Call<ResponseBody> facebookLogin(@Query("access_token") String accessToken);
@@ -39,7 +39,7 @@ public interface NetworkInterface {
 
     @POST("/my")
     @FormUrlEncoded
-    Call<ResponseBody> getUserInfo(@Field("token") String token);
+    Call<ResponseBody> getUserInfo(@Field("tokeㅈn") String token);
 
     @POST("/word/cata")
     @FormUrlEncoded
