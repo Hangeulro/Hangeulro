@@ -1,6 +1,7 @@
 package kr.edcan.neologism.activity;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -33,7 +34,10 @@ import kr.edcan.neologism.utils.DBSync;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static Activity activity = null;
+    public static void finishThis(){
+        if(activity != null) activity.finish();
+    };
     ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             setPackage();
@@ -104,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                        break;
+
                     default:
                         Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
                 }

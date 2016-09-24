@@ -99,6 +99,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                     try {
                                         dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
                                         Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         finish();
                                     } catch (JSONException e) {
                                         Log.e("asdf", e.getMessage());
@@ -107,7 +108,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                         e.printStackTrace();
                                     }
                                     break;
-                                case 401:
+                                case 400:
                                     Toast.makeText(AuthActivity.this, "아이디 혹은 비밀번호가 잘못되었습니다!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -125,11 +126,15 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         binding.authFacebook.setOnClickListener(this);
         binding.authKakao.setOnClickListener(this);
         binding.authNaver.setOnClickListener(this);
+        binding.authRegisterLaunch.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.authRegisterLaunch:
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                break;
             case R.id.authTwitter:
                 binding.authTwitterLaunch.performClick();
                 break;
@@ -238,20 +243,22 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             facebookLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    Log.e("asdf", response.code()+"");
                     switch (response.code()) {
                         case 200:
                             try {
+                                Log.e("asdf", response.body().string());
                                 dataManager.saveFacebookUserInfo(new JSONObject(response.body().string()));
-                                dataManager.saveUserCredential(strings[0]);
-                                Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                finish();
                             } catch (IOException e) {
-                                Log.e("asdf", e.getMessage());
+                                Log.e("asdfio", e.getMessage());
                             } catch (JSONException e) {
                                 Log.e("asdf", e.getMessage());
                                 e.printStackTrace();
                             }
+                            dataManager.saveUserCredential(strings[0]);
+//                            Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                             break;
                         case 400:
                             break;
@@ -292,6 +299,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 Log.e("asdf", e.getMessage());
                                 e.printStackTrace();
                             }
+                            break;
+                        case 400:
+                            Toast.makeText(AuthActivity.this, "로그인 인증 중에 문제가 발생했습니다.\n서비스 관리자에게 문의해주세요.", Toast.LENGTH_SHORT).show();
                             break;
                     }
                     Log.e("asdf", response.code() + "");

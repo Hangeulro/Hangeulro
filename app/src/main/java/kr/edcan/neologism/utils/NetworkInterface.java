@@ -1,5 +1,8 @@
 package kr.edcan.neologism.utils;
 
+import java.util.List;
+
+import kr.edcan.neologism.model.Quiz;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -21,7 +24,7 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> userAutoLogin(@Field("token") String token);
 
-    @POST("/auth/login/register")
+    @POST("/auth/register")
     @FormUrlEncoded
     Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("username") String username);
 
@@ -34,6 +37,10 @@ public interface NetworkInterface {
             @Query("oauth_token_secret") String accessTokenSecret,
             @Query("user_id") String userid);
 
+    @POST("/my")
+    @FormUrlEncoded
+    Call<ResponseBody> getUserInfo(@Field("token") String token);
+
     @POST("/word/cata")
     @FormUrlEncoded
     Call<ResponseBody> getWordWithType(@Field("cata") String cata);
@@ -41,4 +48,10 @@ public interface NetworkInterface {
     @POST("/word")
     Call<ResponseBody> getWordList();
 
+    @POST("/quize")
+    Call<List<Quiz>> getQuizList();
+
+    @POST("/my/pointUp")
+    @FormUrlEncoded
+    Call<ResponseBody> scoreUp(@Field("token") String token, @Field("pointUp") int point);
 }

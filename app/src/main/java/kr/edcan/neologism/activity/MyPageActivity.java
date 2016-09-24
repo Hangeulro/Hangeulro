@@ -106,6 +106,7 @@ public class MyPageActivity extends AppCompatActivity {
                     if (bitmap != null)
                         profileBackground.setImageBitmap(SupportHelper.blur(bitmap, getApplicationContext()));
                 }
+
             }
         });
         profileName.setText(user.getName());
@@ -175,8 +176,9 @@ public class MyPageActivity extends AppCompatActivity {
 //                            });
                             LoginManager.getInstance().logOut();
                             manager.removeAllData();
-                            finish();
                             startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                            finish();
+                            MainActivity.finishThis();
                         }
                     });
                     break;
@@ -191,6 +193,8 @@ public class MyPageActivity extends AppCompatActivity {
                             manager.removeAllData();
                             finish();
                             startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                            MainActivity.finishThis();
+
                         }
                     });
                     break;

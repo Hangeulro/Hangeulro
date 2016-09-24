@@ -9,4 +9,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kr.edcan.neologism.activity.QuizResultActivity">
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_centerInParent="true"
+        android:text="ㅁㄴㅇㄹ"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

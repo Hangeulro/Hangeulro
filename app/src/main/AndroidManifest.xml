@@ -56,7 +56,8 @@
         <activity android:name=".activity.MyPageActivity" />
         <activity android:name=".activity.QuizActivity" />
         <activity android:name=".activity.QuizViewActivity" />
-        <activity android:name=".activity.QuizResultActivity"></activity>
+        <activity android:name=".activity.QuizResultActivity" />
+        <activity android:name=".activity.RegisterActivity"></activity>
     </application>
 
 </manifest>
