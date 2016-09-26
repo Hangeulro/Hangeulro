@@ -8,6 +8,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.User;
 
 /**
@@ -59,21 +60,17 @@ public class DataManager {
         editor.apply();
     }
 
-    public void saveFacebookUserInfo(JSONObject user) {
-        try {
-            editor.putInt(LOGIN_TYPE, 0);
-            editor.putBoolean(HAS_ACTIVE_USER, true);
-            editor.putString(USER_ID, user.getString("userid"));
-            editor.putString(USER_NAME, user.getString("name"));
-            editor.putString(HANGEULRO_SERVER_TOKEN, user.getString("token"));
-            editor.putString(USER_PROFILE_URL, user.getString("profile_image"));
-            editor.apply();
-        } catch (JSONException e) {
-            Log.e("asdf", e.getMessage());
-            e.printStackTrace();
-        }
+    public void saveFacebookUserInfo(FacebookUser user) {
+        editor.putInt(LOGIN_TYPE, 0);
+        editor.putBoolean(HAS_ACTIVE_USER, true);
+        editor.putString(USER_ID, user.getUserid());
+        editor.putString(USER_NAME, user.getName());
+        editor.putString(HANGEULRO_SERVER_TOKEN, user.getToken());
+        editor.putString(USER_PROFILE_URL, user.getProfile_image());
+        editor.apply();
     }
-    public void saveTwitterUserInfo(JSONObject user){
+
+    public void saveTwitterUserInfo(JSONObject user) {
         try {
             editor.putInt(LOGIN_TYPE, 1);
             editor.putBoolean(HAS_ACTIVE_USER, true);
@@ -88,7 +85,7 @@ public class DataManager {
         }
     }
 
-    public void saveNativeLoginUserInfo(JSONObject user){
+    public void saveNativeLoginUserInfo(JSONObject user) {
         editor.putInt(LOGIN_TYPE, 4);
         try {
             editor.putBoolean(HAS_ACTIVE_USER, true);
@@ -101,6 +98,7 @@ public class DataManager {
         }
 
     }
+
     public Pair<Boolean, User> getActiveUser() {
         if (preferences.getBoolean(HAS_ACTIVE_USER, false)) {
             int userType = preferences.getInt(LOGIN_TYPE, -1);

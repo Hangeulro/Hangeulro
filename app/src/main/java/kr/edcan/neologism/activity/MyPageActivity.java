@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -93,6 +94,7 @@ public class MyPageActivity extends AppCompatActivity {
         profileBackground = (ImageView) headerView.findViewById(R.id.mypage_profile_background);
         profileImageView = (RoundImageView) headerView.findViewById(R.id.mypage_profile_image);
         expProgress = (SeekArc) headerView.findViewById(R.id.mypage_show_exp);
+        Log.e("asdf", manager.getActiveUser().first+"");
         try {
             profileImageView.setImageUrl((user.getUserType() == 0) ? user.getProfileImageUrl() : SupportHelper.convertTwitterImgSize(user.getProfileImageUrl(), 2), ImageSingleTon.getInstance(this).getImageLoader());
         } catch (MalformedURLException e) {

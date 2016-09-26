@@ -2,6 +2,7 @@ package kr.edcan.neologism.utils;
 
 import java.util.List;
 
+import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.Quiz;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,7 +30,7 @@ public interface NetworkInterface {
     Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("name") String username);
 
     @GET("/auth/fb/token")
-    Call<ResponseBody> facebookLogin(@Query("access_token") String accessToken);
+    Call<FacebookUser> facebookLogin(@Query("access_token") String accessToken);
 
     @GET("/auth/tw/token")
     Call<ResponseBody> twitterLogin(
