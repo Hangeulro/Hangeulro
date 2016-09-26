@@ -39,7 +39,7 @@ public interface NetworkInterface {
 
     @POST("/my")
     @FormUrlEncoded
-    Call<ResponseBody> getUserInfo(@Field("token") String token);
+    Call<ResponseBody> getUserInfo(@Field("tokeㅈn") String token);
 
     @POST("/word/cata")
     @FormUrlEncoded
