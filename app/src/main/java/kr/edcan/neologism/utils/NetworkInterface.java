@@ -38,9 +38,12 @@ public interface NetworkInterface {
             @Query("oauth_token_secret") String accessTokenSecret,
             @Query("user_id") String userid);
 
+    @GET("/version")
+    Call<String> getDataBaseVersion();
+
     @POST("/my")
     @FormUrlEncoded
-    Call<ResponseBody> getUserInfo(@Field("tokeㅈn") String token);
+    Call<ResponseBody> getUserInfo(@Field("token") String token);
 
     @POST("/word/cata")
     @FormUrlEncoded

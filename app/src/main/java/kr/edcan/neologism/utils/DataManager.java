@@ -25,8 +25,8 @@ public class DataManager {
     * */
 
     /* Data Keys */
+    public static final String DATABASE_VERSION = "database_version";
     public static final String USER_PROFILE_URL = "user_profile_url";
-    public static final String IS_SILHOUETTE = "is_silhouette";
     public static final String HAS_ACTIVE_USER = "has_active_user";
     public static final String USER_TOKEN = "user_token";
     public static final String USER_TOKEN_SECRET = "user_token_secret";
@@ -125,6 +125,14 @@ public class DataManager {
                     preferences.getString(USER_ID, "")
             };
         else return new String[]{""};
+    }
+
+    public int getCurrentDatabaseVersion() {
+        return preferences.getInt(DATABASE_VERSION, -1);
+    }
+    public void saveCurrentDatabaseVersion(int version){
+        editor.putInt(DATABASE_VERSION, version);
+        editor.apply();
     }
 
     public void removeAllData() {
