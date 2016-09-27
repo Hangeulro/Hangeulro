@@ -28,7 +28,7 @@ public class SupportHelper {
     }
 
     private static final float BITMAP_SCALE = 0.4f;
-    private static final float BLUR_RADIUS = 7.5f;
+    private static final float BLUR_RADIUS = 3.5f;
 
     public static String convertTwitterImgSize(String url, int type) throws MalformedURLException {
         if (type > 3) return "";
