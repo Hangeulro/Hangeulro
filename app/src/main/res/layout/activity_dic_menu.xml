@@ -30,6 +30,25 @@
                     android:src="@drawable/bg_dic_listmain" />
 
                 <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo_dic_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="8dp"
+                    android:textColor="#000000"
+                    android:layout_margin="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Finder Hangeul Neologism Guide Book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="#FFF"
+                    android:layout_margin="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:text="Neologism Dictionary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
