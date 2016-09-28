@@ -61,7 +61,9 @@ public class MyPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my_page);
+
         setActionbar();
         loadUserData();
         setDefault();
@@ -95,7 +97,7 @@ public class MyPageActivity extends AppCompatActivity {
         profileBackground = (ImageView) headerView.findViewById(R.id.mypage_profile_background);
         profileImageView = (RoundImageView) headerView.findViewById(R.id.mypage_profile_image);
         expProgress = (SeekArc) headerView.findViewById(R.id.mypage_show_exp);
-        Log.e("asdf", manager.getActiveUser().first+"");
+        Log.e("asdf", manager.getActiveUser().first + "");
         try {
             profileImageView.setImageUrl((user.getUserType() == 0) ? user.getProfileImageUrl() : SupportHelper.convertTwitterImgSize(user.getProfileImageUrl(), 2), ImageSingleTon.getInstance(this).getImageLoader());
         } catch (MalformedURLException e) {

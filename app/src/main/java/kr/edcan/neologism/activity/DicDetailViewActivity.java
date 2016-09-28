@@ -3,11 +3,13 @@ package kr.edcan.neologism.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.databinding.ActivityDicDetailViewBinding;
@@ -21,11 +23,18 @@ public class DicDetailViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setBackgroundWindow();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dic_detail_view);
         setDefault();
     }
 
 
+    private void setBackgroundWindow() {
+        WindowManager.LayoutParams windowManager = getWindow().getAttributes();
+        windowManager.dimAmount = 0.88f;
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#77B7B7B7")));
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+    }
     private void setDefault() {
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

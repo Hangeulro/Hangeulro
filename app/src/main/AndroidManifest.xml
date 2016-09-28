@@ -37,7 +37,7 @@
         <activity android:name=".activity.MyDicActivity" />
         <activity
             android:name=".activity.DicDetailViewActivity"
-            android:theme="@style/AppTheme.NoActionbar" />
+            android:theme="@style/Theme.AppCompat.Translucent" />
         <activity android:name=".activity.AuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,7 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".activity.MyPageActivity" />
+        <activity android:name=".activity.MyPageActivity"/>
         <activity android:name=".activity.QuizActivity" />
         <activity android:name=".activity.QuizViewActivity" />
         <activity android:name=".activity.QuizResultActivity" />
