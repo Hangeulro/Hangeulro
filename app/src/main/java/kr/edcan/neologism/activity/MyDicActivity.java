@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -46,5 +47,13 @@ public class MyDicActivity extends AppCompatActivity {
         arrayList.add(new CommonData("이상해 코드", "Perculiar Code", R.drawable.ic_mydic_gold));
         arrayList.add(new CommonData("이상해 코드", "Perculiar Code", R.drawable.ic_mydic_gold));
         listView.setAdapter(new MyDicListViewAdapter(getApplicationContext(), arrayList));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home: finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

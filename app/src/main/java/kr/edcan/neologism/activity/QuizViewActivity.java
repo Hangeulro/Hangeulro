@@ -44,10 +44,10 @@ public class QuizViewActivity extends AppCompatActivity {
             }
         });
         NetworkInterface service = NetworkHelper.getNetworkInstance();
-        Call<List<Quiz>> getQuizList = service.getQuizList();
-        getQuizList.enqueue(new Callback<List<Quiz>>() {
+        Call<ArrayList<Quiz>> getQuizList = service.getQuizList();
+        getQuizList.enqueue(new Callback<ArrayList<Quiz>>() {
             @Override
-            public void onResponse(Call<List<Quiz>> call, Response<List<Quiz>> response) {
+            public void onResponse(Call<ArrayList<Quiz>> call, Response<ArrayList<Quiz>> response) {
                 switch (response.code()) {
                     case 200:
                         for (Quiz q : response.body()) {
@@ -60,7 +60,7 @@ public class QuizViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Quiz>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Quiz>> call, Throwable t) {
 
             }
         });
