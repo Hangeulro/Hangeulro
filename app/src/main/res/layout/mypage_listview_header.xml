@@ -1,7 +1,7 @@
-<FrameLayout android:layout_width="match_parent"
-    android:layout_height="220dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:seekarc="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
 
     <ImageView
         android:id="@+id/mypage_profile_background"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#55ㅎ000000" />
+        android:background="#55000000" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,8 +49,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
-                            android:layout_margin="5dp"
-                            android:layout_gravity="center"/>
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -86,17 +86,19 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/mypage_profile_level"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="32"
                                 android:textColor="@color/colorPrimary"
                                 android:textSize="25sp"
                                 android:textStyle="bold" />
+
                             <TextView
-                                android:text="LEVEL"
-                                android:textSize="8sp"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text="LEVEL"
+                                android:textSize="8sp" />
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
@@ -111,6 +113,7 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/mypage_profile_subText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

@@ -53,6 +53,7 @@ public class MyPageActivity extends AppCompatActivity {
     TextView profileName;
     User user;
     NetworkInterface service;
+    Call<User> getUserInfo;
     Call<String> destryoUser;
     View headerView;
     DataManager manager;
