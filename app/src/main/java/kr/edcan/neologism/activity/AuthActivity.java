@@ -3,11 +3,16 @@ package kr.edcan.neologism.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -50,8 +55,52 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
-        setDefault();
-        validateUserToken();
+//        setDefault();
+        setAnimation();
+//        validateUserToken();
+    }
+
+    private void setAnimation() {
+        binding.authLoginLogo.setAlpha(0f);
+
+        TranslateAnimation animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_PARENT, 0f,
+                Animation.RELATIVE_TO_PARENT, 0f,
+                Animation.RELATIVE_TO_PARENT, 1.0f,
+                Animation.RELATIVE_TO_PARENT, 0f
+        );
+        animation.setInterpolator(AnimationUtils.loadInterpolator(AuthActivity.this, android.R.anim.overshoot_interpolator));
+        animation.setDuration(1000);
+        animation.setFillAfter(true);
+        binding.authLoginFormFooter.setAnimation(animation);
+        animation.start();
+        final AlphaAnimation fadeAnim = new AlphaAnimation(1f, 0f);
+        fadeAnim.setFillAfter(true);
+        fadeAnim.setDuration(500);
+        binding.authLoginLoadingLogo.setAnimation(fadeAnim);
+        fadeAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation a) {
+                Log.e("asdf", "asdf");
+                AlphaAnimation showAnim = new AlphaAnimation(0f, 1f);
+                showAnim.setFillAfter(true);
+                showAnim.setDuration(1000);
+                binding.authLoginLogo.setAnimation(showAnim);
+                showAnim.start();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        fadeAnim.start();
+
     }
 
     private void validateUserToken() {
