@@ -66,17 +66,19 @@
                         <kr.edcan.neologism.views.SeekArc
                             android:id="@+id/mypage_show_exp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="100dp"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:focusableInTouchMode="false"
-                            android:padding="22dp"
-                            seekarc:arcWidth="10dp"
+                            android:layout_margin="5dp"
+                            android:padding="20dp"
+                            seekarc:arcWidth="5dp"
+
                             seekarc:clockwise="true"
                             seekarc:progressWidth="5dp"
                             seekarc:rotation="0"
                             seekarc:startAngle="0"
-                            seekarc:sweepAngle="360" />
+                            seekarc:sweepAngle="360"/>
+
 
                         <LinearLayout
                             android:layout_width="wrap_content"

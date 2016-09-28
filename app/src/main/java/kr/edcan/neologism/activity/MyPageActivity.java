@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -38,6 +39,8 @@ import kr.edcan.neologism.utils.SupportHelper;
 import kr.edcan.neologism.views.RoundImageView;
 import kr.edcan.neologism.views.SeekArc;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MyPageActivity extends AppCompatActivity {
@@ -50,25 +53,22 @@ public class MyPageActivity extends AppCompatActivity {
     RoundImageView profileImageView;
     ListView listView;
     Toolbar toolbar;
-    TextView profileName;
+    TextView profileName, profileLevel, subText;
     User user;
     NetworkInterface service;
     Call<User> getUserInfo;
     Call<String> destryoUser;
     View headerView;
     DataManager manager;
+    int level, point, max=3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_my_page);
-
         setActionbar();
         loadUserData();
-        setDefault();
-        setEXP();
-        setListView();
     }
 
     private void setActionbar() {
@@ -85,8 +85,31 @@ public class MyPageActivity extends AppCompatActivity {
 
     private void loadUserData() {
         manager = new DataManager(getApplicationContext());
-
         user = manager.getActiveUser().second;
+        getUserInfo = service.getUserInfo(user.getToken());
+        Log.e("asdf", user.getToken());
+        getUserInfo.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                switch (response.code()){
+                    case 200:
+                        level = Integer.parseInt(response.body().getLevel());
+                        point = Integer.parseInt(response.body().getPoint());
+                        setDefault();
+                        setListView();
+                        break;
+                    default:
+                        Toast.makeText(MyPageActivity.this, "서버와의 연결에 오류가 발생했습니다..", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(MyPageActivity.this, "서버와의 연결에 오류가 발생했습니다..", Toast.LENGTH_SHORT).show();
+                Log.e("asdf", t.getMessage());
+            }
+        });
     }
 
     private void setDefault() {
@@ -97,7 +120,11 @@ public class MyPageActivity extends AppCompatActivity {
         profileBackground = (ImageView) headerView.findViewById(R.id.mypage_profile_background);
         profileImageView = (RoundImageView) headerView.findViewById(R.id.mypage_profile_image);
         expProgress = (SeekArc) headerView.findViewById(R.id.mypage_show_exp);
-        Log.e("asdf", manager.getActiveUser().first + "");
+        profileLevel = (TextView) headerView.findViewById(R.id.mypage_profile_level);
+        subText = (TextView) headerView.findViewById(R.id.mypage_profile_subText);
+        profileLevel.setText(level+"");
+        expProgress.setMax(3000);
+        expProgress.setProgress(point);
         try {
             profileImageView.setImageUrl((user.getUserType() == 0) ? user.getProfileImageUrl() : SupportHelper.convertTwitterImgSize(user.getProfileImageUrl(), 2), ImageSingleTon.getInstance(this).getImageLoader());
         } catch (MalformedURLException e) {
@@ -115,11 +142,7 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
         profileName.setText(user.getName());
-    }
-
-    private void setEXP() {
-        expProgress.setMax(2000);
-        expProgress.setProgress(1000);
+        subText.setText("Lv."+level+" , 다음 레벨까지 "+(3000-point)+" EXP");
     }
 
     private void setListView() {

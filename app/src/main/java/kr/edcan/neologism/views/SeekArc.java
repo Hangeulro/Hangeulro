@@ -295,6 +295,7 @@ public class SeekArc extends View {
 
     public void setMax(int max) {
         this.mMax = max;
+        updateProgress(getProgress(), false);
     }
 
     private float valuePerDegree() {
