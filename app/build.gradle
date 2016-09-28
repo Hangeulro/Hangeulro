@@ -1,6 +1,8 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
+        mavenLocal() //Add local m2 repository of yours
     }
 
     dependencies {
