@@ -1,10 +1,15 @@
 package kr.edcan.neologism.utils;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import kr.edcan.neologism.model.Board;
 import kr.edcan.neologism.model.FacebookUser;
+import kr.edcan.neologism.model.MyDic;
 import kr.edcan.neologism.model.Quiz;
 import kr.edcan.neologism.model.User;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -54,9 +59,41 @@ public interface NetworkInterface {
     Call<ResponseBody> getWordList();
 
     @POST("/quize")
-    Call<List<Quiz>> getQuizList();
+    Call<ArrayList<Quiz>> getQuizList();
 
     @POST("/my/pointUp")
     @FormUrlEncoded
     Call<ResponseBody> scoreUp(@Field("token") String token, @Field("pointUp") int point);
+
+    @POST("/mydic")
+    @FormUrlEncoded
+    Call<ArrayList<MyDic>> getMyDictionary(@Field("token") String token);
+
+    @POST("/mydic/make")
+    @FormUrlEncoded
+    Call<ResponseBody> createMyDictionary(@Field("token") String token, @Field("dicname") String title
+            , @Field("sub") String subTitle);
+
+    @POST("/mydic/add")
+    @FormUrlEncoded
+    Call<ResponseBody> addToDictionary(@Field("token") String token, @Field("dicname") String dicName
+            , @Field("id") String wordId);
+
+    @POST("/mydic/pop")
+    @FormUrlEncoded
+    Call<ResponseBody> removeFromDictionary(@Field("token") String token, @Field("dicname") String dicName
+            , @Field("id") String wordId);
+
+    @POST("/board")
+    Call<ArrayList<Board>> getBoardList();
+
+    @POST("/board/write")
+    @FormUrlEncoded
+    Call<ResponseBody> postBoardArticle(@Field("token") String token, @Field("date") Date date,
+                                        @Field("title") String title, @Field("contents") String contents);
+
+//    @POST("/board/commentAdd")
+//    @FormUrlEncoded
+//    Call<ResponseBody> addCommentToBoard(@Field("token") String token, @F);
+
 }

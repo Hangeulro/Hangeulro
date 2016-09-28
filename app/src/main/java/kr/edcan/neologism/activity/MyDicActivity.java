@@ -1,6 +1,7 @@
 package kr.edcan.neologism.activity;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -25,6 +26,14 @@ public class MyDicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_dic);
         setDefault();
+        setAppbarLayout();
+    }
+
+    private void setAppbarLayout() {
+        setSupportActionBar(binding.toolbar);
+        binding.toolbar.setBackgroundColor(Color.parseColor("#DD4513"));
+        binding.toolbar.setTitleTextColor(Color.WHITE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setDefault() {

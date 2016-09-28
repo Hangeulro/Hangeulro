@@ -55,9 +55,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
-//        setDefault();
+        setDefault();
         setAnimation();
-//        validateUserToken();
+        validateUserToken();
     }
 
     private void setAnimation() {
