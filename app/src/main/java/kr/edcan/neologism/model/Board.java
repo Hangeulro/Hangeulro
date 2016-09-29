@@ -28,13 +28,30 @@ public class Board {
     }
 
     public class Comments{
-        private String writer, summary;
+        private String writer, summary, profile_image;
         private Date date;
 
-        public Comments(String writer, String summary, Date date) {
+        public Comments(String writer, String summary, String profile_image, Date date) {
             this.writer = writer;
             this.summary = summary;
+            this.profile_image = profile_image;
             this.date = date;
+        }
+
+        public String getWriter() {
+            return writer;
+        }
+
+        public String getSummary() {
+            return summary;
+        }
+
+        public String getProfile_image() {
+            return profile_image;
+        }
+
+        public Date getDate() {
+            return date;
         }
     }
 

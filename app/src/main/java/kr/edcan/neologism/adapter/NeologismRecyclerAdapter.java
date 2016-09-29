@@ -3,6 +3,7 @@ package kr.edcan.neologism.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.activity.DicDetailViewActivity;
+import kr.edcan.neologism.activity.NeologismBoardViewActivity;
 import kr.edcan.neologism.databinding.DicViewRecyclerContentBinding;
 import kr.edcan.neologism.databinding.NeologismRecyclerContentBinding;
 import kr.edcan.neologism.model.Board;
@@ -73,7 +75,14 @@ public class NeologismRecyclerAdapter extends RecyclerView.Adapter<NeologismRecy
         } else holder.imageView.setVisibility(View.GONE);
 
         holder.profile.setImageUrl(data.getWriter_profile(), ImageSingleTon.getInstance(context).getImageLoader());
-
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("asdf", data.getBoardid() + " " + holder.getAdapterPosition());
+                holder.c.startActivity(new Intent(holder.c, NeologismBoardViewActivity.class)
+                        .putExtra("boardid", arrayList.get(holder.getAdapterPosition()).getBoardid()));
+            }
+        });
     }
 
     @Override
@@ -87,10 +96,12 @@ public class NeologismRecyclerAdapter extends RecyclerView.Adapter<NeologismRecy
         TextView title, date, commentOrInfo, content;
         ImageView like, dislike;
         NetworkImageView imageView;
+        CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             c = itemView.getContext();
+            cardView = binding.neologismContentCardview;
             profile = binding.neologismContentProfile;
             imageView = binding.neologismContentImage;
             title = binding.neologismContentTitle;

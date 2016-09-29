@@ -61,7 +61,8 @@
         <service android:name=".utils.ClipBoardService" />
 
         <activity android:name=".activity.MyDicViewActivity" />
-        <activity android:name=".activity.NeologismBoardActivity"></activity>
+        <activity android:name=".activity.NeologismBoardActivity" />
+        <activity android:name=".activity.NeologismBoardViewActivity"></activity>
     </application>
 
 </manifest>
