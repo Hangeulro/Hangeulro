@@ -67,12 +67,12 @@ public class MyDicViewActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.collapsingToolbar.setTitle(dicName+" 코드");
-        binding.collapsingToolbar.setContentScrimColor(Color.parseColor("#393939"));
         binding.collapsingToolbar.setExpandedTitleTextAppearance(R.style.expandedTitleStyle);
         binding.collapsingToolbar.setCollapsedTitleTextAppearance(R.style.collapsedTitleStyle);
         recyclerView = binding.myDicViewRecyclerView;
-        binding.myDicViewHeadeBG.setBackgroundColor(Color.parseColor("#444444"));
         binding.myDicViewAcc.setImageResource(R.drawable.acc_mydicsebu_imoji);
+        binding.collapsingToolbar.setContentScrimColor(Color.parseColor("#393939"));
+        binding.myDicViewHeadeBG.setBackgroundColor(Color.parseColor("#444444"));
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             getWindow().setStatusBarColor(Color.parseColor("#333232"));
     }

@@ -7,18 +7,19 @@ import java.util.Date;
  * Created by JunseokOh on 2016. 9. 28..
  */
 public class Board {
-    private String boardid, title, writer, writerToken, contents, imageurl;
+    private String boardid, title, writer, writerToken, contents, imageurl, writer_profile;
     private Date date;
     private int good, bad, share;
     private ArrayList<Comments> comments;
 
-    public Board(String boardid, String title, String writer, String writerToken, String contents, String imageurl, Date date, int good, int bad, int share, ArrayList<Comments> comments) {
+    public Board(String boardid, String title, String writer, String writerToken, String contents, String imageurl, String writer_profile, Date date, int good, int bad, int share, ArrayList<Comments> comments) {
         this.boardid = boardid;
         this.title = title;
         this.writer = writer;
         this.writerToken = writerToken;
         this.contents = contents;
         this.imageurl = imageurl;
+        this.writer_profile = writer_profile;
         this.date = date;
         this.good = good;
         this.bad = bad;
@@ -79,5 +80,9 @@ public class Board {
 
     public ArrayList<Comments> getComments() {
         return comments;
+    }
+
+    public String getWriter_profile() {
+        return writer_profile;
     }
 }

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.adapter.CommonListViewAdapter;
+import kr.edcan.neologism.adapter.NeologismRecyclerAdapter;
 import kr.edcan.neologism.databinding.ActivityMainBinding;
 import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
@@ -112,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
                         break;
-//                    case 2:
-//                        break;
+                    case 2:
+                        startActivity(new Intent(getApplicationContext(), NeologismBoardActivity.class));
+                        break;
                     case 3:
                         startActivity(new Intent(getApplicationContext(), QuizActivity.class));
                         break;
