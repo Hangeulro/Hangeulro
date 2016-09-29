@@ -1,5 +1,6 @@
 package kr.edcan.neologism.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,7 +52,14 @@ public class MyDicActivity extends AppCompatActivity implements View.OnClickList
         manager = new DataManager(getApplicationContext());
         service = NetworkHelper.getNetworkInstance();
         listView = binding.mydicListView;
-        arrayList= new ArrayList<>();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(getApplicationContext(), MyDicViewActivity.class)
+                        .putExtra("dicName", arrayList.get(i).getDicname()));
+            }
+        });
+        arrayList = new ArrayList<>();
         setData(false);
         setAppbarLayout();
     }
@@ -62,8 +71,8 @@ public class MyDicActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<ArrayList<MyDic>> call, Response<ArrayList<MyDic>> response) {
                 switch (response.code()) {
                     case 200:
-                        if(reconfig) arrayList.clear();
-                        for(MyDic m : response.body()){
+                        if (reconfig) arrayList.clear();
+                        for (MyDic m : response.body()) {
                             arrayList.add(m);
                         }
                         if (!reconfig) {

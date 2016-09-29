@@ -8,6 +8,7 @@ import kr.edcan.neologism.model.Board;
 import kr.edcan.neologism.model.DicData;
 import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.MyDic;
+import kr.edcan.neologism.model.MyDicViewData;
 import kr.edcan.neologism.model.Quiz;
 import kr.edcan.neologism.model.User;
 import kr.edcan.neologism.model.Word;
@@ -93,7 +94,7 @@ public interface NetworkInterface {
             , @Field("id") String wordId);
     @POST("/mydic/detail")
     @FormUrlEncoded
-    Call<MyDic> getMyDicInfo(@Field("token") String token, @Field("dicname") String dicName);
+    Call<MyDicViewData> getMyDicInfo(@Field("token") String token, @Field("dicname") String dicName);
 
     @POST("/board")
     Call<ArrayList<Board>> getBoardList();

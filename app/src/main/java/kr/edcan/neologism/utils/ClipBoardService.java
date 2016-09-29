@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,7 +93,14 @@ public class ClipBoardService extends Service {
             public void onPrimaryClipChanged() {
                 if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
                     if (manager.getPrimaryClipDescription().toString().contains("text/plain")) {
-                        String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
+                        String capturedString;
+                        try {
+                            capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
+                        } catch (NullPointerException e){
+                            e.printStackTrace();
+                            Log.e("asdf", e.getMessage());
+                            return;
+                        }
                         RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
                         if (realmResults.size() >= 1) {
                             vibrate();

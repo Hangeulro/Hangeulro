@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AuthActivity"/>
+        <activity android:name=".activity.AuthActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.DicMenuActivity" />
         <activity
@@ -41,13 +41,13 @@
         <activity android:name=".activity.SelectBestActivity" />
         <activity android:name=".activity.TodayNeologismActivity" />
 
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="6c81b4e91b018f9f82dce750f7f07b9723039bb2" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
         <receiver
             android:name=".utils.BootReceiver"
             android:enabled="true"
@@ -57,9 +57,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <service android:name=".utils.ClipBoardService" />
 
-
+        <activity android:name=".activity.MyDicViewActivity"></activity>
     </application>
 
 </manifest>
