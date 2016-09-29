@@ -7,65 +7,15 @@
     tools:context="kr.edcan.neologism.activity.SplashActivity">
 
 
-    <RelativeLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
-        <ImageView
-            android:id="@+id/splash_mainimage"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bg_splash" />
-
-        <LinearLayout
-            android:id="@+id/splash_textLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/splash_mainimage"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="한글을 한글로!"
-                android:textColor="#FFF"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Finder hangul Neologism Guide Book"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="Copyright from Hangle to Hangle.\nGlobal Hangul Love Campaign 2016\nIdentification System Program\nSmart Ver 3.0"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="8sp" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/splash_textLayout"
-            android:id="@+id/splash_leftunder_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/splash_mainimage"
-            android:src="@drawable/logo_splash" />
-        <ImageView
-            android:layout_alignRight="@id/splash_mainimage"
-            android:layout_alignBottom="@id/splash_leftunder_logo"
-            android:src="@drawable/acc_chunjiin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+        android:src="@drawable/bg_splash4_hangeulro"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/text_login_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
