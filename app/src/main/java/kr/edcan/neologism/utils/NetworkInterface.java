@@ -5,10 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import kr.edcan.neologism.model.Board;
+import kr.edcan.neologism.model.DicData;
 import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.MyDic;
 import kr.edcan.neologism.model.Quiz;
 import kr.edcan.neologism.model.User;
+import kr.edcan.neologism.model.Word;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,6 +28,11 @@ public interface NetworkInterface {
     @POST("/my")
     @FormUrlEncoded
     Call<User> getUserInfo(@Field("token") String token);
+
+    @POST("/my/pointUp")
+    @FormUrlEncoded
+    Call<ResponseBody> scoreUp(@Field("token") String token, @Field("pointUp") int point);
+
 
     @POST("/auth/login")
     @FormUrlEncoded
@@ -58,12 +65,13 @@ public interface NetworkInterface {
     @POST("/word")
     Call<ResponseBody> getWordList();
 
+    @POST("/word/commentAdd")
+    @FormUrlEncoded
+    Call<DicData> addCommentToWord(@Field("token") String token, @Field("date") Date date,
+                                   @Field("wordid") String wordid, @Field("summary") String summary);
+
     @POST("/quize")
     Call<ArrayList<Quiz>> getQuizList();
-
-    @POST("/my/pointUp")
-    @FormUrlEncoded
-    Call<ResponseBody> scoreUp(@Field("token") String token, @Field("pointUp") int point);
 
     @POST("/mydic")
     @FormUrlEncoded
@@ -83,6 +91,9 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> removeFromDictionary(@Field("token") String token, @Field("dicname") String dicName
             , @Field("id") String wordId);
+    @POST("/mydic/detail")
+    @FormUrlEncoded
+    Call<MyDic> getMyDicInfo(@Field("token") String token, @Field("dicname") String dicName);
 
     @POST("/board")
     Call<ArrayList<Board>> getBoardList();
@@ -92,8 +103,13 @@ public interface NetworkInterface {
     Call<ResponseBody> postBoardArticle(@Field("token") String token, @Field("date") Date date,
                                         @Field("title") String title, @Field("contents") String contents);
 
-//    @POST("/board/commentAdd")
-//    @FormUrlEncoded
-//    Call<ResponseBody> addCommentToBoard(@Field("token") String token, @F);
+    @POST("/board/commentAdd")
+    @FormUrlEncoded
+    Call<ResponseBody> addCommentToBoard(@Field("token") String token, @Field("boardid") String boardid,
+                                         @Field("comment") String comment, @Field("date") Date date);
+    @POST("/board/detail")
+    @FormUrlEncoded
+    Call<Board> getBoardInfo(@Field("boardid") String boardid);
+
 
 }
