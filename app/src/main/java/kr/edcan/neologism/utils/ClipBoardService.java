@@ -131,7 +131,7 @@ public class ClipBoardService extends Service {
         ActivityClipboardPopupViewBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_clipboard_popup_view, null, false);
         binding.quickSearchWord.setText(word);
         binding.quickSearchContent.setText(mean);
-        binding.quickSearchSubContent.setText((example == null) ? "예문이 존재하지 않습니다" : example);
+//        binding.quickSearchSubContent.setText((example == null) ? "예문이 존재하지 않습니다" : example);
         return binding.getRoot();
     }
 

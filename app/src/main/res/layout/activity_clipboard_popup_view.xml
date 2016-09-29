@@ -5,147 +5,75 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         tools:context="kr.edcan.neologism.activity.MainActivity">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="@color/colorPrimary"
+                android:src="@drawable/logo_quicksearch_hangeul"
+                android:layout_width="70dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_height="wrap_content" />
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:paddingBottom="10dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="10dp">
-
-                <ImageView
-                    android:id="@+id/popup_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_hangeul" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/popup_logo"
-                    android:layout_marginLeft="12dp"
-                    android:layout_toRightOf="@id/popup_logo"
-                    android:text="QUICK SEARCH"
-                    android:textColor="#FFF"
-                    android:textSize="12sp" />
-
+                android:layout_height="match_parent">
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/popup_launch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:background="@drawable/round_square"
-                        android:paddingBottom="4dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="4dp"
-                        android:text="@string/open_app"
-                        android:textColor="#FFF"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
+                    android:layout_margin="12dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="8">
-
-                    <RelativeLayout
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3.5">
-
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:textSize="18dp"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Quick Search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/textColorSubDark"
+                        android:text="빠른 검색"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:gravity="bottom"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                         <TextView
                             android:id="@+id/quickSearchWord"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:text="빼박캔트"
-                            android:textColor="@color/textColor"
-                            android:textSize="23sp" />
-                    </RelativeLayout>
-
-                    <LinearLayout
-                        android:layout_width="1dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        android:background="@color/textColor" />
-
-                    <TextView
-                        android:id="@+id/quickSearchContent"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4.5"
-                        android:ellipsize="end"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:text="빼도박도 + 못한다 (can't)'라는\n 말로 줄임 + 합성어입니다"
-                        android:textColor="@color/textColor"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B3B3B4"
-                    android:orientation="horizontal"
-                    android:weightSum="8">
-
-                    <TextView
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3.5"
-                        android:gravity="right|center_vertical"
-                        android:text="뜻"
-                        android:textColor="@color/textColor"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:layout_width="1dp"
-                        android:layout_height="20dp"
-                        android:layout_margin="10dp"
-                        android:background="@color/textColor" />
-
-                    <RelativeLayout
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4.5">
-
-                        <TextView
-                            android:id="@+id/quickSearchSubContent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"
-                            android:ellipsize="end"
+                            android:textSize="24dp"
+                            android:text="복세편살"
+                            android:textColor="@color/textColorDark"
                             android:singleLine="true"
-                            android:text="빼도박도 못하다"
-                            android:textColor="#FFF" />
-
-                    </RelativeLayout>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:textSize="12dp"
+                            android:id="@+id/quickSearchContent"
+                            android:text="복잡한 세상을 편하게 살자"
+                            android:textColor="@color/textColorDark"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+                <TextView
+                    android:textColor="@color/textColorSubDark"
+                    android:textSize="14dp"
+                    android:layout_margin="12dp"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:text="앱에서 보기"
+                    android:drawableRight="@drawable/btn_quicksearch_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>
