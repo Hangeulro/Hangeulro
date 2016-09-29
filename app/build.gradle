@@ -67,4 +67,5 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:2.0.1@aar') {
         transitive = true;
     }
+    compile 'com.github.clans:fab:1.6.4'
 }
