@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 mainPager.setCurrentItem((mainPager.getCurrentItem() < 2) ? mainPager.getCurrentItem() + 1 : 0, true);
                 setViewPagerAutoScroll();
             }
-        }, 1500);
+        }, 3000);
     }
 
     /**
@@ -157,10 +157,28 @@ public class MainActivity extends AppCompatActivity {
             View v = null;
             if (position == 0) {
                 v = mInflater.inflate(R.layout.main_pager0, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
+                    }
+                });
             } else if (position == 1) {
                 v = mInflater.inflate(R.layout.main_pager1, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), TodayNeologismActivity.class));
+                    }
+                });
             } else {
                 v = mInflater.inflate(R.layout.main_pager2, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), SelectBestActivity.class));
+                    }
+                });
             }
 
             ((ViewPager) pager).addView(v, 0);
