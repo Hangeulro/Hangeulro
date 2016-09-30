@@ -27,8 +27,6 @@ public class DicDetailViewActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dic_detail_view);
         setDefault();
     }
-
-
     private void setBackgroundWindow() {
         WindowManager.LayoutParams windowManager = getWindow().getAttributes();
         windowManager.dimAmount = 0.88f;
@@ -51,7 +49,7 @@ public class DicDetailViewActivity extends AppCompatActivity {
         binding.dicDetailShareLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 https://goo.gl/StvRXG");
+                shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 http://hangeulro.xyz");
             }
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

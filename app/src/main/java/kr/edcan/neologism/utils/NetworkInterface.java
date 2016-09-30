@@ -89,7 +89,7 @@ public interface NetworkInterface {
     @POST("/mydic/add")
     @FormUrlEncoded
     Call<ResponseBody> addToDictionary(@Field("token") String token, @Field("dicname") String dicName
-            , @Field("id") String wordId);
+            , @Field("word") String word);
 
     @POST("/mydic/pop")
     @FormUrlEncoded
