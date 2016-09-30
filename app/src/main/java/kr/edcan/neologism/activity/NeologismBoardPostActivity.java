@@ -127,6 +127,7 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
                 switch (response.code()){
                     case 200:
                         Toast.makeText(NeologismBoardPostActivity.this, "완료", Toast.LENGTH_SHORT).show();
+                        finish();
                         break;
                     default:
                         break;
