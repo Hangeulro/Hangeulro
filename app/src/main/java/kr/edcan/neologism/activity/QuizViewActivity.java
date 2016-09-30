@@ -93,7 +93,7 @@ public class QuizViewActivity extends AppCompatActivity {
             String mean2 = arrayList.get(new Random().nextInt(10)).getMean();
             String mean3 = arrayList.get(new Random().nextInt(10)).getMean();
             LayoutQuizBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.layout_quiz, container, false);
-            binding.titletext.setText(q.getWord());
+            binding.titletext.setText(q.getWord()+" 의 뜻은?");
             binding.number1text.setText(mean2);
             binding.number2text.setText(mean3);
             binding.number3text.setText(mean1);
