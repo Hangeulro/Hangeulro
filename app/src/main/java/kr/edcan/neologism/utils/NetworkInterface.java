@@ -12,13 +12,16 @@ import kr.edcan.neologism.model.MyDicViewData;
 import kr.edcan.neologism.model.Quiz;
 import kr.edcan.neologism.model.User;
 import kr.edcan.neologism.model.Word;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -112,5 +115,9 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<Board> getBoardInfo(@Field("boardid") String boardid);
 
+    @POST("/board/write")
+    @Multipart
+    Call<ResponseBody> postArticle(@Part("file\"; filename=\"image.jpg\" ")RequestBody file, @Part("token") RequestBody token,
+                                   @Part("title") RequestBody title, @Part("contents") RequestBody contents);
 
 }

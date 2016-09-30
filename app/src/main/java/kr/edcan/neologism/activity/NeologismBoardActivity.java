@@ -1,5 +1,6 @@
 package kr.edcan.neologism.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Build;
@@ -45,6 +46,12 @@ public class NeologismBoardActivity extends AppCompatActivity {
 
 
     private void setDefault() {
+        binding.neologismBoardFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NeologismBoardPostActivity.class));
+            }
+        });
         binding.neologismBoardProgrees.setIndeterminate(true);
         binding.neologismBoardProgrees.setThickness(15);
         binding.neologismBoardProgrees.setColor(Color.parseColor("#393939"));

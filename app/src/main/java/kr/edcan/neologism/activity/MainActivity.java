@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         startActivity(new Intent(getApplicationContext(), QuizActivity.class));
                         break;
-
-                    default:
-                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
+//
+//                    default:
+//                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -25,6 +25,7 @@ public class NetworkHelper {
             retrofit = new Retrofit.Builder()
                     .baseUrl(url + ":" + port)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(new GsonStringConverterFactory())
                     .build();
         }
         return retrofit.create(NetworkInterface.class);
