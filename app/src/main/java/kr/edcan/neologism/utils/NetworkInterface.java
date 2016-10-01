@@ -102,11 +102,6 @@ public interface NetworkInterface {
     @POST("/board")
     Call<ArrayList<Board>> getBoardList();
 
-    @POST("/board/write")
-    @FormUrlEncoded
-    Call<ResponseBody> postBoardArticle(@Field("token") String token, @Field("date") Date date,
-                                        @Field("title") String title, @Field("contents") String contents);
-
     @POST("/board/commentAdd")
     @FormUrlEncoded
     Call<ResponseBody> addCommentToBoard(@Field("token") String token, @Field("boardid") String boardid,
