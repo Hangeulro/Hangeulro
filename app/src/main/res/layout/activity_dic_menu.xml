@@ -8,11 +8,17 @@
         android:orientation="vertical"
         tools:context=".activity.DicMenuActivity">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="신조어 사전" />
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/AppTheme.ActionBar"
+                app:title="신조어 사전" />
+        </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,15 +87,16 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="빼박캔트"
-                    android:layout_marginRight="16dp"
-                    android:textColor="#8F8F8F"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="16dp"
+                    android:text="빼박캔트"
+                    android:textColor="#8F8F8F"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>
@@ -125,15 +132,16 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="개이득"
-                    android:layout_marginRight="16dp"
-                    android:textColor="#8F8F8F"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="16dp"
+                    android:text="개이득"
+                    android:textColor="#8F8F8F"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </RelativeLayout>

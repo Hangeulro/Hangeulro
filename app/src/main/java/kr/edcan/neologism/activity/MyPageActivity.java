@@ -31,6 +31,7 @@ import kr.edcan.neologism.R;
 import kr.edcan.neologism.adapter.MyPageListViewAdapter;
 import kr.edcan.neologism.model.CommonData;
 import kr.edcan.neologism.model.User;
+import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.ImageSingleTon;
 import kr.edcan.neologism.utils.NetworkHelper;
@@ -215,6 +216,7 @@ public class MyPageActivity extends AppCompatActivity {
                     helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?.", new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            stopService(new Intent(getApplicationContext(), ClipBoardService.class));
                             LoginManager.getInstance().logOut();
                             Twitter.getSessionManager().clearActiveSession();
                             Twitter.logOut();

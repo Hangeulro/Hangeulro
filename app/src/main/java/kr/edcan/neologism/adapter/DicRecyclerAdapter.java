@@ -60,7 +60,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
 
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         data = arrayList.get(position);
         holder.title.setText(data.getTitle());
         holder.meaning.setText(data.getMeaning());
@@ -79,14 +79,13 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
         holder.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSpinner(holder);
+                showSpinner(holder, position);
             }
 
         });
     }
 
-    private void showSpinner(final ViewHolder holder) {
-
+    private void showSpinner(final ViewHolder holder, final int position) {
         final NetworkInterface service = NetworkHelper.getNetworkInstance();
         final DataManager manager = new DataManager(context);
         Call<ArrayList<MyDic>> getMyDictionary = service.getMyDictionary(manager.getActiveUser().second.getToken());
@@ -100,7 +99,7 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
                 switch (response.code()) {
                     case 200:
                         final ArrayList<String> result = new ArrayList<String>();
-                        for(MyDic d : response.body()){
+                        for (MyDic d : response.body()) {
                             result.add(d.getDicname());
                         }
                         ArrayAdapter adapter = new ArrayAdapter(
@@ -116,12 +115,11 @@ public class DicRecyclerAdapter extends RecyclerView.Adapter<DicRecyclerAdapter.
                                     @Override
                                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                         Call<ResponseBody> addToDictionary = service.addToDictionary(manager.getActiveUser().second.getToken(),
-                                                result.get(sp.getSelectedItemPosition()), data.getTitle());
+                                                result.get(sp.getSelectedItemPosition()), arrayList.get(position).getTitle());
                                         addToDictionary.enqueue(new Callback<ResponseBody>() {
                                             @Override
                                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                                Log.e("asdf", response.code()+"");
-                                                switch (response.code()){
+                                                switch (response.code()) {
                                                     case 200:
                                                         Toast.makeText(context, "저장이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                                                         break;

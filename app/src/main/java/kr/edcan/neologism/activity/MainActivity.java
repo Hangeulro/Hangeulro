@@ -32,22 +32,32 @@ import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
 import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DBSync;
+import kr.edcan.neologism.utils.DataManager;
+import kr.edcan.neologism.utils.NetworkHelper;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
     public static Activity activity = null;
-    public static void finishThis(){
-        if(activity != null) activity.finish();
-    };
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
+
+    ;
     ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
     ViewPager mainPager;
-    public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
+    DataManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        manager = new DataManager(this);
+        if (!manager.getActiveUser().first) {
+            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+            finish();
+        }
         activity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -100,29 +110,33 @@ public class MainActivity extends AppCompatActivity {
         footerBinding.mainListviewFooterMyPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                if (NetworkHelper.returnNetworkState(getApplicationContext()))
+                    startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                else
+                    Toast.makeText(MainActivity.this, "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
+
             }
         });
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(getApplicationContext(), NeologismBoardActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getApplicationContext(), QuizActivity.class));
-                        break;
-//
-//                    default:
-//                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
-                }
+                if (NetworkHelper.returnNetworkState(getApplicationContext())) {
+                    switch (position) {
+                        case 0:
+                            startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
+                            break;
+                        case 1:
+                            startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
+                            break;
+                        case 2:
+                            startActivity(new Intent(getApplicationContext(), NeologismBoardActivity.class));
+                            break;
+                        case 3:
+                            startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                            break;
+                    }
+                } else
+                    Toast.makeText(MainActivity.this, "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -215,6 +229,4 @@ public class MainActivity extends AppCompatActivity {
         public void finishUpdate(View arg0) {
         }
     }
-
-
 }

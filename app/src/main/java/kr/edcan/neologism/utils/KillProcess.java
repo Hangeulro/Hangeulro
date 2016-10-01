@@ -12,7 +12,6 @@ public class KillProcess extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCompat.finishAffinity(this);
-        System.runFinalizersOnExit(true);
         System.exit(0);
     }
 }

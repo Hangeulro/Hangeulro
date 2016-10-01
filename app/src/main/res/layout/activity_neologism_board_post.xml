@@ -11,33 +11,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/AppTheme.ActionBar" />
+            </android.support.design.widget.AppBarLayout>
 
             <EditText
-                android:padding="16dp"
-                android:textSize="20dp"
                 android:id="@+id/neologismPostEditTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:maxLines="20"
                 android:hint="제목을 입력해주세요"
+                android:imeOptions="normal"
                 android:inputType="textNoSuggestions"
-                android:imeOptions="normal"/>
-            <EditText
+                android:maxLines="20"
                 android:padding="16dp"
-                android:textSize="20dp"
+                android:textSize="16sp" />
+
+            <EditText
                 android:id="@+id/neologismPostEdittext"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top"
-                android:maxLines="20"
                 android:hint="어떤 신조어를 생각하고 계신가요?"
-                android:inputType="textNoSuggestions"
-                android:imeOptions="normal"/>
+                android:padding="16dp"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <RelativeLayout

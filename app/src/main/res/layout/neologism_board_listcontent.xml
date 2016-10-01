@@ -54,17 +54,19 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
             android:ellipsize="end"
-            android:text="aaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdfaaasdf"
             android:textColor="@color/textColorSubDark" />
 
         <View
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="#223c3c3c"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_marginTop="10dp"
+            android:background="#223c3c3c" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

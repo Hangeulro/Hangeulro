@@ -2,6 +2,7 @@ package kr.edcan.neologism.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -106,24 +107,26 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.authRegisterLaunch:
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-                break;
-            case R.id.authTwitter:
-                binding.authTwitterLaunch.performClick();
-                break;
-            case R.id.authFacebook:
-//                Toast.makeText(AuthActivity.this, "페이스북 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-                binding.authFacebookLaunch.performClick();
-                break;
-            case R.id.authNaver:
-                Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.authKakao:
-                Toast.makeText(AuthActivity.this, "카카오 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-                break;
-        }
+        if (NetworkHelper.returnNetworkState(getApplicationContext())) {
+
+            switch (v.getId()) {
+                case R.id.authRegisterLaunch:
+                    startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                    break;
+                case R.id.authTwitter:
+                    binding.authTwitterLaunch.performClick();
+                    break;
+                case R.id.authFacebook:
+                    binding.authFacebookLaunch.performClick();
+                    break;
+                case R.id.authNaver:
+                    Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.authKakao:
+                    Toast.makeText(AuthActivity.this, "카카오 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        } else Toast.makeText(AuthActivity.this, "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
