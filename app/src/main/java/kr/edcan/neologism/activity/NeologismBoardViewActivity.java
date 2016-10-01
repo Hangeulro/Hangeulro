@@ -28,6 +28,7 @@ import kr.edcan.neologism.databinding.ActivityNeologismBoardViewBinding;
 import kr.edcan.neologism.databinding.NeologismBoardFooterBinding;
 import kr.edcan.neologism.databinding.NeologismBoardListcontentBinding;
 import kr.edcan.neologism.model.Board;
+import kr.edcan.neologism.model.Word;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.ImageSingleTon;
 import kr.edcan.neologism.utils.NetworkHelper;
@@ -83,8 +84,10 @@ public class NeologismBoardViewActivity extends AppCompatActivity {
                 switch (response.code()) {
                     case 200:
                         data = response.body();
-                        commentList.clear();
-                        commentList.addAll(response.body().getComments());
+                        if (append) commentList.clear();
+                        for (Board.Comments c : response.body().getComments()) {
+                            commentList.add(c);
+                        }
                         setUI(append);
                         break;
                     default:
@@ -132,8 +135,12 @@ public class NeologismBoardViewActivity extends AppCompatActivity {
             listView.addFooterView(footer.getRoot());
             adapter = new NeoBoardCommentListViewAdapter(getApplicationContext(), commentList);
             listView.setAdapter(adapter);
-        } else adapter.notifyDataSetChanged();
-
+        } else runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public void showCommentDialog() {
@@ -163,6 +170,7 @@ public class NeologismBoardViewActivity extends AppCompatActivity {
                                     switch (response.code()) {
                                         case 200:
                                             Toast.makeText(NeologismBoardViewActivity.this, "댓글을 작성했습니다!", Toast.LENGTH_SHORT).show();
+                                            setDefault(true);
                                             break;
                                         default:
                                             Toast.makeText(NeologismBoardViewActivity.this, "서버와의 연동에 오류가 발생했습니다!", Toast.LENGTH_SHORT).show();

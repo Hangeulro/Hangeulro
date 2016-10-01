@@ -1,7 +1,11 @@
 package kr.edcan.neologism.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
+
+import retrofit2.http.Field;
 
 /**
  * Created by JunseokOh on 2016. 9. 28..

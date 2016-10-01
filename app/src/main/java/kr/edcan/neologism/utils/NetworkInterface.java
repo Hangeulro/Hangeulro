@@ -105,7 +105,7 @@ public interface NetworkInterface {
     @POST("/board/commentAdd")
     @FormUrlEncoded
     Call<ResponseBody> addCommentToBoard(@Field("token") String token, @Field("boardid") String boardid,
-                                         @Field("comment") String comment, @Field("date") Date date);
+                                         @Field("summary") String comment, @Field("date") Date date);
     @POST("/board/detail")
     @FormUrlEncoded
     Call<Board> getBoardInfo(@Field("boardid") String boardid);
