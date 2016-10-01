@@ -27,11 +27,19 @@
     <style name="SeekArc">
         <item name="arcColor">@color/progress_gray_dark</item>
     </style>
+
     <style name="expandedTitleStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">20dp</item>
     </style>
+
     <style name="collapsedTitleStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18dp</item>
     </style>
 
+    <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimaryInverse">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
 </resources>

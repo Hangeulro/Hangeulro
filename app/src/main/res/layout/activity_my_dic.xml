@@ -11,6 +11,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:theme="@style/AppTheme.ActionBar"
             android:layout_height="?attr/actionBarSize"
             app:title="내 사전" />
 

@@ -35,6 +35,7 @@ import retrofit2.Response;
 
 public class NeologismBoardPostActivity extends AppCompatActivity {
 
+    private boolean isFileSelected = false;
     private static int RESULT_LOAD_IMAGE = 6974;
     private String picturePath = "";
     Toolbar toolbar;
@@ -72,7 +73,7 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(i, RESULT_LOAD_IMAGE);//위에서 선언한 1이라는 결과 코드로 액티비티를 선언
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
     }
@@ -81,6 +82,7 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            isFileSelected = true;
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(selectedImage,
@@ -88,10 +90,9 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
-            Log.e("파일 경로", picturePath);
             cursor.close();
             binding.neologismPostPreview.setImageBitmap(BitmapFactory.decodeFile(picturePath));//이미지뷰에 뿌려줍니다.
-        }
+        } else isFileSelected = false;
     }
 
     @Override
@@ -102,7 +103,7 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
@@ -113,32 +114,34 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
     }
 
     private void postArticle() {
-        File file = new File(picturePath);
-        RequestBody body = RequestBody.create(MediaType.parse("image/png"), file);
+        RequestBody imageBody = null;
+        File file;
+        if (isFileSelected) {
+            file = new File(picturePath);
+            imageBody = RequestBody.create(MediaType.parse("image/png"), file);
+        }
         RequestBody token = RequestBody.create(MediaType.parse("text/plain"), manager.getActiveUser().second.getToken());
         RequestBody title = RequestBody.create(MediaType.parse("text/plain"), binding.neologismPostEditTitle.getText().toString().trim());
-        RequestBody contents= RequestBody.create(MediaType.parse("text/plain"), editText.getText().toString().trim());
-        Log.e("asdf",body.contentType().toString());
-        postArticle = service.postArticle(body, token, title, contents);
+        RequestBody contents = RequestBody.create(MediaType.parse("text/plain"), editText.getText().toString().trim());
+        postArticle = service.postArticle((isFileSelected) ? imageBody : null, token, title, contents);
         postArticle.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e("asdf", response.code()+"");
-                switch (response.code()){
+                switch (response.code()) {
                     case 200:
-                        Toast.makeText(NeologismBoardPostActivity.this, "완료", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NeologismBoardPostActivity.this, "게시가 완료되었습니다!", Toast.LENGTH_SHORT).show();
                         finish();
                         break;
                     default:
+                        Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("asdf", t.getMessage());
+                Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
