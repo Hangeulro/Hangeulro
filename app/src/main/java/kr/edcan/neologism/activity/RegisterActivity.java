@@ -45,18 +45,25 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(RegisterActivity.this, "회원가입이 완료되었습니다!", Toast.LENGTH_SHORT).show();
                                     finish();
                                     break;
+                                case 403:
+                                    Toast.makeText(RegisterActivity.this, "필드를 전부 입력해주세요!", Toast.LENGTH_SHORT).show();
+                                    break;
                                 case 409:
                                     Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디입니다!", Toast.LENGTH_SHORT).show();
                                     break;
+                                default:
+                                    Toast.makeText(RegisterActivity.this, "서버와의 연동에 문제가 발생했습니다!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(RegisterActivity.this, "서버와의 연동에 문제가 발생했습니다!", Toast.LENGTH_SHORT).show();
                             Log.e("asdf", t.getMessage());
                         }
                     });
-                } else Toast.makeText(RegisterActivity.this, "비밀번호가 일치하지 않습니다!", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(RegisterActivity.this, "비밀번호가 일치하지 않습니다!", Toast.LENGTH_SHORT).show();
             }
         });
     }
