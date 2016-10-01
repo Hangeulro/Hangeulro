@@ -114,34 +114,39 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
     }
 
     private void postArticle() {
-        RequestBody imageBody = null;
-        File file;
-        if (isFileSelected) {
-            file = new File(picturePath);
-            imageBody = RequestBody.create(MediaType.parse("image/png"), file);
-        }
-        RequestBody token = RequestBody.create(MediaType.parse("text/plain"), manager.getActiveUser().second.getToken());
-        RequestBody title = RequestBody.create(MediaType.parse("text/plain"), binding.neologismPostEditTitle.getText().toString().trim());
-        RequestBody contents = RequestBody.create(MediaType.parse("text/plain"), editText.getText().toString().trim());
-        postArticle = service.postArticle((isFileSelected) ? imageBody : null, token, title, contents);
-        postArticle.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                switch (response.code()) {
-                    case 200:
-                        Toast.makeText(NeologismBoardPostActivity.this, "게시가 완료되었습니다!", Toast.LENGTH_SHORT).show();
-                        finish();
-                        break;
-                    default:
-                        Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
-                        break;
+        String titleStr = binding.neologismPostEditTitle.getText().toString().trim();
+        String contentStr = editText.getText().toString().trim();
+        if (!titleStr.equals("") && !contentStr.equals("")) {
+            RequestBody imageBody = null;
+            File file = null;
+            if (isFileSelected) {
+                file = new File(picturePath);
+                imageBody = RequestBody.create(MediaType.parse("image/png"), file);
+            }
+            RequestBody token = RequestBody.create(MediaType.parse("text/plain"), manager.getActiveUser().second.getToken());
+            RequestBody title = RequestBody.create(MediaType.parse("text/plain"), titleStr);
+            RequestBody contents = RequestBody.create(MediaType.parse("text/plain"), contentStr);
+            postArticle = service.postArticle((isFileSelected && file != null) ? imageBody : null, token, title, contents);
+            postArticle.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    switch (response.code()) {
+                        case 200:
+                            Toast.makeText(NeologismBoardPostActivity.this, "게시가 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            break;
+                        default:
+                            Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(NeologismBoardPostActivity.this, "서버와의 연동에 문제가 발생했습니다", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else
+            Toast.makeText(NeologismBoardPostActivity.this, "필드를 전부 입력해주세요!", Toast.LENGTH_SHORT).show();
     }
 }
