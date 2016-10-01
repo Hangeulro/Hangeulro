@@ -69,7 +69,7 @@ public class ClipBoardService extends Service {
         manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         TaskStackBuilder killbuild = TaskStackBuilder.create(this);
         killbuild.addNextIntent(new Intent(getApplicationContext(), KillProcess.class));
-        PendingIntent killProcess = killbuild.getPendingIntent(1123, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent killProcess = killbuild.getPendingIntent(1123, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
