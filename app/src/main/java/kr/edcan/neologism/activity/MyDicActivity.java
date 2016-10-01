@@ -99,6 +99,10 @@ public class MyDicActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("asdf", t.getMessage());
             }
         });
+        if (!reconfig) {
+            View header = getLayoutInflater().inflate(R.layout.mydic_listview_header, null);
+            listView.addHeaderView(header);
+        }
     }
 
     private void setAppbarLayout() {
