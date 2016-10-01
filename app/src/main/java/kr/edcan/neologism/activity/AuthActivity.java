@@ -3,9 +3,8 @@ package kr.edcan.neologism.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ import java.io.IOException;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.databinding.ActivityAuthBinding;
-import kr.edcan.neologism.model.User;
+import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
@@ -40,7 +39,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
     DataManager dataManager;
     ActivityAuthBinding binding;
-    Call<ResponseBody> userLogin, autoLogin, twitterLogin, facebookLogin;
+    Call<ResponseBody> userLogin, autoLogin, twitterLogin;
+    Call<FacebookUser> facebookLogin;
     NetworkInterface service;
     CallbackManager manager;
 
@@ -49,33 +49,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         setDefault();
-        validateUserToken();
-    }
-
-    private void validateUserToken() {
-        Pair<Boolean, User> userPair = dataManager.getActiveUser();
-        if (userPair.first == false) {
-            setTwitterCallback();
-            setFacebookCallback();
-        } else {
-            // validate
-            switch (userPair.second.getUserType()) {
-                case 0:
-                    new LoadFacebookInfo().execute(dataManager.getFacebookUserCredential());
-                    break;
-                case 1:
-                    new LoadTwitterInfo().execute(dataManager.getTwitterUserCredentials());
-                    break;
-                case 2:
-                    // Kakao
-                    break;
-                case 3:
-                    // Naver
-                    break;
-                case 4:
-                    new LoadNativeUserInfo().execute(dataManager.getActiveUser().second.getToken());
-            }
-        }
+        setTwitterCallback();
+        setFacebookCallback();
     }
 
     private void setDefault() {
@@ -139,8 +114,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                 binding.authTwitterLaunch.performClick();
                 break;
             case R.id.authFacebook:
-                Toast.makeText(AuthActivity.this, "페이스북 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-//                binding.authFacebookLaunch.performClick();
+//                Toast.makeText(AuthActivity.this, "페이스북 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+                binding.authFacebookLaunch.performClick();
                 break;
             case R.id.authNaver:
                 Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
@@ -164,7 +139,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onSuccess(LoginResult loginResult) {
                 new LoadFacebookInfo().execute(loginResult.getAccessToken().getToken());
-                Log.e("asdf_tokenfb", loginResult.getAccessToken().getToken());
             }
 
             @Override
@@ -184,7 +158,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
             public void success(Result<TwitterSession> result) {
                 TwitterSession session = result.data;
                 new LoadTwitterInfo().execute(session.getAuthToken().token, session.getAuthToken().secret, String.valueOf(session.getUserId()));
-                Toast.makeText(AuthActivity.this, session.getAuthToken().token + "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -207,6 +180,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(twitterCredientials);
+                                for (String s : twitterCredientials) {
+                                    Log.e("asdfasdf", s);
+                                }
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
@@ -241,34 +217,25 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected Void doInBackground(final String... strings) {
             facebookLogin = service.facebookLogin(strings[0]);
-            facebookLogin.enqueue(new retrofit2.Callback<ResponseBody>() {
+            facebookLogin.enqueue(new retrofit2.Callback<FacebookUser>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    Log.e("asdf", response.code()+"");
+                public void onResponse(Call<FacebookUser> call, Response<FacebookUser> response) {
                     switch (response.code()) {
                         case 200:
-                            try {
-                                Log.e("asdf", response.body().string());
-                                dataManager.saveFacebookUserInfo(new JSONObject(response.body().string()));
-                            } catch (IOException e) {
-                                Log.e("asdfio", e.getMessage());
-                            } catch (JSONException e) {
-                                Log.e("asdf", e.getMessage());
-                                e.printStackTrace();
-                            }
-                            dataManager.saveUserCredential(strings[0]);
-//                            Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
+                            dataManager.saveFacebookUserInfo(response.body());
+                            Toast.makeText(AuthActivity.this, response.body().getName() + "님 환영합니다!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                             break;
-                        case 400:
+                        case 401:
+                            Toast.makeText(AuthActivity.this, "인증 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }
 
                 @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("asdf", t.getMessage());
+                public void onFailure(Call<FacebookUser> call, Throwable t) {
+                    Log.e("test", t.getMessage());
                 }
             });
             return null;

@@ -1,6 +1,8 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
+        mavenLocal() //Add local m2 repository of yours
     }
 
     dependencies {
@@ -24,8 +26,8 @@ android {
         applicationId "kr.edcan.neologism"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 3
-        versionName "2.0.1"
+        versionCode 4
+        versionName "2.0.2"
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
     }
@@ -65,4 +67,5 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:2.0.1@aar') {
         transitive = true;
     }
+    compile 'com.github.clans:fab:1.6.4'
 }

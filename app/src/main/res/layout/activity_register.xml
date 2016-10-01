@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="회원가입"/>
+                    android:text="회원가입" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -67,13 +67,24 @@
                     android:inputType="textPassword|textNoSuggestions"
                     android:singleLine="true"
                     android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/authRePasswordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:hint="비밀번호 재입력"
+                    android:inputType="textPassword|textNoSuggestions"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/authNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:hint="이름 입력"
-                    android:inputType="textPassword|textNoSuggestions"
+                    android:inputType="textNoSuggestions"
                     android:singleLine="true"
                     android:textSize="16sp" />
 

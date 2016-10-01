@@ -43,10 +43,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#C3C3C3"
+                    android:paddingBottom="2dp"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
                     android:text="뜻풀이"
                     android:textColor="@color/textColorDark" />
 
@@ -72,10 +72,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#C3C3C3"
+                    android:paddingBottom="2dp"
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
                     android:text="예문"
                     android:textColor="@color/textColorDark" />
 
@@ -101,9 +101,9 @@
                     android:id="@+id/dicRecyclerSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_dic_savemydic"
-                    android:drawablePadding="5dp"
-                    android:text="내사전 저장"
+                    android:layout_marginLeft="5dp"
+                    android:padding="10dp"
+                    android:text="내사전에 저장"
                     android:textColor="@color/textColorDark"
                     android:textSize="12sp" />
 
@@ -114,11 +114,13 @@
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/round" />
 
+
                 <TextView
                     android:id="@+id/dicRecyclerViewCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:padding="10dp"
                     android:text="조회수 354"
                     android:textColor="@color/textColorDark"
                     android:textSize="12sp" />

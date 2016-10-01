@@ -8,6 +8,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -28,7 +29,7 @@ public class SupportHelper {
     }
 
     private static final float BITMAP_SCALE = 0.4f;
-    private static final float BLUR_RADIUS = 7.5f;
+    private static final float BLUR_RADIUS = 3.5f;
 
     public static String convertTwitterImgSize(String url, int type) throws MalformedURLException {
         if (type > 3) return "";
@@ -131,4 +132,5 @@ public class SupportHelper {
                 .onPositive(callback)
                 .show();
     }
+
 }

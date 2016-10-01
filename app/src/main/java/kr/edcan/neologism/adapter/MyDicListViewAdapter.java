@@ -12,15 +12,16 @@ import java.util.ArrayList;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.model.CommonData;
+import kr.edcan.neologism.model.MyDic;
 
 /**
  * Created by KOHA_DESKTOP on 2016. 6. 19..
  */
-public class MyDicListViewAdapter extends ArrayAdapter<CommonData> {
-    ArrayList<CommonData> arrayList;
+public class MyDicListViewAdapter extends ArrayAdapter<MyDic> {
+    ArrayList<MyDic> arrayList;
     Context c;
 
-    public MyDicListViewAdapter(Context context, ArrayList<CommonData> arrayList) {
+    public MyDicListViewAdapter(Context context, ArrayList<MyDic> arrayList) {
         super(context, 0, arrayList);
         this.arrayList = arrayList;
         this.c = context;
@@ -31,14 +32,13 @@ public class MyDicListViewAdapter extends ArrayAdapter<CommonData> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(c).inflate(R.layout.dictionary_listview_content, null);
 
-        CommonData data = getItem(position);
+        MyDic data = getItem(position);
         ImageView icon = (ImageView) view.findViewById(R.id.common_listview_image);
         TextView title = (TextView) view.findViewById(R.id.common_listview_title);
         TextView subtitle = (TextView) view.findViewById(R.id.common_listview_subtitle);
-        ImageView arrow = (ImageView) view.findViewById(R.id.common_listview_arrow);
-        icon.setImageResource(data.getLogo());
-        title.setText(data.getTitle());
-        subtitle.setText(data.getSubtitle());
+        icon.setImageResource(R.drawable.ic_mydic_gold);
+        title.setText(data.getDicname());
+        subtitle.setText(data.getSub());
         return view;
     }
 }

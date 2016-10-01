@@ -1,0 +1,19 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/boardFooterWriteLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/boardFooterWriteText"
+            android:layout_margin="16dp"
+            android:text="댓글 작성하기"
+            android:textSize="14dp"
+            android:textColor="@color/textColorBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

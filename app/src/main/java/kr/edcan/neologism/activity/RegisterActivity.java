@@ -22,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     Call<ResponseBody> call;
     NetworkInterface service;
     ActivityRegisterBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,25 +35,28 @@ public class RegisterActivity extends AppCompatActivity {
         binding.authIDLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                call = service.userRegister(binding.authIdInput.getText().toString().trim(), binding.authPasswordInput.getText().toString().trim(), binding.authNameInput.getText().toString().trim());
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        switch (response.code()){
-                            case 200:
-                                Toast.makeText(RegisterActivity.this, "회원가입이 완료되었습니다!", Toast.LENGTH_SHORT).show();
-                                finish();
-                            case 409:
-                                Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디입니다!", Toast.LENGTH_SHORT).show();
-                                break;
+                if (binding.authPasswordInput.getText().toString().trim().equals(binding.authRePasswordInput.getText().toString().trim())) {
+                    call = service.userRegister(binding.authIdInput.getText().toString().trim(), binding.authPasswordInput.getText().toString().trim(), binding.authNameInput.getText().toString().trim());
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            switch (response.code()) {
+                                case 200:
+                                    Toast.makeText(RegisterActivity.this, "회원가입이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                    break;
+                                case 409:
+                                    Toast.makeText(RegisterActivity.this, "이미 존재하는 아이디입니다!", Toast.LENGTH_SHORT).show();
+                                    break;
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("asdf", t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("asdf", t.getMessage());
+                        }
+                    });
+                } else Toast.makeText(RegisterActivity.this, "비밀번호가 일치하지 않습니다!", Toast.LENGTH_SHORT).show();
             }
         });
     }

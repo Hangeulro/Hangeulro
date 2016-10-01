@@ -20,6 +20,7 @@ import kr.edcan.neologism.adapter.QuizListViewAdapter;
 import kr.edcan.neologism.databinding.ActivityQuizBinding;
 import kr.edcan.neologism.model.CommonData;
 import kr.edcan.neologism.model.QuizData;
+import kr.edcan.neologism.model.User;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
@@ -32,11 +33,12 @@ public class QuizActivity extends AppCompatActivity {
 
 
     DataManager manager;
-    Call<ResponseBody> getUserInfo;
+    Call<User> getUserInfo;
     NetworkInterface service;
     ActivityQuizBinding binding;
     ArrayList<QuizData> arrayList;
-    JSONObject result = null;
+    User result = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,18 +50,12 @@ public class QuizActivity extends AppCompatActivity {
         manager = new DataManager(getApplicationContext());
         service = NetworkHelper.getNetworkInstance();
         getUserInfo = service.getUserInfo(manager.getActiveUser().second.getToken());
-        getUserInfo.enqueue(new Callback<ResponseBody>() {
+        getUserInfo.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                switch (response.code()){
+            public void onResponse(Call<User> call, Response<User> response) {
+                switch (response.code()) {
                     case 200:
-                        try {
-                            result = new JSONObject(response.body().string());
-                        } catch (JSONException e) {
-                            Log.e("asdf", e.getMessage());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        result = response.body();
                         setDefault();
                         break;
                     case 401:
@@ -70,21 +66,18 @@ public class QuizActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Log.e("asdf", t.getMessage());
             }
         });
     }
+
     private void setDefault() {
         arrayList = new ArrayList<>();
-        try {
-            arrayList.add(new QuizData("현재 레벨", "Now Level", result.getString("level"), R.drawable.ic_quizmain_l));
-            arrayList.add(new QuizData("포인트", "Point", result.getString("point"),R.drawable.ic_quizmain_p));
-            arrayList.add(new QuizData("누적 포인트", "Total Point", result.getString("point"),R.drawable.ic_quizmain_t));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        arrayList.add(new QuizData("게임 초기화", "Game Reset", "",R.drawable.ic_quizmain_r));
+        arrayList.add(new QuizData("현재 레벨", "Now Level", result.getLevel(), R.drawable.ic_quizmain_l));
+        arrayList.add(new QuizData("포인트", "Point", result.getPoint(), R.drawable.ic_quizmain_p));
+        arrayList.add(new QuizData("누적 포인트", "Total Point", result.getPoint(), R.drawable.ic_quizmain_t));
+        arrayList.add(new QuizData("게임 초기화", "Game Reset", "", R.drawable.ic_quizmain_r));
         binding.quizListview.setAdapter(new QuizListViewAdapter(getApplicationContext(), arrayList));
         binding.quizStart.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".AppController"
         android:allowBackup="false"
@@ -16,7 +17,37 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionbar">
+        <activity android:name=".activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AuthActivity" />
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.DicMenuActivity" />
+        <activity
+            android:name=".activity.DicViewActivity"
+            android:theme="@style/AppTheme.NoActionbar" />
+        <activity android:name=".activity.MyDicActivity" />
+        <activity
+            android:name=".activity.DicDetailViewActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".activity.MyPageActivity" />
+        <activity android:name=".activity.QuizActivity" />
+        <activity android:name=".activity.QuizViewActivity" />
+        <activity android:name=".activity.QuizResultActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.SelectBestActivity" />
+        <activity android:name=".activity.TodayNeologismActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6c81b4e91b018f9f82dce750f7f07b9723039bb2" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <receiver
             android:name=".utils.BootReceiver"
@@ -30,34 +61,10 @@
 
         <service android:name=".utils.ClipBoardService" />
 
-        <activity android:name=".activity.DicMenuActivity" />
-        <activity
-            android:name=".activity.DicViewActivity"
-            android:theme="@style/AppTheme.NoActionbar" />
-        <activity android:name=".activity.MyDicActivity" />
-        <activity
-            android:name=".activity.DicDetailViewActivity"
-            android:theme="@style/AppTheme.NoActionbar" />
-        <activity android:name=".activity.AuthActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="6c81b4e91b018f9f82dce750f7f07b9723039bb2" />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity android:name=".activity.MyPageActivity" />
-        <activity android:name=".activity.QuizActivity" />
-        <activity android:name=".activity.QuizViewActivity" />
-        <activity android:name=".activity.QuizResultActivity" />
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.MyDicViewActivity" />
+        <activity android:name=".activity.NeologismBoardActivity" />
+        <activity android:name=".activity.NeologismBoardViewActivity" />
+        <activity android:name=".activity.NeologismBoardPostActivity"></activity>
     </application>
 
 </manifest>

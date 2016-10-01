@@ -1,0 +1,70 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="kr.edcan.neologism.activity.NeologismBoardPostActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+            <EditText
+                android:padding="16dp"
+                android:textSize="20dp"
+                android:id="@+id/neologismPostEditTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:maxLines="20"
+                android:hint="제목을 입력해주세요"
+                android:inputType="textNoSuggestions"
+                android:imeOptions="normal"/>
+            <EditText
+                android:padding="16dp"
+                android:textSize="20dp"
+                android:id="@+id/neologismPostEdittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:maxLines="20"
+                android:hint="어떤 신조어를 생각하고 계신가요?"
+                android:inputType="textNoSuggestions"
+                android:imeOptions="normal"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/neologismPostExecute"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_alignParentBottom="true"
+            android:background="#D5D5D5">
+
+            <ImageView
+                android:id="@+id/neologismPostPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#77000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:text="사진 추가 혹은 변경하기"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

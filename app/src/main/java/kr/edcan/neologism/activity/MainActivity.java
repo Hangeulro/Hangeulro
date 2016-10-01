@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.adapter.CommonListViewAdapter;
+import kr.edcan.neologism.adapter.NeologismRecyclerAdapter;
 import kr.edcan.neologism.databinding.ActivityMainBinding;
 import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             setPackage();
         setDefault();
         startService(new Intent(MainActivity.this, ClipBoardService.class));
-        DBSync.syncDB();
+        DBSync.syncDB(getApplicationContext());
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -109,16 +110,18 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                         break;
-//                    case 1:
-//                        break;
-//                    case 2:
-//                        break;
-//                    case 3:
-//                        startActivity(new Intent(getApplicationContext(), QuizActivity.class));
-//                        break;
-
-                    default:
-                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getApplicationContext(), NeologismBoardActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                        break;
+//
+//                    default:
+//                        Toast.makeText(MainActivity.this, "업데이트 후 적용될 예정입니다!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 mainPager.setCurrentItem((mainPager.getCurrentItem() < 2) ? mainPager.getCurrentItem() + 1 : 0, true);
                 setViewPagerAutoScroll();
             }
-        }, 1500);
+        }, 3000);
     }
 
     /**
@@ -156,10 +159,28 @@ public class MainActivity extends AppCompatActivity {
             View v = null;
             if (position == 0) {
                 v = mInflater.inflate(R.layout.main_pager0, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
+                    }
+                });
             } else if (position == 1) {
                 v = mInflater.inflate(R.layout.main_pager1, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), TodayNeologismActivity.class));
+                    }
+                });
             } else {
                 v = mInflater.inflate(R.layout.main_pager2, null);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), SelectBestActivity.class));
+                    }
+                });
             }
 
             ((ViewPager) pager).addView(v, 0);

@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,15 +93,20 @@ public class ClipBoardService extends Service {
             public void onPrimaryClipChanged() {
                 if (System.currentTimeMillis() - sharedPreferences.getLong("lastFastSearchTime", System.currentTimeMillis() - 201) > 200) {
                     if (manager.getPrimaryClipDescription().toString().contains("text/plain")) {
-                        String capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
-                        if (!capturedString.equals("!")) {
-                            RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
-                            if (realmResults.size() >= 1) {
-                                vibrate();
-                                showDialog(realmResults.get(0));
-                            }
+                        String capturedString;
+                        try {
+                            capturedString = manager.getPrimaryClip().getItemAt(0).getText().toString();
+                        } catch (NullPointerException e){
+                            e.printStackTrace();
+                            Log.e("asdf", e.getMessage());
+                            return;
                         }
-                        manager.setText("!");
+                        RealmResults<DicDBData> realmResults = realm.where(DicDBData.class).contains("word", capturedString).findAll();
+                        if (realmResults.size() >= 1) {
+                            vibrate();
+                            showDialog(realmResults.get(0));
+                        }
+
                     }
                     editor.putLong("lastFastSearchTime", System.currentTimeMillis());
                     editor.commit();
@@ -133,7 +139,7 @@ public class ClipBoardService extends Service {
         ActivityClipboardPopupViewBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_clipboard_popup_view, null, false);
         binding.quickSearchWord.setText(word);
         binding.quickSearchContent.setText(mean);
-        binding.quickSearchSubContent.setText((example == null) ? "예문이 존재하지 않습니다" : example);
+//        binding.quickSearchSubContent.setText((example == null) ? "예문이 존재하지 않습니다" : example);
         return binding.getRoot();
     }
 

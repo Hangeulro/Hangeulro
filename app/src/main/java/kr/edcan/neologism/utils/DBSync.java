@@ -1,5 +1,7 @@
 package kr.edcan.neologism.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -22,6 +24,8 @@ public class DBSync {
     static Realm realm;
     static NetworkInterface service;
     static Call<ResponseBody> getWordList;
+    static Call<String> getCurrentVersion;
+    static int currentVersion;
 
     static void convertDBfromJson(JSONArray array) {
         realm.beginTransaction();
@@ -31,7 +35,6 @@ public class DBSync {
                 JSONObject content = array.getJSONObject(i);
                 DicDBData data = realm.createObject(DicDBData.class);
                 data.setContents(content.getString("id"), content.getString("word"), content.getString("mean"), content.getString("ex"));
-                Log.e("asdf", content.getString("ex"));
             } catch (JSONException e) {
                 Log.e("asdf", e.getMessage());
                 e.printStackTrace();
@@ -43,30 +46,48 @@ public class DBSync {
     public DBSync() {
     }
 
-    public static void syncDB() {
+    public static void syncDB(Context c) {
+        final DataManager manager = new DataManager(c);
         realm = Realm.getDefaultInstance();
         service = NetworkHelper.getNetworkInstance();
-        getWordList = service.getWordList();
-        getWordList.enqueue(new Callback<ResponseBody>() {
+        currentVersion = manager.getCurrentDatabaseVersion();
+        getCurrentVersion = service.getDataBaseVersion();
+        getCurrentVersion.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                switch (response.code()) {
-                    case 200:
-                        try {
-                            convertDBfromJson(new JSONArray(response.body().string()));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+            public void onResponse(Call<String> call, Response<String> response) {
+                int remoteDatabaseVersion = Integer.parseInt(response.body());
+                Log.e("asdf", "Current Version : " + currentVersion + " DataBase Version : " + remoteDatabaseVersion);
+                if (remoteDatabaseVersion != currentVersion) {
+                    manager.saveCurrentDatabaseVersion(remoteDatabaseVersion);
+                    getWordList = service.getWordList();
+                    getWordList.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            switch (response.code()) {
+                                case 200:
+                                    try {
+                                        convertDBfromJson(new JSONArray(response.body().string()));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case 401:
+                                    break;
+                            }
                         }
-                        break;
-                    case 401:
-                        break;
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("asdf", t.getMessage());
+                        }
+                    });
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e("asdf", t.getMessage());
             }
         });
