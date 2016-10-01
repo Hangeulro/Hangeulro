@@ -59,6 +59,7 @@ public class MyDicRecyclerAdapter extends RecyclerView.Adapter<MyDicRecyclerAdap
                         .putExtra("example", holder.example.getText()));
             }
         });
+        holder.save.setVisibility(View.GONE);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MyDicRecyclerAdapter extends RecyclerView.Adapter<MyDicRecyclerAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         Context c;
-        TextView title, meaning, example, viewCount;
+        TextView title, meaning, example, viewCount, save;
         LinearLayout dicBG;
         RelativeLayout dicRecyclerHeader;
 
@@ -81,6 +82,7 @@ public class MyDicRecyclerAdapter extends RecyclerView.Adapter<MyDicRecyclerAdap
             viewCount = binding.dicRecyclerViewCount;
             dicRecyclerHeader = binding.dicRecyclerHeader;
             dicBG = binding.dicRecyclerBG;
+            save = binding.dicRecyclerSave;
         }
     }
 }
