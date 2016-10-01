@@ -65,6 +65,7 @@
         <activity android:name=".activity.NeologismBoardActivity" />
         <activity android:name=".activity.NeologismBoardViewActivity" />
         <activity android:name=".activity.NeologismBoardPostActivity"></activity>
+        <activity android:name=".utils.KillProcess"></activity>
     </application>
 
 </manifest>
