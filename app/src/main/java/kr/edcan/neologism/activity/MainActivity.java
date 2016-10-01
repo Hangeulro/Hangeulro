@@ -32,9 +32,10 @@ import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
 import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DBSync;
+import kr.edcan.neologism.utils.DataManager;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
     public static Activity activity = null;
     public static void finishThis(){
         if(activity != null) activity.finish();
@@ -43,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<CommonData> arrayList;
     ListView listview;
     ViewPager mainPager;
-    public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
-
+    DataManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        manager = new DataManager(this);
+        if (!manager.getActiveUser().first) {
+            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+            finish();
+        }
         activity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
