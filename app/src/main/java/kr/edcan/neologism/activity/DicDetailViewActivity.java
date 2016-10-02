@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -74,4 +75,5 @@ public class DicDetailViewActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

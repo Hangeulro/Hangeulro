@@ -226,6 +226,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     switch (response.code()) {
                         case 200:
                             dataManager.saveFacebookUserInfo(response.body());
+                            dataManager.saveUserCredential(strings[0]);
                             Toast.makeText(AuthActivity.this, response.body().getName() + "님 환영합니다!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();

@@ -1,5 +1,6 @@
 package kr.edcan.neologism.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
@@ -18,7 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 
 import kr.edcan.neologism.R;
@@ -50,7 +55,26 @@ public class NeologismBoardPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_neologism_board_post);
         setDefault();
+        setPermission();
         setAppbarLayout();
+    }
+
+    private void setPermission() {
+        new TedPermission(this)
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .setRationaleMessage("신조어 게시판에 게시글을 작성하기 위해서는 먼저 저장소 권한을 허용해주셔야 합니다. 다음 화면에서 허용해주세요.")
+                .setPermissionListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+                    }
+
+                    @Override
+                    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                        Toast.makeText(NeologismBoardPostActivity.this, "권한을 허용하지 않아 게시글을 올릴 수 없습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .check();
     }
 
     private void setAppbarLayout() {
