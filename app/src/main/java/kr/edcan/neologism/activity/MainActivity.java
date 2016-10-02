@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
     public static void finishThis() {
         if (activity != null) activity.finish();
     }
-
-    ;
     ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {
             if (!Settings.canDrawOverlays(this)) {
-                Toast.makeText(MainActivity.this, "한글을 한글로!를 실행하기 위해 권한을 허용해주세요!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "QuickSearch을 이용하기 위해서는 먼저 권한을 허용해주셔야 합니다.", Toast.LENGTH_SHORT).show();
                 setPackage();
             }
         }
