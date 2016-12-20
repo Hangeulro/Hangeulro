@@ -21,6 +21,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
 
+import javax.security.auth.login.LoginException;
+
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.adapter.MyDicListViewAdapter;
 import kr.edcan.neologism.databinding.ActivityMyDicBinding;
@@ -56,7 +58,7 @@ public class MyDicActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(getApplicationContext(), MyDicViewActivity.class)
-                        .putExtra("dicName", arrayList.get(i).getDicname()));
+                        .putExtra("dicName", arrayList.get(i-1).getDicname()));
             }
         });
         arrayList = new ArrayList<>();
