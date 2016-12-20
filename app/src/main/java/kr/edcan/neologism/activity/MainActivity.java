@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static void finishThis() {
         if (activity != null) activity.finish();
     }
+
     ActivityMainBinding binding;
     ArrayList<CommonData> arrayList;
     ListView listview;
@@ -135,6 +136,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else
                     Toast.makeText(MainActivity.this, "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.touchEventView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                return;
+            }
+        });
+        binding.nextVersion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
             }
         });
     }

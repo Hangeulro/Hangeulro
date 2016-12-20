@@ -44,7 +44,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     Call<FacebookUser> facebookLogin;
     NetworkInterface service;
     CallbackManager manager;
-
+    int selectedID = -1;
+    static final int POLICY_CALL_ID = 9074;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,37 +104,44 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         binding.authKakao.setOnClickListener(this);
         binding.authNaver.setOnClickListener(this);
         binding.authRegisterLaunch.setOnClickListener(this);
+        LoginManager.getInstance().logOut();
     }
 
     @Override
     public void onClick(View v) {
         if (NetworkHelper.returnNetworkState(getApplicationContext())) {
-
-            switch (v.getId()) {
-                case R.id.authRegisterLaunch:
-                    startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-                    break;
-                case R.id.authTwitter:
-                    binding.authTwitterLaunch.performClick();
-                    break;
-                case R.id.authFacebook:
-                    binding.authFacebookLaunch.performClick();
-                    break;
-                case R.id.authNaver:
-                    Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.authKakao:
-                    Toast.makeText(AuthActivity.this, "카카오 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
-                    break;
-            }
+            startActivityForResult(new Intent(getApplicationContext(), PolicyActivity.class), POLICY_CALL_ID);
+            selectedID = v.getId();
         } else Toast.makeText(AuthActivity.this, "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
     }
-
+    public void startRegisterAfterPolicy(){
+        switch (selectedID) {
+            case R.id.authRegisterLaunch:
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                break;
+            case R.id.authTwitter:
+                binding.authTwitterLaunch.performClick();
+                break;
+            case R.id.authFacebook:
+                binding.authFacebookLaunch.performClick();
+                break;
+            case R.id.authNaver:
+                Toast.makeText(AuthActivity.this, "네이버 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.authKakao:
+                Toast.makeText(AuthActivity.this, "카카오 로그인은 다음 버전에서 지원할 예정입니다!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         manager.onActivityResult(requestCode, resultCode, data);
         binding.authTwitterLaunch.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == POLICY_CALL_ID && resultCode == RESULT_OK){
+            startRegisterAfterPolicy();
+        }
+        selectedID = -1;
     }
 
 

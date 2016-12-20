@@ -20,6 +20,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+            <LinearLayout
+                android:id="@+id/touchEventView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,13 +44,14 @@
 
 
         <LinearLayout
-            android:background="#262626"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_weight="7"
+            android:background="#262626"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/nextVersion"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
