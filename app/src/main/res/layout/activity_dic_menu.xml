@@ -17,6 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/AppTheme.ActionBar"
+                app:contentInsetStartWithNavigation="0dp"
                 app:title="신조어 사전" />
         </android.support.design.widget.AppBarLayout>
 
