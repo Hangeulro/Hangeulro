@@ -9,9 +9,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import kr.edcan.neologism.model.DicDBData;
+import kr.edcan.neologism.model.DicData;
+import kr.edcan.neologism.model.Word;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +46,29 @@ public class DBSync {
             }
         }
         realm.commitTransaction();
+    }
+
+    public static ArrayList<DicData> getDBJson() {
+        ArrayList<DicData> returnArray = new ArrayList<>();
+        realm.beginTransaction();
+        RealmResults<DicDBData> results = realm.where(DicDBData.class).findAll();
+        for (DicDBData data : results) {
+            returnArray.add(new DicData(data));
+        }
+        realm.commitTransaction();
+        return returnArray;
+    }
+
+    public static ArrayList<String> getDBStringJson() {
+        ArrayList<String> returnArray = new ArrayList<>();
+        realm.beginTransaction();
+        RealmResults<DicDBData> results = realm.where(DicDBData.class).findAll();
+        for (DicDBData data : results) {
+            returnArray.add(data.getWord());
+            Log.e("asdf", data.getWord()+ " word searched");
+        }
+        realm.commitTransaction();
+        return returnArray;
     }
 
     public DBSync() {

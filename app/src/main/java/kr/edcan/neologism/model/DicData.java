@@ -13,6 +13,12 @@ public class DicData {
         this.example = example;
         this.searchCount = searchCount;
     }
+    public DicData(DicDBData data) {
+        this.title = data.getWord();
+        this.meaning = data.getMean();
+        this.example = data.getExample();
+        this.searchCount = 0;
+    }
 
     public String getTitle() {
         return title;
