@@ -2,15 +2,11 @@ package kr.edcan.neologism.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +16,6 @@ import java.io.IOException;
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.User;
-import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
@@ -37,22 +32,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new MaterialDialog.Builder(this)
-                .title("서비스 점검중입니다.")
-                .content("점검 기간 : 2017.01.02 ~ 2017.01.14\n점검 기간은 변경될 수 있습니다.\n더욱 더 좋은 서비스로 찾아뵙겠습니다.")
-                .cancelable(false)
-                .positiveText("확인")
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        finish();
-                    }
-                })
-                .show();
-        stopService(new Intent(getApplicationContext(), ClipBoardService.class));
-
-//        setDefault();
-//        validateUserToken();
+        setDefault();
+        validateUserToken();
     }
 
     private void setDefault() {

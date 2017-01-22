@@ -14,35 +14,23 @@
     <application
         android:name=".AppController"
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionbar">
+        android:theme="@style/AppTheme.NoActionbar"
+        tools:replace="android:allowBackup">
         <activity android:name=".activity.SplashActivity">
+
+        </activity>
+        <activity android:name=".activity.AuthActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AuthActivity" />
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.DicMenuActivity" />
-        <activity
-            android:name=".activity.DicViewActivity"
-            android:theme="@style/AppTheme.NoActionbar" />
-        <activity android:name=".activity.MyDicActivity" />
-        <activity
-            android:name=".activity.DicDetailViewActivity"
-            android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".activity.MyPageActivity" />
-        <activity android:name=".activity.QuizActivity" />
-        <activity android:name=".activity.QuizViewActivity" />
-        <activity android:name=".activity.QuizResultActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.SelectBestActivity" />
-        <activity android:name=".activity.TodayNeologismActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -61,12 +49,9 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".utils.ClipBoardService" />
+        <service android:name=".service.ClipBoardService" />
+        <service android:name=".service.FastSearchService" />
 
-        <activity android:name=".activity.MyDicViewActivity" />
-        <activity android:name=".activity.NeologismBoardActivity" />
-        <activity android:name=".activity.NeologismBoardViewActivity" />
-        <activity android:name=".activity.NeologismBoardPostActivity" />
         <activity android:name=".utils.KillProcess" />
         <activity android:name=".activity.PolicyActivity"></activity>
     </application>

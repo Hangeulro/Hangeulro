@@ -1,4 +1,4 @@
-package kr.edcan.neologism.utils;
+package kr.edcan.neologism.service;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -28,6 +28,7 @@ import kr.edcan.neologism.R;
 import kr.edcan.neologism.activity.MainActivity;
 import kr.edcan.neologism.databinding.ActivityClipboardPopupViewBinding;
 import kr.edcan.neologism.model.DicDBData;
+import kr.edcan.neologism.utils.KillProcess;
 
 
 /**
