@@ -39,6 +39,7 @@ import kr.edcan.neologism.utils.NetworkInterface;
 import kr.edcan.neologism.utils.SupportHelper;
 import kr.edcan.neologism.views.RoundImageView;
 import kr.edcan.neologism.views.SeekArc;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,10 +59,10 @@ public class MyPageActivity extends AppCompatActivity {
     User user;
     NetworkInterface service;
     Call<User> getUserInfo;
-    Call<String> destryoUser;
+    Call<ResponseBody> destroyUser;
     View headerView;
     DataManager manager;
-    int level, point, max=3000;
+    int level, point, max = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class MyPageActivity extends AppCompatActivity {
         getUserInfo.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                switch (response.code()){
+                switch (response.code()) {
                     case 200:
                         level = Integer.parseInt(response.body().getLevel());
                         point = Integer.parseInt(response.body().getPoint());
@@ -123,7 +124,7 @@ public class MyPageActivity extends AppCompatActivity {
         expProgress = (SeekArc) headerView.findViewById(R.id.mypage_show_exp);
         profileLevel = (TextView) headerView.findViewById(R.id.mypage_profile_level);
         subText = (TextView) headerView.findViewById(R.id.mypage_profile_subText);
-        profileLevel.setText(level+"");
+        profileLevel.setText(level + "");
         expProgress.setMax(3000);
         expProgress.setProgress(point);
         try {
@@ -143,26 +144,26 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
         profileName.setText(user.getName());
-        subText.setText("Lv."+level+" , 다음 레벨까지 "+(3000-point)+" EXP");
+        subText.setText("Lv." + level + " , 다음 레벨까지 " + (3000 - point) + " EXP");
     }
 
     private void setListView() {
         arrayList = new ArrayList<>();
-        arrayList.add(new CommonData("내가 쓴 글 관리",
-                "신조어 게시판에 내가 쓴 글을 수정하거나 삭제할 수 있습니다.",
-                R.drawable.ic_mypage_boardmanage));
-        arrayList.add(new CommonData("내 프로필 수정하기",
-                "나의 프로필을 수정할 수 있습니다.",
-                R.drawable.ic_mypage_profile));
+//        arrayList.add(new CommonData("내가 쓴 글 관리",
+//                "신조어 게시판에 내가 쓴 글을 수정하거나 삭제할 수 있습니다.",
+//                R.drawable.ic_mypage_boardmanage));
+//        arrayList.add(new CommonData("내 프로필 수정하기",
+//                "나의 프로필을 수정할 수 있습니다.",
+//                R.drawable.ic_mypage_profile));
         arrayList.add(new CommonData("회원 탈퇴",
                 "한글을 한글로에 있는 모든 데이터를 삭제하고 회원탈퇴합니다.",
                 R.drawable.ic_mypage_leave));
         arrayList.add(new CommonData("로그아웃",
                 "이 기기에서 한글을 한글로를 로그아웃합니다..",
                 R.drawable.ic_mypage_logout));
-        arrayList.add(new CommonData("설정",
-                "앱의 세부 설정 및 정보를 확인합니다.",
-                R.drawable.ic_mypage_setting));
+//        arrayList.add(new CommonData("설정",
+//                "앱의 세부 설정 및 정보를 확인합니다.",
+//                R.drawable.ic_mypage_setting));
         adapter = new MyPageListViewAdapter(this, arrayList);
         listView.setAdapter(adapter);
         listView.addHeaderView(headerView);
@@ -173,45 +174,46 @@ public class MyPageActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             switch (i) {
-                case 1:
-                    // 내가 쓴 글 관리
-                    break;
-                case 2:
-                    // 내 프로필 수정하기
-                    break;
+//                case 1:
+//                    // 내가 쓴 글 관리
+//                    break;
+//                case 2:
+//                    // 내 프로필 수정하기
+//                    break;
 
-                case 3:
+                case 1:
 //                     회원 탈퇴
                     helper.showAlertDialog("회원탈퇴", "한글을 한글로!에서 완전히 탈퇴합니다", new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-//                            destryoUser = service.destroyUser(manager.getActiveUser().second.getId(), manager.getActiveUser().second.getUserType());
-//                            destryoUser.enqueue(new Callback<String>() {
-//                                @Override
-//                                public void onResponse(Call<String> call, Response<String> response) {
-//                                    switch (response.code()) {
-//                                        case 200:
-//                                            Toast.makeText(MyPageActivity.this, "정상적으로 탈퇴되셨습니다.", Toast.LENGTH_SHORT).show();
-//                                            break;
-//                                    }
-//                                    Log.e("asdf", response.code() + "");
-//                                }
-//
-//                                @Override
-//                                public void onFailure(Call<String> call, Throwable t) {
-//                                    Log.e("asdf", t.getMessage());
-//
-//                                }
-//                            });
-                            LoginManager.getInstance().logOut();
-                            manager.removeAllData();
-                            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
-                            finish();
-                            MainActivity.finishThis();
+                            destroyUser = service.destroyUser(manager.getActiveUser().second.getToken());
+                            destroyUser.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    switch (response.code()) {
+                                        case 200:
+                                            Toast.makeText(MyPageActivity.this, "서비스에서 탈퇴되었습니다.\n이용해주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
+                                            LoginManager.getInstance().logOut();
+                                            manager.removeAllData();
+                                            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                                            finish();
+                                            MainActivity.finishThis();
+                                            break;
+                                        default:
+                                            Toast.makeText(MyPageActivity.this, "서버와의 연결이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                    Log.e("asdf", t.getMessage());
+                                    Toast.makeText(MyPageActivity.this, "서버와의 연결이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
                     });
                     break;
-                case 4:
+                case 2:
                     // 로그아웃
                     helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?.", new MaterialDialog.SingleButtonCallback() {
                         @Override
@@ -228,9 +230,9 @@ public class MyPageActivity extends AppCompatActivity {
                         }
                     });
                     break;
-                case 5:
-                    // 설정
-                    break;
+//                case 5:
+//                    // 설정
+//                    break;
             }
         }
     };

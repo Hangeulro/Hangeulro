@@ -37,22 +37,22 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new MaterialDialog.Builder(this)
-                .title("서비스 점검중입니다.")
-                .content("점검 기간 : 2017.01.02 ~ 2017.01.14\n점검 기간은 변경될 수 있습니다.\n더욱 더 좋은 서비스로 찾아뵙겠습니다.")
-                .cancelable(false)
-                .positiveText("확인")
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        finish();
-                    }
-                })
-                .show();
-        stopService(new Intent(getApplicationContext(), ClipBoardService.class));
+//        new MaterialDialog.Builder(this)
+//                .title("서비스 점검중입니다.")
+//                .content("점검 기간 : 2017.01.02 ~ 2017.01.14\n점검 기간은 변경될 수 있습니다.\n더욱 더 좋은 서비스로 찾아뵙겠습니다.")
+//                .cancelable(false)
+//                .positiveText("확인")
+//                .onPositive(new MaterialDialog.SingleButtonCallback() {
+//                    @Override
+//                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                        finish();
+//                    }
+//                })
+//                .show();
+//        stopService(new Intent(getApplicationContext(), ClipBoardService.class));
 
-//        setDefault();
-//        validateUserToken();
+        setDefault();
+        validateUserToken();
     }
 
     private void setDefault() {

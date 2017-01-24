@@ -50,6 +50,10 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("name") String username);
 
+    @POST("/auth/destroy")
+    @FormUrlEncoded
+    Call<ResponseBody> destroyUser(@Field("token") String token);
+
     @GET("/auth/fb/token")
     Call<FacebookUser> facebookLogin(@Query("access_token") String accessToken);
 
