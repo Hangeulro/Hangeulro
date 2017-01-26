@@ -191,12 +191,10 @@ public class MyPageActivity extends AppCompatActivity {
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                     switch (response.code()) {
                                         case 200:
-                                            Toast.makeText(MyPageActivity.this, "서비스에서 탈퇴되었습니다.\n이용해주셔서 감사합니다.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MyPageActivity.this, "서비스에서 탈퇴되었습니다.\n일부 기능은 그대로 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show();
                                             LoginManager.getInstance().logOut();
                                             manager.removeAllData();
-                                            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
                                             finish();
-                                            MainActivity.finishThis();
                                             break;
                                         default:
                                             Toast.makeText(MyPageActivity.this, "서버와의 연결이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -205,7 +203,6 @@ public class MyPageActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Log.e("asdf", t.getMessage());
                                     Toast.makeText(MyPageActivity.this, "서버와의 연결이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -214,17 +211,14 @@ public class MyPageActivity extends AppCompatActivity {
                     break;
                 case 2:
                     // 로그아웃
-                    helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?.", new MaterialDialog.SingleButtonCallback() {
+                    helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?", new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            stopService(new Intent(getApplicationContext(), ClipBoardService.class));
                             LoginManager.getInstance().logOut();
                             Twitter.getSessionManager().clearActiveSession();
                             Twitter.logOut();
                             manager.removeAllData();
                             finish();
-                            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
-                            MainActivity.finishThis();
 
                         }
                     });

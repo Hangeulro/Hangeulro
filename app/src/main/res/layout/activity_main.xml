@@ -18,20 +18,23 @@
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp">
 
-                <Button
+                <ImageView
                     android:id="@+id/mainMyPageLaunch"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="10dp"
-                    android:text="MYP"
-                    android:visibility="gone" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_menu_white_24dp"
+                    android:text="MYP" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:src="@drawable/logo_main_hangeulro" />
             </android.support.v7.widget.Toolbar>
 
@@ -241,14 +244,14 @@
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/textView"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:ellipsize="end"
                                     android:text="게임 오버워치의 영웅 캐릭터 중 하나인 겐지, 트레이서, 위도우메이커, 한조를 칭하는 말이다."
                                     android:textColor="@color/textColorBright"
-                                    android:textSize="12sp"
-                                    android:id="@+id/textView" />
+                                    android:textSize="12sp" />
 
                             </LinearLayout>
 

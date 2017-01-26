@@ -32,6 +32,7 @@ import kr.edcan.neologism.adapter.NeologismRecyclerAdapter;
 import kr.edcan.neologism.databinding.ActivityMainBinding;
 import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
+import kr.edcan.neologism.model.MyDic;
 import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DBSync;
 import kr.edcan.neologism.utils.DataManager;
@@ -52,10 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         manager = new DataManager(this);
-//        if (!manager.getActiveUser().first) {
-//            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
-//            finish();
-//        }
+
         activity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -100,19 +98,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.myDictionary:
                 if (NetworkHelper.returnNetworkState(getApplicationContext()))
-                    startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
+                    if (!manager.getActiveUser().first) {
+                        Toast.makeText(getApplicationContext(), "먼저 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
+                    }
                 else
                     Toast.makeText(getApplicationContext(), "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.neologismTest:
                 if (NetworkHelper.returnNetworkState(getApplicationContext()))
-                    startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                    if (!manager.getActiveUser().first) {
+                        Toast.makeText(getApplicationContext(), "먼저 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), QuizActivity.class));
+                    }
                 else
                     Toast.makeText(getApplicationContext(), "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mainMyPageLaunch:
                 if (NetworkHelper.returnNetworkState(getApplicationContext()))
-                    startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+                    if (!manager.getActiveUser().first) {
+                        Toast.makeText(getApplicationContext(), "먼저 로그인해주세요.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+                    } else startActivity(new Intent(getApplicationContext(), MyPageActivity.class));
+
                 else
                     Toast.makeText(getApplicationContext(), "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
                 break;
