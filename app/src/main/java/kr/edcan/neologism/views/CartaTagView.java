@@ -71,6 +71,8 @@ public class CartaTagView extends TextView {
         innerPaint = new Paint();
         innerPaint.setColor(color);
         innerPaint.setStyle(Paint.Style.FILL);
+        bgPaint.setAntiAlias(true);
+        innerPaint.setAntiAlias(true);
         Point center = new Point(width / 2, height / 2);
         int strokeWidth = getResources().getDimensionPixelSize(R.dimen.stroke_width);
         int innerH = height - strokeWidth;
@@ -81,7 +83,7 @@ public class CartaTagView extends TextView {
         int right = center.x + (innerW / 2);
         int bottom = center.y + (innerH / 2);
 
-        RectF bgRect = new RectF(0.0f, 0.0f, width - strokeWidth, height - strokeWidth);
+        RectF bgRect = new RectF(0.0f, 0.0f + strokeWidth, width - strokeWidth, height - strokeWidth);
         RectF innerRect = new RectF(left, top, right, bottom);
         if (fullMode)
             canvas.drawRoundRect(innerRect, innerH / 2, innerH / 2, innerPaint);

@@ -99,8 +99,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(AuthActivity.this, "빈칸 없이 입력해주세요!", Toast.LENGTH_SHORT).show();
             }
         });
-//        binding.authTwitter.setOnClickListener(this);
-//        binding.authFacebook.setOnClickListener(this);
+        binding.authTwitter.setOnClickListener(this);
+        binding.authFacebook.setOnClickListener(this);
 //        binding.authRegisterLaunch.setOnClickListener(this);
         LoginManager.getInstance().logOut();
     }
@@ -117,12 +117,12 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 //            case R.id.authRegisterLaunch:
 //                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
 //                break;
-//            case R.id.authTwitter:
-//                binding.authTwitterLaunch.performClick();
-//                break;
-//            case R.id.authFacebook:
-//                binding.authFacebookLaunch.performClick();
-//                break;
+            case R.id.authTwitter:
+                binding.authTwitterLaunch.performClick();
+                break;
+            case R.id.authFacebook:
+                binding.authFacebookLaunch.performClick();
+                break;
         }
     }
     @Override
@@ -165,7 +165,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void failure(TwitterException exception) {
-                Log.e("authasdf", exception.getMessage());
             }
         });
     }
@@ -183,16 +182,11 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(twitterCredientials);
-                                for (String s : twitterCredientials) {
-                                    Log.e("asdfasdf", s);
-                                }
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (IOException e) {
-                                Log.e("asdf", e.getMessage());
                             } catch (JSONException e) {
-                                Log.e("asdf", e.getMessage());
                                 e.printStackTrace();
                             }
                             break;
@@ -266,9 +260,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (JSONException e) {
-                                Log.e("asdf", e.getMessage());
                             } catch (IOException e) {
-                                Log.e("asdf", e.getMessage());
                                 e.printStackTrace();
                             }
                             break;

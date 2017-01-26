@@ -10,8 +10,8 @@ import android.support.v4.app.ActivityCompat;
 public class KillProcess extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ActivityCompat.finishAffinity(this);
         System.exit(0);
+        super.onCreate(savedInstanceState);
     }
 }

@@ -29,6 +29,7 @@
                     android:layout_marginTop="60dp"
                     android:background="@drawable/round_login_field"
                     android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:singleLine="true"
                     android:text="asdf"
@@ -44,6 +45,7 @@
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:background="@drawable/round_login_field"
                     android:hint="@string/password"
+                    android:inputType="textPassword"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:singleLine="true"
                     android:textColor="@color/textColorDark"
@@ -62,6 +64,84 @@
                     android:textColor="#FFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="2dp"
+                        android:background="@color/textColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="or login with"
+                        android:textColor="@color/textColor" />
+
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="2dp"
+                        android:background="@color/textColor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/authTwitter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_login_twitter"
+                            android:clickable="true"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:textSize="18sp" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_login_tweet" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/authFacebook"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_login_twitter"
+                            android:clickable="true"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:textSize="18sp" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_login_facebook" />
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 
