@@ -77,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.myDictionary.setOnClickListener(this);
         binding.neologismTest.setOnClickListener(this);
         binding.mainMyPageLaunch.setOnClickListener(this);
+        binding.loveDic.setOnClickListener(this);
+        binding.funnyDic.setOnClickListener(this);
+        binding.sadDic.setOnClickListener(this);
+        binding.madDic.setOnClickListener(this);
+        binding.okDic.setOnClickListener(this);
+        binding.lifeDic.setOnClickListener(this);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -127,6 +133,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 else
                     Toast.makeText(getApplicationContext(), "인터넷 연결 상태를 확인해주세요!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.loveDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 0));
+                break;
+            case R.id.funnyDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 1));
+                break;
+            case R.id.sadDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 2));
+                break;
+            case R.id.madDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 3));
+                break;
+            case R.id.okDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 4));
+                break;
+            case R.id.lifeDic:
+                startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 5));
                 break;
         }
     }
