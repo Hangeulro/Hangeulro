@@ -1,5 +1,7 @@
 package kr.edcan.neologism.model;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by KOHA_DESKTOP on 2016. 6. 19..
  */

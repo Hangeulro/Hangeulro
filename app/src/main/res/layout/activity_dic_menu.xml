@@ -20,10 +20,8 @@
                 app:contentInsetStartWithNavigation="0dp" />
         </android.support.design.widget.AppBarLayout>
 
-        <GridView
-            android:stretchMode="columnWidth"
-            android:numColumns="2"
-            android:id="@+id/dicGridView"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dicGrid"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

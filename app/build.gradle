@@ -70,4 +70,5 @@ dependencies {
     compile 'com.github.clans:fab:1.6.4'
     compile 'gun0912.ted:tedpermission:1.0.0'
     compile 'com.github.claudiodegio:MsvSearch:1.0.0'
+    compile 'com.github.nitrico.lastadapter:lastadapter:2.0.0'
 }
