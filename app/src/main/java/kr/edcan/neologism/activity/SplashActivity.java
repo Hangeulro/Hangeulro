@@ -2,6 +2,7 @@ package kr.edcan.neologism.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -52,12 +53,19 @@ public class SplashActivity extends AppCompatActivity {
 //        stopService(new Intent(getApplicationContext(), ClipBoardService.class));
 
         setDefault();
-        validateUserToken();
+//        validateUserToken();
     }
 
     private void setDefault() {
-        dataManager = new DataManager(getApplicationContext());
-        service = NetworkHelper.getNetworkInstance();
+//        dataManager = new DataManager(getApplicationContext());
+//        service = NetworkHelper.getNetworkInstance();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        }, 1500);
     }
 
     private void validateUserToken() {

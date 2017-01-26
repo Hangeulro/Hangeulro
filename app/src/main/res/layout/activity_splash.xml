@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/whitePrimary"
     tools:context="kr.edcan.neologism.activity.SplashActivity">
 
-
-    <ImageView
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:src="@drawable/bg_splash4_hangeulro"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_height="wrap_content" />
-    <ImageView
-        android:layout_margin="16dp"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/text_login_copyright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo_login_hangeulro" />
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:cpv_thickness="3dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            app:cpv_animAutostart="true"
+            app:cpv_color="@color/colorPrimaryBackground"
+            app:cpv_indeterminate="true" />
+    </LinearLayout>
 </RelativeLayout>

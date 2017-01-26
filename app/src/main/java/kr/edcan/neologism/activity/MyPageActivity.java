@@ -89,7 +89,6 @@ public class MyPageActivity extends AppCompatActivity {
         manager = new DataManager(getApplicationContext());
         user = manager.getActiveUser().second;
         getUserInfo = service.getUserInfo(user.getToken());
-        Log.e("asdf", user.getToken());
         getUserInfo.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

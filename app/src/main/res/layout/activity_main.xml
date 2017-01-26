@@ -18,25 +18,26 @@
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:contentInsetStartWithNavigation="0dp">
+                android:layout_height="?attr/actionBarSize">
 
                 <Button
+                    android:id="@+id/mainMyPageLaunch"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10dp"
-                    android:text="MYP" />
+                    android:text="MYP"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:src="@drawable/logo_main_hangeulro" />
             </android.support.v7.widget.Toolbar>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin">
@@ -77,9 +78,11 @@
                     android:orientation="horizontal">
 
                     <kr.edcan.neologism.views.CartaTagView
+                        android:id="@+id/expandNeologism"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:foreground="?attr/selectableItemBackground"
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -201,6 +204,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="2dp"
                         app:cardPreventCornerOverlap="true"
@@ -237,13 +242,13 @@
 
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_marginTop="10dp"
                                     android:ellipsize="end"
-                                    android:maxLines="2"
                                     android:text="게임 오버워치의 영웅 캐릭터 중 하나인 겐지, 트레이서, 위도우메이커, 한조를 칭하는 말이다."
                                     android:textColor="@color/textColorBright"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    android:id="@+id/textView" />
 
                             </LinearLayout>
 
@@ -260,10 +265,14 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/neologismTest"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         app:cardCornerRadius="5dp"
+
                         app:cardElevation="2dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true">
@@ -339,9 +348,13 @@
                     android:weightSum="2">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/myDictionary"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:clickable="true"
+
+                        android:foreground="?attr/selectableItemBackground"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="2dp"
                         app:cardPreventCornerOverlap="true"
@@ -393,6 +406,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
                         app:cardCornerRadius="5dp"
                         app:cardElevation="2dp"
                         app:cardPreventCornerOverlap="true"
