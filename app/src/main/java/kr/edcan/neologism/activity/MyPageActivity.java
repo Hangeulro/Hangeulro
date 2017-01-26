@@ -154,12 +154,13 @@ public class MyPageActivity extends AppCompatActivity {
 //        arrayList.add(new CommonData("내 프로필 수정하기",
 //                "나의 프로필을 수정할 수 있습니다.",
 //                R.drawable.ic_mypage_profile));
-        arrayList.add(new CommonData("회원 탈퇴",
-                "한글을 한글로에 있는 모든 데이터를 삭제하고 회원탈퇴합니다.",
-                R.drawable.ic_mypage_leave));
+
         arrayList.add(new CommonData("로그아웃",
                 "이 기기에서 한글을 한글로를 로그아웃합니다..",
                 R.drawable.ic_mypage_logout));
+        arrayList.add(new CommonData("회원 탈퇴",
+                "한글을 한글로에 있는 모든 데이터를 삭제하고 회원탈퇴합니다.",
+                R.drawable.ic_mypage_leave));
 //        arrayList.add(new CommonData("설정",
 //                "앱의 세부 설정 및 정보를 확인합니다.",
 //                R.drawable.ic_mypage_setting));
@@ -179,8 +180,21 @@ public class MyPageActivity extends AppCompatActivity {
 //                case 2:
 //                    // 내 프로필 수정하기
 //                    break;
-
                 case 1:
+                    // 로그아웃
+                    helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?", new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            LoginManager.getInstance().logOut();
+                            Twitter.getSessionManager().clearActiveSession();
+                            Twitter.logOut();
+                            manager.removeAllData();
+                            finish();
+
+                        }
+                    });
+                    break;
+                case 2:
 //                     회원 탈퇴
                     helper.showAlertDialog("회원탈퇴", "한글을 한글로!에서 완전히 탈퇴합니다", new MaterialDialog.SingleButtonCallback() {
                         @Override
@@ -209,20 +223,7 @@ public class MyPageActivity extends AppCompatActivity {
                         }
                     });
                     break;
-                case 2:
-                    // 로그아웃
-                    helper.showAlertDialog("로그아웃", "한글을 한글로에서 로그아웃하시겠습니까?", new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            LoginManager.getInstance().logOut();
-                            Twitter.getSessionManager().clearActiveSession();
-                            Twitter.logOut();
-                            manager.removeAllData();
-                            finish();
 
-                        }
-                    });
-                    break;
 //                case 5:
 //                    // 설정
 //                    break;
