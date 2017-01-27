@@ -37,12 +37,12 @@ public class DicViewActivity extends AppCompatActivity {
     ActivityDicViewBinding binding;
     Intent intent;
     String[] titleTextArr = {
-            "사랑 코드",
-            "우스운 코드",
-            "서글픈 코드",
-            "화가 난 코드",
-            "공감 코드",
-            "일상생활 코드"
+            "#사랑",
+            "#우스운",
+            "#서글픈",
+            "#화가 난",
+            "#공감되는",
+            "#일상생활"
     };
     String titleTextEngArr[] = {
             "Love",
@@ -52,10 +52,6 @@ public class DicViewActivity extends AppCompatActivity {
             "Sympathy",
             "Lifestyle"
     };
-    int actionbarColor[] = {R.color.loveActionbarColor, R.color.funActionbarColor, R.color.sadActionbarColor, R.color.angryActionbarColor, R.color.symActionbarColor, R.color.lifeActionbarColor};
-    int statusbarColor[] = {R.color.loveStatusColor, R.color.funStatusColor, R.color.sadStatusColor, R.color.angryStatusColor, R.color.symStatusColor, R.color.lifeStatusColor};
-    int mainColor[] = {R.color.loveThemeColor, R.color.funThemeColor, R.color.sadThemeColor, R.color.angryThemeColor, R.color.symThemeColor, R.color.lifeThemeColor};
-    int emoji[] = {R.drawable.acc_diclove_imoji, R.drawable.acc_dicfun_emoji, R.drawable.acc_dicsad_emoji, R.drawable.acc_dicangry_imoji, R.drawable.acc_dicsym_emoji, R.drawable.acc_diclife_emoji};
     Call<ResponseBody> getWordByType;
     NetworkInterface service;
 
@@ -71,65 +67,24 @@ public class DicViewActivity extends AppCompatActivity {
     private void setDefault() {
         intent = getIntent();
         codeType = intent.getIntExtra("codeType", -1);
-        binding.dicViewProgrees.setIndeterminate(true);
-        binding.dicViewProgrees.setThickness(15);
-        binding.dicViewProgrees.setColor(getResources().getColor(mainColor[codeType]));
-        binding.dicViewProgrees.startAnimation();
         service = NetworkHelper.getNetworkInstance();
         toolbar = binding.toolbar;
         toolbar.setContentInsetsAbsolute(0,0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.collapsingToolbar.setTitle(titleTextArr[codeType]);
-        binding.collapsingToolbar.setContentScrimColor(getResources().getColor(actionbarColor[codeType]));
+        binding.collapsingToolbar.setContentScrimColor(getResources().getColor(R.color.colorPrimary));
         binding.collapsingToolbar.setExpandedTitleTextAppearance(R.style.expandedTitleStyle);
         binding.collapsingToolbar.setCollapsedTitleTextAppearance(R.style.collapsedTitleStyle);
         recyclerView = binding.dicViewRecyclerView;
-        binding.dicViewHeadeBG.setBackgroundColor(getResources().getColor(mainColor[codeType]));
-        binding.dicViewAcc.setImageResource(emoji[codeType]);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            getWindow().setStatusBarColor(getResources().getColor(statusbarColor[codeType]));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     private void setData() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(false);
         final ArrayList<DicData> arrayList = new ArrayList<>();
-        getWordByType = service.getWordWithType(titleTextArr[codeType].substring(0, 1));
-        getWordByType.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e("asdf", response.code() + "");
-                try {
-                    JSONArray a = new JSONArray(response.body().string());
-                    for (int i = 0; i < a.length(); i++) {
-                        String example = "null";
-                        JSONObject result = a.getJSONObject(i);
-                        try {
-                            example = result.getString("ex");
-                        } catch (JSONException e){
-                            Log.e("asdf", e.getMessage());
-                        }
-                        arrayList.add(new DicData(result.getString("word"), result.getString("mean"), (example.equals("null")) ? "예문이 없습니다." : example, result.getInt("see")));
-                    }
-                    DicRecyclerAdapter adapter = new DicRecyclerAdapter(DicViewActivity.this, arrayList, codeType);
-                    recyclerView.setAdapter(adapter);
-                    binding.dicViewProgrees.setVisibility(View.GONE);
-                } catch (IOException e) {
-                    Log.e("asdf", e.getMessage());
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-
-                    Log.e("asdf", e.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("asdf", t.getMessage());
-            }
-        });
 
     }
 

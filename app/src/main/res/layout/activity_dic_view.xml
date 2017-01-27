@@ -23,45 +23,26 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-                <RelativeLayout
+                <ImageView
                     android:id="@+id/dicViewHeadeBG"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@color/angryThemeColor"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_dic_lifetag"
                     app:layout_collapseMode="parallax"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:layout_collapseParallaxMultiplier="0.8">
-
-                    <ImageView
-                        android:id="@+id/dicViewAcc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/acc_dicangry_imoji" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:layout_toLeftOf="@id/dicViewAcc"
-                        android:text="Finder Hangeul Neologism Guide Book"
-                        android:textColor="#FFF"
-                        android:textSize="8dp" />
-                </RelativeLayout>
+                    app:layout_collapseParallaxMultiplier="0.8"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
 
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    android:background="@android:color/transparent"
                     app:contentInsetEnd="0dp"
                     app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             </android.support.design.widget.CollapsingToolbarLayout>
@@ -74,19 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <com.github.rahatarmanahmed.cpv.CircularProgressView
-                android:id="@+id/dicViewProgrees"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:cpv_thickness="4dp" />
-        </LinearLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -6,9 +6,16 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+
 import io.fabric.sdk.android.Fabric;
+import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmList;
+import io.realm.RealmMigration;
+import io.realm.RealmSchema;
+import kr.edcan.neologism.model.Tag;
+import kr.edcan.neologism.utils.DBMigration;
 
 /**
  * Created by JunseokOh on 2016. 9. 19..
@@ -26,7 +33,10 @@ public class AppController extends Application {
         Fabric.with(this, new Twitter(authConfig));
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
-        RealmConfiguration realmConfig = new RealmConfiguration.Builder(getApplicationContext()).build();
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder(getApplicationContext())
+                .schemaVersion(2)
+                .migration(new DBMigration())
+                .build();
         Realm.setDefaultConfiguration(realmConfig);
     }
 }

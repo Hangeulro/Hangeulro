@@ -13,9 +13,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 import kr.edcan.neologism.model.DicDBData;
 import kr.edcan.neologism.model.DicData;
+import kr.edcan.neologism.model.Tag;
 import kr.edcan.neologism.model.Word;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,8 +40,18 @@ public class DBSync {
         for (int i = 0; i < array.length(); i++) {
             try {
                 JSONObject content = array.getJSONObject(i);
+                RealmList<Tag> tagList = new RealmList<>();
+                JSONArray originTagList = content.getJSONArray("cata");
+                for (int j = 0; j < originTagList.length(); j++) {
+                    Tag tag = realm.createObject(Tag.class);
+                    tagList.add(tag);
+                }
                 DicDBData data = realm.createObject(DicDBData.class);
-                data.setContents(content.getString("id"), content.getString("word"), content.getString("mean"), content.getString("ex"));
+                data.setContents(content.getString("id"),
+                        content.getString("word"),
+                        content.getString("mean"),
+                        content.getString("ex"),
+                        tagList);
             } catch (JSONException e) {
                 Log.e("asdf", e.getMessage());
                 e.printStackTrace();
@@ -65,7 +77,7 @@ public class DBSync {
         RealmResults<DicDBData> results = realm.where(DicDBData.class).findAll();
         for (DicDBData data : results) {
             returnArray.add(data.getWord());
-            Log.e("asdf", data.getWord()+ " word searched");
+            Log.e("asdf", data.getWord() + " word searched");
         }
         realm.commitTransaction();
         return returnArray;
@@ -83,7 +95,8 @@ public class DBSync {
         getCurrentVersion.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                int remoteDatabaseVersion = Integer.parseInt(response.body());
+//                int remoteDatabaseVersion = Integer.parseInt(response.body());
+                int remoteDatabaseVersion = 2;
                 Log.e("asdf", "Current Version : " + currentVersion + " DataBase Version : " + remoteDatabaseVersion);
                 if (remoteDatabaseVersion != currentVersion) {
                     manager.saveCurrentDatabaseVersion(remoteDatabaseVersion);
