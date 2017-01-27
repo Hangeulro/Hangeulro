@@ -9,25 +9,25 @@ import io.realm.RealmObject;
  */
 public class DicDBData extends RealmObject {
 
-    private String id, word, mean, example;
-    private RealmList<Tag> cata = new RealmList<>();
+    private String id, word, mean, example, cata;
 
     public DicDBData() {
     }
 
-    public DicDBData(String id, String word, String mean, String example, RealmList<Tag> cata) {
+
+    public void setContents(String id, String name, String mean, String example, String cata) {
         this.id = id;
-        this.word = word;
+        this.word = name;
         this.mean = mean;
         this.example = example;
         this.cata = cata;
     }
 
-    public void setContents(String id, String name, String mean, String example, RealmList<Tag> cata) {
-        this.id = id;
-        this.word = name;
-        this.mean = mean;
-        this.example = example;
+    public String getCata() {
+        return cata;
+    }
+
+    public void setCata(String cata) {
         this.cata = cata;
     }
 
@@ -59,13 +59,6 @@ public class DicDBData extends RealmObject {
         return example;
     }
 
-    public RealmList<Tag> getCata() {
-        return cata;
-    }
-
-    public void setCata(RealmList<Tag> cata) {
-        this.cata = cata;
-    }
 
     public void setExample(String example) {
         this.example = example;

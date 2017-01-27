@@ -1,7 +1,6 @@
 package kr.edcan.neologism.utils;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -9,16 +8,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 import kr.edcan.neologism.model.DicDBData;
 import kr.edcan.neologism.model.DicData;
-import kr.edcan.neologism.model.Tag;
-import kr.edcan.neologism.model.Word;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,18 +35,15 @@ public class DBSync {
         for (int i = 0; i < array.length(); i++) {
             try {
                 JSONObject content = array.getJSONObject(i);
-                RealmList<Tag> tagList = new RealmList<>();
                 JSONArray originTagList = content.getJSONArray("cata");
-                for (int j = 0; j < originTagList.length(); j++) {
-                    Tag tag = realm.createObject(Tag.class);
-                    tagList.add(tag);
-                }
+                String originTagStr = originTagList.toString();
+                Log.e("asdf", originTagStr);
                 DicDBData data = realm.createObject(DicDBData.class);
                 data.setContents(content.getString("id"),
                         content.getString("word"),
                         content.getString("mean"),
                         content.getString("ex"),
-                        tagList);
+                        originTagStr);
             } catch (JSONException e) {
                 Log.e("asdf", e.getMessage());
                 e.printStackTrace();
@@ -96,7 +88,7 @@ public class DBSync {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
 //                int remoteDatabaseVersion = Integer.parseInt(response.body());
-                int remoteDatabaseVersion = 2;
+                int remoteDatabaseVersion = 3;
                 Log.e("asdf", "Current Version : " + currentVersion + " DataBase Version : " + remoteDatabaseVersion);
                 if (remoteDatabaseVersion != currentVersion) {
                     manager.saveCurrentDatabaseVersion(remoteDatabaseVersion);

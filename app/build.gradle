@@ -26,8 +26,8 @@ android {
         applicationId "kr.edcan.neologism"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 8
-        versionName "2.0.6"
+        versionCode 10
+        versionName "3.0.1"
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
     }

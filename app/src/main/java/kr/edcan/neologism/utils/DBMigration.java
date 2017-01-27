@@ -14,12 +14,13 @@ public class DBMigration implements RealmMigration {
     @Override
     public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
         RealmSchema schema = realm.getSchema();
-        Log.e("asdf DicDBData Count", realm.where("DicDBData").count()+"");
-        Log.e("asdf DicDBData Count", schema.get("DicDBData").getFieldNames().contains("cata")+"");
-
-        if (oldVersion != 2) {
-            schema.get("DicDBData")
-                    .addRealmListField("cata", schema.create("Tag"));
+        Log.e("asdf DicDBData Count", realm.where("DicDBData").count() + "");
+        Log.e("asdf DicDBData Count", schema.get("DicDBData").getFieldNames().contains("cata") + "");
+        Log.e("asdf DicDBData", realm.getVersion() + "");
+        if (oldVersion == 0) {
+            schema.get("DicDBData").addField("cata", String.class);
+            oldVersion++;
         }
     }
 }
+
