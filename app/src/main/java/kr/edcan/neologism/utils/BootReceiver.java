@@ -4,8 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import kr.edcan.neologism.service.ClipBoardService;
-
 /**
  * Created by Junseok on 2016. 1. 17..
  */

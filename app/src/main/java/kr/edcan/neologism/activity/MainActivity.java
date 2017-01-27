@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +30,8 @@ import kr.edcan.neologism.adapter.NeologismRecyclerAdapter;
 import kr.edcan.neologism.databinding.ActivityMainBinding;
 import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
-import kr.edcan.neologism.service.FastSearchService;
+import kr.edcan.neologism.utils.ClipBoardService;
+import kr.edcan.neologism.utils.DBSync;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 
@@ -50,21 +52,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        manager = new DataManager(this);
+        if (!manager.getActiveUser().first) {
+            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
+            finish();
+        }
+        activity = this;
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             setPackage();
-        startService(new Intent(getApplicationContext(), FastSearchService.class));
-//
-//        manager = new DataManager(this);
-//        if (!manager.getActiveUser().first) {
-//            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
-//            finish();
-//        }
-//        activity = this;
-//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//
-//        setDefault();
-//        startService(new Intent(MainActivity.this, ClipBoardService.class));
-//        DBSync.syncDB(getApplicationContext());
+        setDefault();
+        startService(new Intent(MainActivity.this, ClipBoardService.class));
+        DBSync.syncDB(getApplicationContext());
     }
 
     @TargetApi(Build.VERSION_CODES.M)
