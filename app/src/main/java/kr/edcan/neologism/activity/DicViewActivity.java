@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.github.nitrico.lastadapter.LastAdapter;
 import com.github.nitrico.lastadapter.Type;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -115,6 +116,9 @@ public class DicViewActivity extends AppCompatActivity {
                         .onClick(new Function1<Type.Params<? extends ViewDataBinding>, Unit>() {
                             @Override
                             public Unit invoke(Type.Params<? extends ViewDataBinding> params) {
+                                startActivity(new Intent(getApplicationContext(), DicDetailViewActivity.class)
+                                        .putExtra("wordInfo", new Gson().toJson(arrayList.get(params.getPosition())))
+                                        .putExtra("codeType", codeType));
                                 return null;
                             }
                         })

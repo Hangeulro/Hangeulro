@@ -47,9 +47,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.DicDetailViewActivity"
-
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Translucent" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.MyPageActivity"
             android:screenOrientation="portrait" />

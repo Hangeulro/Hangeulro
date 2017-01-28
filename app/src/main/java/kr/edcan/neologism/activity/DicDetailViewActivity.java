@@ -12,50 +12,59 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.google.gson.Gson;
+
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.databinding.ActivityDicDetailViewBinding;
+import kr.edcan.neologism.model.DicData;
 
-public class DicDetailViewActivity extends AppCompatActivity {
+public class DicDetailViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String title, meaning, example;
+    private String wordInfoJson;
+    private int codeType;
     Intent intent;
     ActivityDicDetailViewBinding binding;
+    DicData data;
+    String[] titleTextArr = {
+            "#사랑",
+            "#우스운",
+            "#서글픈",
+            "#화가 난",
+            "#공감되는",
+            "#일상생활"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setBackgroundWindow();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dic_detail_view);
         setDefault();
     }
-    private void setBackgroundWindow() {
-        WindowManager.LayoutParams windowManager = getWindow().getAttributes();
-        windowManager.dimAmount = 0.88f;
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#77B7B7B7")));
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-    }
+
     private void setDefault() {
+        // Toolbar Settings
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("신조어 상세보기");
-        binding.toolbar.setTitleTextColor(Color.WHITE);
+
+        // Intent to get data from previous activity
         intent = getIntent();
-        title = intent.getStringExtra("title");
-        meaning = intent.getStringExtra("meaning");
-        example = intent.getStringExtra("example");
-        binding.dicDetailTitle.setText(title);
-        binding.dicDetailMeaning.setText(meaning);
-        binding.dicDetailExample.setText(example);
-        binding.dicDetailShare.setText("\"" + title + "\"라는 단어의 뜻을\n다른 친구들과 함께 공유해보세요!");
-        binding.dicDetailShareLaunch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareText(title + "의 뜻은 " + meaning + " #한글을_한글로 http://hangeulro.xyz");
-            }
-        });
+        wordInfoJson = intent.getStringExtra("wordInfo");
+        codeType = intent.getIntExtra("codeType", 0);
+        data = new Gson().fromJson(wordInfoJson, DicData.class);
+        getSupportActionBar().setTitle("");
+        binding.toolbar.setTitleTextColor(Color.WHITE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#414142"));
         }
+
+        // Set data to ui
+        binding.wordName.setText(data.getWord());
+        binding.wordMeaning.setText(data.getMean());
+        binding.wordExample.setText(data.getExample());
+        binding.addToDic.setOnClickListener(this);
+        binding.share.setOnClickListener(this);
+        binding.bgImage.setImageResource(new int[]{R.drawable.bg_dic_lovetag, R.drawable.bg_dic_funtag, R.drawable.bg_dic_sadtag, R.drawable.bg_dic_angrytag, R.drawable.bg_dic_satisfiedtag, R.drawable.bg_dic_lifetag}[codeType]);
+        binding.wordType.setText(titleTextArr[codeType]);
 
     }
 
@@ -76,4 +85,16 @@ public class DicDetailViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.share:
+                break;
+            case R.id.addToDic:
+                shareText(
+                        data.getWord() + " 의 의미는 " + data.getMean() + " 입니다. 더 많은 신조어를 한글을 한글로! 에서 알아보세요! http://iwin247.kr"
+                );
+                break;
+        }
+    }
 }
