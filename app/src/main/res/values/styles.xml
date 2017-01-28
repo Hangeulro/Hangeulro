@@ -29,11 +29,11 @@
     </style>
 
     <style name="expandedTitleStyle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">28sp</item>
     </style>
 
     <style name="collapsedTitleStyle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">18dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

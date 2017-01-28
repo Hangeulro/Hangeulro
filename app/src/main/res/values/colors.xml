@@ -6,6 +6,8 @@
     <color name="colorAccent">#7A0B13</color>
     <color name="textColor">#777777</color>
     <color name="textColorDark">#4c4c4c</color>
+    <color name="listTitleColor">#646464</color>
+    <color name="listContentColor">#BCBCBC</color>
     <color name="textColorSubDark">#757575</color>
     <color name="loveStatusColor">#c4211a</color>
     <color name="loveActionbarColor">#e50505</color>

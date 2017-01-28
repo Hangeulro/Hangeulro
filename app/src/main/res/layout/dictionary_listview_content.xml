@@ -1,59 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <RelativeLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/bg_dic_card"
-        android:paddingBottom="4dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="25dp"
-        android:paddingTop="4dp">
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin">
 
-        <ImageView
-            android:id="@+id/common_listview_image"
-            android:layout_width="60dp"
+        <TextView
+            android:id="@+id/dicMenuTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_dic" />
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/listTitleColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/dicMenuContent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/common_listview_image"
-            android:orientation="vertical">
+            android:layout_marginTop="@dimen/middle_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/textColorBright"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/common_listview_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="신조어 사전"
-                android:textColor="@color/textColorSubDark"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/common_listview_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="신조어 사전"
-                android:textColor="@color/textColor"
-                android:textSize="12dp" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/common_listview_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/acc_arrow" />
-    </RelativeLayout>
-</RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="#33A6A6A6" />
+    </LinearLayout>
+</layout>

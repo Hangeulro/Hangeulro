@@ -1,38 +1,60 @@
 package kr.edcan.neologism.model;
 
 /**
- * Created by JunseokOh on 2016. 9. 17..
+ * Created by JunseokOh on 2016. 9. 19..
  */
 public class DicData {
-    private String title, meaning, example;
-    private int searchCount;
 
-    public DicData(String title, String meaning, String example, int searchCount) {
-        this.title = title;
-        this.meaning = meaning;
-        this.example = example;
-        this.searchCount = searchCount;
+    private String id, word, mean, example, cata;
+
+    public DicData() {
     }
     public DicData(DicDBData data) {
-        this.title = data.getWord();
-        this.meaning = data.getMean();
-        this.example = data.getExample();
-        this.searchCount = 0;
+        setMean(data.getMean());
+        setCata(data.getCata());
+        setExample(data.getExample());
+        setId(data.getId());
+        setWord(data.getWord());
     }
 
-    public String getTitle() {
-        return title;
+    public String getCata() {
+        return cata;
     }
 
-    public String getMeaning() {
-        return meaning;
+    public void setCata(String cata) {
+        this.cata = cata;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public void setMean(String mean) {
+        this.mean = mean;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getWord() {
+        return word;
+    }
+
+    public String getMean() {
+        return mean;
     }
 
     public String getExample() {
         return example;
     }
 
-    public int getSearchCount() {
-        return searchCount;
+
+    public void setExample(String example) {
+        this.example = example;
     }
 }
