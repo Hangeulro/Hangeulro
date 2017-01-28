@@ -22,6 +22,7 @@ import kr.edcan.neologism.R;
 import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.User;
 import kr.edcan.neologism.utils.ClipBoardService;
+import kr.edcan.neologism.utils.DBSync;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
 import kr.edcan.neologism.utils.NetworkInterface;
@@ -34,6 +35,7 @@ public class SplashActivity extends AppCompatActivity {
     Call<FacebookUser> facebookLogin;
     NetworkInterface service;
     DataManager dataManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,27 +55,31 @@ public class SplashActivity extends AppCompatActivity {
 //        stopService(new Intent(getApplicationContext(), ClipBoardService.class));
 
         setDefault();
-//        validateUserToken();
     }
 
     private void setDefault() {
-//        dataManager = new DataManager(getApplicationContext());
-//        service = NetworkHelper.getNetworkInstance();
-        new Handler().postDelayed(new Runnable() {
+        dataManager = new DataManager(getApplicationContext());
+        service = NetworkHelper.getNetworkInstance();
+        if (dataManager.getCurrentDatabaseVersion() == -1) {
+            if (NetworkHelper.returnNetworkState(getApplicationContext())) {
+                DBSync.syncDB(getApplicationContext());
+                validateUserToken();
+            } else {
+                stopService(new Intent(getApplicationContext(), ClipBoardService.class));
+                Toast.makeText(this, "사전 데이터베이스 다운로드를 위해 인터넷 연결이 필요합니다.\n인터넷에 연결하신 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } else new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                validateUserToken();
             }
         }, 1500);
     }
 
     private void validateUserToken() {
         Pair<Boolean, User> userPair = dataManager.getActiveUser();
-        if (!userPair.first) {
-            startActivity(new Intent(getApplicationContext(), AuthActivity.class));
-            finish();
-        } else {
+        if (userPair.first) {
             // validate
             switch (userPair.second.getUserType()) {
                 case 0:
@@ -91,6 +97,9 @@ public class SplashActivity extends AppCompatActivity {
                 case 4:
                     new LoadNativeUserInfo().execute(dataManager.getActiveUser().second.getToken());
             }
+        } else {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
         }
     }
 
@@ -209,11 +218,11 @@ public class SplashActivity extends AppCompatActivity {
                             break;
                     }
                     Log.e("asdf", response.code() + "");
-                }
+                    }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("asdf", t.getMessage());
+                    Log.e("asdf", t.getMessage() + " .");
                     startActivity(new Intent(getApplicationContext(), AuthActivity.class));
                     finish();
                 }

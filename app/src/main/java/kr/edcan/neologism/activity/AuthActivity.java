@@ -76,7 +76,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                     try {
                                         dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
                                         Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         finish();
                                     } catch (JSONException e) {
                                         Log.e("asdf", e.getMessage());
@@ -183,7 +182,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                 dataManager.saveTwitterUserInfo(new JSONObject(response.body().string()));
                                 dataManager.saveUserCredential(twitterCredientials);
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (IOException e) {
                             } catch (JSONException e) {
@@ -222,7 +220,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             dataManager.saveFacebookUserInfo(response.body());
                             dataManager.saveUserCredential(strings[0]);
                             Toast.makeText(AuthActivity.this, response.body().getName() + "님 환영합니다!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                             break;
                         case 401:
@@ -257,7 +254,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                             try {
                                 dataManager.saveNativeLoginUserInfo(new JSONObject(response.body().string()));
                                 Toast.makeText(AuthActivity.this, dataManager.getActiveUser().second.getName() + " 님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (JSONException e) {
                             } catch (IOException e) {
