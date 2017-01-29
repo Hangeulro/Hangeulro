@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Network;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import io.realm.Realm;
@@ -43,7 +49,12 @@ import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DBSync;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
+import kr.edcan.neologism.utils.NetworkInterface;
 import kr.edcan.neologism.utils.StringUtils;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
@@ -57,11 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Realm realm;
     ActivityMainBinding binding;
     DataManager manager;
+    NetworkInterface service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        manager = new DataManager(this);
 
         activity = this;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
@@ -82,7 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setDefault() {
+        manager = new DataManager(this);
         realm = Realm.getDefaultInstance();
+        service = NetworkHelper.getNetworkInstance();
+
         binding.expandNeologism.setOnClickListener(this);
         binding.myDictionary.setOnClickListener(this);
         binding.neologismTest.setOnClickListener(this);
@@ -94,6 +108,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.okDic.setOnClickListener(this);
         binding.lifeDic.setOnClickListener(this);
         binding.searchButton.setOnClickListener(this);
+        checkTodayWord();
+    }
+
+    private void checkTodayWord() {
+        if (manager.mustUpdateTodayWord()) {
+            if (NetworkHelper.returnNetworkState(getApplicationContext())) {
+                Call<ResponseBody> getTodayWord = service.getTodayWord();
+                getTodayWord.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.code() == 200){
+                            JSONObject content = null;
+                            try {
+                                content = new JSONObject(response.body().string());
+                                JSONArray originTagList = content.getJSONArray("cata");
+                                String originTagStr = originTagList.toString();
+                                DicData data = new DicData();
+                                data.setContents(content.getString("id"),
+                                        content.getString("word"),
+                                        content.getString("mean"),
+                                        content.getString("ex"),
+                                        originTagStr);
+                                manager.saveTodayWord(data);
+                                setTodayWordResult(true, data);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                setTodayWordResult(false, null);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                setTodayWordResult(false, null);
+                            }
+                        } else setTodayWordResult(false, null);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        setTodayWordResult(false, null);
+                        Log.e("asdf", t.getMessage() + "");
+
+                    }
+                });
+            } else Toast.makeText(activity, "인터넷에 연결되지 않아 오늘의 신조어를 확인할 수 없습니다.", Toast.LENGTH_SHORT).show();
+        } else setTodayWordResult(true, manager.getTodayWord());
+    }
+
+    public void setTodayWordResult(boolean isSuccess, DicData data) {
+        if(isSuccess){
+            binding.todayWordName.setText(data.getWord());
+            binding.todayWordMeaning.setText(data.getMean());
+        } else {
+            binding.todayWordName.setVisibility(View.GONE);
+            binding.todayWordMeaning.setText("인터넷에 연결되지 않아 확인할 수 없습니다.");
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)

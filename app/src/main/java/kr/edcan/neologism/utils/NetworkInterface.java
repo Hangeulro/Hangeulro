@@ -66,12 +66,15 @@ public interface NetworkInterface {
     @GET("/version")
     Call<String> getDataBaseVersion();
 
+    @POST("/word")
+    Call<ResponseBody> getWordList();
+
     @POST("/word/cata")
     @FormUrlEncoded
     Call<ResponseBody> getWordWithType(@Field("cata") String cata);
 
-    @POST("/word")
-    Call<ResponseBody> getWordList();
+    @GET("/today")
+    Call<ResponseBody> getTodayWord();
 
     @POST("/word/commentAdd")
     @FormUrlEncoded

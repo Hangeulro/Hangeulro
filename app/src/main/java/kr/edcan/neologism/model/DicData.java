@@ -17,6 +17,15 @@ public class DicData {
         setWord(data.getWord());
     }
 
+    public void setContents(String id, String name, String mean, String example, String cata) {
+        this.id = id;
+        this.word = name;
+        this.mean = mean;
+        this.example = example;
+        this.cata = cata;
+    }
+
+
     public String getCata() {
         return cata;
     }

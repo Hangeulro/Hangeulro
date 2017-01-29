@@ -154,10 +154,13 @@ public class DataManager {
         editor.commit();
     }
 
+    public DicData getTodayWord() {
+        return new Gson().fromJson(preferences.getString("todayWord", ""), DicData.class);
+    }
+
     public boolean mustUpdateTodayWord() {
         Calendar calendar = Calendar.getInstance();
         return !((calendar.get(Calendar.MONTH) + 1) + " " + calendar.get(Calendar.DATE)).equals(preferences.getString("lastWordUpdate", ""));
     }
-
 
 }
