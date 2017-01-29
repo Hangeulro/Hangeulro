@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -89,11 +90,11 @@ public class DicDetailViewActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.share:
-                break;
-            case R.id.addToDic:
                 shareText(
                         data.getWord() + " 의 의미는 " + data.getMean() + " 입니다. 더 많은 신조어를 한글을 한글로! 에서 알아보세요! http://iwin247.kr"
                 );
+                break;
+            case R.id.addToDic:
                 break;
         }
     }
