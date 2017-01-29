@@ -33,10 +33,8 @@ public class MyDicListViewAdapter extends ArrayAdapter<MyDic> {
         View view = LayoutInflater.from(c).inflate(R.layout.dictionary_listview_content, null);
 
         MyDic data = getItem(position);
-        ImageView icon = (ImageView) view.findViewById(R.id.common_listview_image);
-        TextView title = (TextView) view.findViewById(R.id.common_listview_title);
-        TextView subtitle = (TextView) view.findViewById(R.id.common_listview_subtitle);
-        icon.setImageResource(R.drawable.ic_mydic_gold);
+        TextView title = (TextView) view.findViewById(R.id.dicMenuTitle);
+        TextView subtitle = (TextView) view.findViewById(R.id.dicMenuContent);
         title.setText(data.getDicname());
         subtitle.setText(data.getSub());
         return view;

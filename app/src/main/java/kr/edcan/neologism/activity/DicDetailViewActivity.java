@@ -170,18 +170,23 @@ public class DicDetailViewActivity extends AppCompatActivity implements View.OnC
                             startActivity(new Intent(getApplicationContext(), MyDicActivity.class));
                         } else
                             new MaterialDialog.Builder(DicDetailViewActivity.this)
+                                    .title("추가할 사전을 선택해주세요")
                                     .items(result)
                                     .itemsCallback(new MaterialDialog.ListCallback() {
                                         @Override
                                         public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
                                             Call<ResponseBody> addToDictionary = service.addToDictionary(manager.getActiveUser().second.getToken(),
-                                                    result.get(which), data.getId());
+                                                    result.get(which), data.getWord());
                                             addToDictionary.enqueue(new Callback<ResponseBody>() {
                                                 @Override
                                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                    Log.e("Asdf", response.code() + " Code");
                                                     switch (response.code()) {
                                                         case 200:
                                                             Toast.makeText(getApplicationContext(), "저장이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                                                            break;
+                                                        case 409:
+                                                            Toast.makeText(DicDetailViewActivity.this, "이미 사전에 추가되어 있는 단어입니다.", Toast.LENGTH_SHORT).show();
                                                             break;
                                                     }
                                                 }

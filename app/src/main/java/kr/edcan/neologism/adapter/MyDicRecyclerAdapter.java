@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 import kr.edcan.neologism.R;
@@ -19,6 +21,7 @@ import kr.edcan.neologism.databinding.DicViewRecyclerContentBinding;
 import kr.edcan.neologism.model.DicData;
 import kr.edcan.neologism.model.MyDic;
 import kr.edcan.neologism.model.Word;
+import kr.edcan.neologism.utils.StringUtils;
 
 /**
  * Created by MalangDesktop on 2016-06-04.
@@ -50,13 +53,18 @@ public class MyDicRecyclerAdapter extends RecyclerView.Adapter<MyDicRecyclerAdap
         holder.viewCount.setText("조회수 " + data.getSee());
         holder.example.setText(data.getEx());
         holder.dicRecyclerHeader.setBackgroundResource(cardFooter[0]);
+        final DicData dicData = new DicData();
+        dicData.setWord(data.getWord());
+        dicData.setId(data.getId());
+        dicData.setExample(data.getEx());
+        dicData.setCata(data.getCata().get(0));
+        dicData.setMean(data.getMean());
         holder.dicBG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.c.startActivity(new Intent(v.getContext(), DicDetailViewActivity.class)
-                        .putExtra("title", holder.title.getText())
-                        .putExtra("meaning", holder.meaning.getText())
-                        .putExtra("example", holder.example.getText()));
+                        .putExtra("wordInfo", new Gson().toJson(dicData, DicData.class))
+                        .putExtra("codeType", StringUtils.getCodeTypeByTag(data.getCata().get(0))));
             }
         });
         holder.save.setVisibility(View.GONE);

@@ -1,8 +1,12 @@
 <layout>
+    <data>
+        <variable
+            name="item"
+            type="kr.edcan.neologism.model.MyDic"/>
+    </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
         android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:text="@{item.dicname}"
             android:singleLine="true"
             android:textColor="@color/listTitleColor"
             android:textSize="25sp"

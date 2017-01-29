@@ -17,4 +17,9 @@ public class StringUtils {
         String[] s = cata.split("\"");
         return tagArray.indexOf(s[1]);
     }
+    public static int getCodeTypeByTag(String tag) {
+        ArrayList<String> tagArray = new ArrayList<>();
+        Collections.addAll(tagArray, tagArr);
+        return tagArray.indexOf(tag);
+    }
 }
