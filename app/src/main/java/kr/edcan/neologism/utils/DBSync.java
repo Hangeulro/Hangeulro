@@ -37,7 +37,6 @@ public class DBSync {
                 JSONObject content = array.getJSONObject(i);
                 JSONArray originTagList = content.getJSONArray("cata");
                 String originTagStr = originTagList.toString();
-                Log.e("asdf", originTagStr);
                 DicDBData data = realm.createObject(DicDBData.class);
                 data.setContents(content.getString("id"),
                         content.getString("word"),

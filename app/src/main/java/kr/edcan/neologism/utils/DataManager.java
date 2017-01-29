@@ -111,7 +111,6 @@ public class DataManager {
             String name = preferences.getString(USER_NAME, "");
             String url = preferences.getString(USER_PROFILE_URL, "");
             String token = preferences.getString(HANGEULRO_SERVER_TOKEN, "");
-            Log.e("asdf", "name : " + name + "url : " + url);
             User user = new User(userType, id, name, token, url);
             return Pair.create(true, user);
         } else return Pair.create(false, null);
@@ -154,9 +153,10 @@ public class DataManager {
         editor.putString("lastWordUpdate", month + " " + date);
         editor.commit();
     }
-    public boolean mustUpdateTodayWord(){
+
+    public boolean mustUpdateTodayWord() {
         Calendar calendar = Calendar.getInstance();
-        return !((calendar.get(Calendar.MONTH)+1)+ " " + calendar.get(Calendar.DATE)).equals(preferences.getString("lastWordUpdate", ""));
+        return !((calendar.get(Calendar.MONTH) + 1) + " " + calendar.get(Calendar.DATE)).equals(preferences.getString("lastWordUpdate", ""));
     }
 
 
