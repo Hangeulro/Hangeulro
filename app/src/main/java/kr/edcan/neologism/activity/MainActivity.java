@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void search() {
-        searchQuery = binding.searchQueryInput.getText().toString();
+        searchQuery = binding.searchQueryInput.getText().toString().trim();
         if (!searchQuery.isEmpty()) {
             realm.beginTransaction();
             RealmResults<DicDBData> result = realm.where(DicDBData.class)
@@ -185,6 +185,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.searchQueryInput.setText("");
             } else Toast.makeText(activity, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
             realm.commitTransaction();
-        } else Toast.makeText(activity, "검색어를 입력해주세요!", Toast.LENGTH_SHORT).show();
+        } else {
+            binding.searchQueryInput.setText("");
+            Toast.makeText(activity, "검색어를 입력해주세요!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
