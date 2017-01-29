@@ -23,8 +23,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import kr.edcan.neologism.R;
 import kr.edcan.neologism.adapter.CommonListViewAdapter;
 import kr.edcan.neologism.adapter.MyPageListViewAdapter;
@@ -32,11 +36,14 @@ import kr.edcan.neologism.adapter.NeologismRecyclerAdapter;
 import kr.edcan.neologism.databinding.ActivityMainBinding;
 import kr.edcan.neologism.databinding.MainListviewFooterBinding;
 import kr.edcan.neologism.model.CommonData;
+import kr.edcan.neologism.model.DicDBData;
+import kr.edcan.neologism.model.DicData;
 import kr.edcan.neologism.model.MyDic;
 import kr.edcan.neologism.utils.ClipBoardService;
 import kr.edcan.neologism.utils.DBSync;
 import kr.edcan.neologism.utils.DataManager;
 import kr.edcan.neologism.utils.NetworkHelper;
+import kr.edcan.neologism.utils.StringUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static int OVERLAY_PERMISSION_REQ_CODE = 5858;
@@ -46,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (activity != null) activity.finish();
     }
 
+    String searchQuery;
+    Realm realm;
     ActivityMainBinding binding;
     DataManager manager;
 
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setDefault() {
+        realm = Realm.getDefaultInstance();
         binding.expandNeologism.setOnClickListener(this);
         binding.myDictionary.setOnClickListener(this);
         binding.neologismTest.setOnClickListener(this);
@@ -83,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.madDic.setOnClickListener(this);
         binding.okDic.setOnClickListener(this);
         binding.lifeDic.setOnClickListener(this);
+        binding.searchButton.setOnClickListener(this);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -152,6 +163,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.lifeDic:
                 startActivity(new Intent(getApplicationContext(), DicViewActivity.class).putExtra("codeType", 5));
                 break;
+            case R.id.searchButton:
+                search();
+                break;
+
         }
+    }
+
+    private void search() {
+        searchQuery = binding.searchQueryInput.getText().toString();
+        if (!searchQuery.isEmpty()) {
+            realm.beginTransaction();
+            RealmResults<DicDBData> result = realm.where(DicDBData.class)
+                    .equalTo("word", binding.searchQueryInput.getText().toString())
+                    .findAll();
+            if (result.size() > 0) {
+                DicData data = new DicData(result.get(0));
+                startActivity(new Intent(getApplicationContext(), DicDetailViewActivity.class)
+                        .putExtra("wordInfo", new Gson().toJson(data, DicData.class))
+                        .putExtra("codeType", StringUtils.getCodeType(data.getCata())));
+                binding.searchQueryInput.setText("");
+            } else Toast.makeText(activity, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+            realm.commitTransaction();
+        } else Toast.makeText(activity, "검색어를 입력해주세요!", Toast.LENGTH_SHORT).show();
     }
 }
