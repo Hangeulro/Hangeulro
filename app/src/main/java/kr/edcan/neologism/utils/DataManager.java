@@ -5,9 +5,14 @@ import android.content.SharedPreferences;
 import android.support.v4.util.Pair;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
+import kr.edcan.neologism.model.DicData;
 import kr.edcan.neologism.model.FacebookUser;
 import kr.edcan.neologism.model.User;
 
@@ -130,7 +135,8 @@ public class DataManager {
     public int getCurrentDatabaseVersion() {
         return preferences.getInt(DATABASE_VERSION, -1);
     }
-    public void saveCurrentDatabaseVersion(int version){
+
+    public void saveCurrentDatabaseVersion(int version) {
         editor.putInt(DATABASE_VERSION, version);
         editor.apply();
     }
@@ -140,29 +146,18 @@ public class DataManager {
         editor.apply();
     }
 
-    public String getString(String key) {
-        return preferences.getString(key, "");
+    public void saveTodayWord(DicData data) {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int date = calendar.get(Calendar.DATE);
+        editor.putString("todayWord", new Gson().toJson(data, DicData.class));
+        editor.putString("lastWordUpdate", month + " " + date);
+        editor.commit();
+    }
+    public boolean mustUpdateTodayWord(){
+        Calendar calendar = Calendar.getInstance();
+        return !((calendar.get(Calendar.MONTH)+1)+ " " + calendar.get(Calendar.DATE)).equals(preferences.getString("lastWordUpdate", ""));
     }
 
-    public int getInt(String key) {
-        return preferences.getInt(key, 0);
-    }
-
-    public boolean getBoolean(String key) {
-        return preferences.getBoolean(key, false);
-    }
-
-    public boolean isFirst() {
-        return preferences.getBoolean("IS_FIRST", true);
-    }
-
-    public void notFirst() {
-        editor.putBoolean("IS_FIRST", false);
-        editor.apply();
-    }
-
-    public long getLong(String key) {
-        return preferences.getLong(key, 0);
-    }
 
 }
