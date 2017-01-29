@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (activity != null) activity.finish();
     }
 
+    DicData currentTodayWord = null;
     String searchQuery;
     Realm realm;
     ActivityMainBinding binding;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.okDic.setOnClickListener(this);
         binding.lifeDic.setOnClickListener(this);
         binding.searchButton.setOnClickListener(this);
+        binding.todayNeologism.setOnClickListener(this);
         checkTodayWord();
     }
 
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getTodayWord.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.code() == 200){
+                        if (response.code() == 200) {
                             JSONObject content = null;
                             try {
                                 content = new JSONObject(response.body().string());
@@ -149,12 +151,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 });
-            } else Toast.makeText(activity, "인터넷에 연결되지 않아 오늘의 신조어를 확인할 수 없습니다.", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(activity, "인터넷에 연결되지 않아 오늘의 신조어를 확인할 수 없습니다.", Toast.LENGTH_SHORT).show();
         } else setTodayWordResult(true, manager.getTodayWord());
     }
 
     public void setTodayWordResult(boolean isSuccess, DicData data) {
-        if(isSuccess){
+        if (isSuccess) {
+            this.currentTodayWord = data;
             binding.todayWordName.setText(data.getWord());
             binding.todayWordMeaning.setText(data.getMean());
         } else {
@@ -177,6 +181,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.todayNeologism:
+                if(currentTodayWord != null) {
+                    startActivity(new Intent(getApplicationContext(), DicDetailViewActivity.class)
+                            .putExtra("wordInfo", new Gson().toJson(currentTodayWord, DicData.class))
+                            .putExtra("codeType", StringUtils.getCodeType(currentTodayWord.getCata())));
+                }
+                break;
             case R.id.expandNeologism:
                 startActivity(new Intent(getApplicationContext(), DicMenuActivity.class));
                 break;
