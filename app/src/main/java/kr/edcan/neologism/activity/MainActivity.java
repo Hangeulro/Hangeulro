@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         setTodayWordResult(false, null);
-                        Log.e("asdf", t.getMessage() + "");
+                        Log.e("asdf main", t.getMessage() + "");
 
                     }
                 });

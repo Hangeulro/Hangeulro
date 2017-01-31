@@ -16,12 +16,15 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -29,11 +32,11 @@ import retrofit2.http.Query;
  */
 public interface NetworkInterface {
 
-    @POST("/my")
+    @GET("/my/{token}")
     @FormUrlEncoded
-    Call<User> getUserInfo(@Field("token") String token);
+    Call<User> getUserInfo(@Path("token") String token);
 
-    @POST("/my/pointUp")
+    @PUT("/my/pointUp")
     @FormUrlEncoded
     Call<ResponseBody> scoreUp(@Field("token") String token, @Field("pointUp") int point);
 
@@ -50,7 +53,7 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("name") String username);
 
-    @POST("/auth/destroy")
+    @DELETE("/auth/destroy")
     @FormUrlEncoded
     Call<ResponseBody> destroyUser(@Field("token") String token);
 
@@ -66,20 +69,12 @@ public interface NetworkInterface {
     @GET("/version")
     Call<String> getDataBaseVersion();
 
-    @POST("/word")
+    @GET("/word")
     Call<ResponseBody> getWordList();
 
-    @POST("/word/cata")
-    @FormUrlEncoded
-    Call<ResponseBody> getWordWithType(@Field("cata") String cata);
 
     @GET("/today")
     Call<ResponseBody> getTodayWord();
-
-    @POST("/word/commentAdd")
-    @FormUrlEncoded
-    Call<DicData> addCommentToWord(@Field("token") String token, @Field("date") Date date,
-                                   @Field("wordid") String wordid, @Field("summary") String summary);
 
     @POST("/quize")
     Call<ArrayList<Quiz>> getQuizList();
@@ -93,12 +88,12 @@ public interface NetworkInterface {
     Call<ResponseBody> createMyDictionary(@Field("token") String token, @Field("dicname") String title
             , @Field("sub") String subTitle);
 
-    @POST("/mydic/add")
+    @PUT("/mydic/add")
     @FormUrlEncoded
     Call<ResponseBody> addToDictionary(@Field("token") String token, @Field("dicname") String dicName
             , @Field("word") String word);
 
-    @POST("/mydic/pop")
+    @PUT("/mydic/pop")
     @FormUrlEncoded
     Call<ResponseBody> removeFromDictionary(@Field("token") String token, @Field("dicname") String dicName
             , @Field("id") String wordId);
@@ -106,16 +101,16 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<MyDicViewData> getMyDicInfo(@Field("token") String token, @Field("dicname") String dicName);
 
-    @POST("/board")
+    @GET("/board")
     Call<ArrayList<Board>> getBoardList();
 
-    @POST("/board/commentAdd")
+    @POST("/board/comment")
     @FormUrlEncoded
     Call<ResponseBody> addCommentToBoard(@Field("token") String token, @Field("boardid") String boardid,
                                          @Field("summary") String comment, @Field("date") Date date);
-    @POST("/board/detail")
+    @GET("/board/{boardid}")
     @FormUrlEncoded
-    Call<Board> getBoardInfo(@Field("boardid") String boardid);
+    Call<Board> getBoardInfo(@Path("boardid") String boardid);
 
     @POST("/board/write")
     @Multipart

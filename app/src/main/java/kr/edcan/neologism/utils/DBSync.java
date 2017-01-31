@@ -112,7 +112,7 @@ public class DBSync {
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Log.e("asdf", t.getMessage());
+                            Log.e("asdf ", t.getMessage());
                         }
                     });
                 }

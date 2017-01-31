@@ -208,9 +208,9 @@ public class SplashActivity extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 finish();
                             } catch (JSONException e) {
-                                Log.e("asdf", e.getMessage());
+                                Log.e("asdf jsonexception", e.getMessage());
                             } catch (IOException e) {
-                                Log.e("asdf", e.getMessage());
+                                Log.e("asdf ioexception", e.getMessage());
                                 e.printStackTrace();
                             }
                             break;
