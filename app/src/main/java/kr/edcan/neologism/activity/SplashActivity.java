@@ -69,12 +69,15 @@ public class SplashActivity extends AppCompatActivity {
                 Toast.makeText(this, "사전 데이터베이스 다운로드를 위해 인터넷 연결이 필요합니다.\n인터넷에 연결하신 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        } else new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        } else {
+            if(NetworkHelper.returnNetworkState(getApplicationContext())){
                 validateUserToken();
+            } else {
+                Toast.makeText(SplashActivity.this, dataManager.getActiveUser().second.getName() + "인터넷에 연결되지 않아 사용자 정보를 확인할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
-        }, 1500);
+        }
     }
 
     private void validateUserToken() {
