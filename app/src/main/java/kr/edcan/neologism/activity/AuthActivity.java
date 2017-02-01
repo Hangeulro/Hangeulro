@@ -86,6 +86,13 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                     break;
                                 case 400:
                                     Toast.makeText(AuthActivity.this, "아이디 혹은 비밀번호가 잘못되었습니다!", Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 500:
+                                    try {
+                                        Log.e("asdf", response.body().string());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                             }
                         }
 
@@ -149,6 +156,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onError(FacebookException error) {
+                Log.e("asdf", error.getMessage());
                 Toast.makeText(AuthActivity.this, "로그인 인증 중에 문제가 발생했습니다.\n서비스 관리자에게 문의해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
