@@ -84,7 +84,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                                         e.printStackTrace();
                                     }
                                     break;
-                                case 400:
+                                case 401:
                                     Toast.makeText(AuthActivity.this, "아이디 혹은 비밀번호가 잘못되었습니다!", Toast.LENGTH_SHORT).show();
                                     break;
                                 case 500:

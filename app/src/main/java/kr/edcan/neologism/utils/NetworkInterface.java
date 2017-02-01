@@ -33,7 +33,6 @@ import retrofit2.http.Query;
 public interface NetworkInterface {
 
     @GET("/my/{token}")
-    @FormUrlEncoded
     Call<User> getUserInfo(@Path("token") String token);
 
     @PUT("/my/pointUp")
@@ -79,9 +78,8 @@ public interface NetworkInterface {
     @POST("/quize")
     Call<ArrayList<Quiz>> getQuizList();
 
-    @POST("/mydic")
-    @FormUrlEncoded
-    Call<ArrayList<MyDic>> getMyDictionary(@Field("token") String token);
+    @GET("/mydic/{token}")
+    Call<ArrayList<MyDic>> getMyDictionary(@Path("token") String token);
 
     @POST("/mydic/make")
     @FormUrlEncoded
@@ -97,9 +95,9 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> removeFromDictionary(@Field("token") String token, @Field("dicname") String dicName
             , @Field("id") String wordId);
-    @POST("/mydic/detail")
-    @FormUrlEncoded
-    Call<MyDicViewData> getMyDicInfo(@Field("token") String token, @Field("dicname") String dicName);
+
+    @GET("/mydic/{token}/{dicname}")
+    Call<MyDicViewData> getMyDicInfo(@Path("token") String token, @Path("dicname") String dicName);
 
     @GET("/board")
     Call<ArrayList<Board>> getBoardList();
