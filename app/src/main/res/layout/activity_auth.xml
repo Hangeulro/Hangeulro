@@ -141,6 +141,15 @@
                             android:src="@drawable/ic_login_facebook" />
                     </RelativeLayout>
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/authRegister"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="회원가입"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </RelativeLayout>
 

@@ -107,7 +107,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         });
         binding.authTwitter.setOnClickListener(this);
         binding.authFacebook.setOnClickListener(this);
-//        binding.authRegisterLaunch.setOnClickListener(this);
+        binding.authRegister.setOnClickListener(this);
         LoginManager.getInstance().logOut();
     }
 
@@ -120,9 +120,9 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void startRegisterAfterPolicy(){
         switch (selectedID) {
-//            case R.id.authRegisterLaunch:
-//                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-//                break;
+            case R.id.authRegister:
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                break;
             case R.id.authTwitter:
                 binding.authTwitterLaunch.performClick();
                 break;
