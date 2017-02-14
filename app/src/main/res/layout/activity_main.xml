@@ -22,20 +22,31 @@
                 app:contentInsetStart="0dp"
                 app:contentInsetStartWithNavigation="0dp">
 
-                <ImageView
-                    android:id="@+id/mainMyPageLaunch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_menu_white_24dp"
-                    android:text="MYP" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/logo_main_hangeulro" />
+                    <ImageView
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/logo_main_hangeulro" />
+
+                    <View
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
+                    <ImageView
+                        android:id="@+id/mainMyPageLaunch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:src="@drawable/btn_main_mypage"/>
+                </LinearLayout>
             </android.support.v7.widget.Toolbar>
 
             <LinearLayout
@@ -75,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:fillViewport="true"
-                android:scrollbarSize="0dp">
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="match_parent"

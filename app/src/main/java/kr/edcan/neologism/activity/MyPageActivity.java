@@ -203,6 +203,7 @@ public class MyPageActivity extends AppCompatActivity {
                             destroyUser.enqueue(new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    Log.e("asdf", response.code() + " HTTP");
                                     switch (response.code()) {
                                         case 200:
                                             Toast.makeText(MyPageActivity.this, "서비스에서 탈퇴되었습니다.\n일부 기능은 그대로 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show();
@@ -218,6 +219,7 @@ public class MyPageActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                                     Toast.makeText(MyPageActivity.this, "서버와의 연결이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
+                                    Log.e("asdf", t.getMessage());
                                 }
                             });
                         }

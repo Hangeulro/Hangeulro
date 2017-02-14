@@ -16,6 +16,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -52,9 +53,8 @@ public interface NetworkInterface {
     @FormUrlEncoded
     Call<ResponseBody> userRegister(@Field("userid") String userid, @Field("pw") String password, @Field("name") String username);
 
-    @DELETE("/auth/destroy")
-    @FormUrlEncoded
-    Call<ResponseBody> destroyUser(@Field("token") String token);
+    @DELETE("/auth/destroy/{token}")
+    Call<ResponseBody> destroyUser(@Path("token") String token);
 
     @GET("/auth/fb/token")
     Call<FacebookUser> facebookLogin(@Query("access_token") String accessToken);
