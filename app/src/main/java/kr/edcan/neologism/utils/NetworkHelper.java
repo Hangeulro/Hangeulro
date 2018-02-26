@@ -11,8 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class NetworkHelper {
     private Context context;
-    final public static String url = "http://hangeulro.iwin247.kr";
-    final public static int port = 80;
+    final public static String url = "http://iwin247.kr";
+    final public static int port = 9981;
 
     public NetworkHelper(Context context) {
         this.context = context;
